@@ -1,14 +1,20 @@
 import React from "react";
-import { Image, TextInput, View } from "react-native";
+import { Image, TextInput, Touchable, View } from "react-native";
 import icon from "../constants/icon";
+import { TouchableRipple } from "react-native-paper";
 
-const SearchProperty = ({ placeholder }) => {
+const SearchProperty = ({ placeholder, search }) => {
   return (
     <View className="relative pt-5 px-4">
+      <TouchableRipple
+      className="w-5 h-5 z-10 absolute top-[32px] ml-1 left-5"
+      onPress={async()=> search && await search()}
+      >
       <Image
         source={icon.searchicon}
-        className="w-5 h-5 z-10 absolute top-[32px] ml-1 left-5 opacity-20"
-      />
+        className="w-5 h-5"
+        />
+      </TouchableRipple>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={"#CFCFCF"}
