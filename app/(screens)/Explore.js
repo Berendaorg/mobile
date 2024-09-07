@@ -5,9 +5,15 @@ import icon from "../../constants/icon";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
 import { router } from "expo-router";
+import { fetch } from "../../mocks/fetch";
 
 const Explore = () => {
-  const developers = [
+
+  const housedata = [];
+
+  const [SelectedFilter, setSelectedFilter] = useState("apartment");
+  const [realestates, setRealestates] = useState(["Noah", "Ayat", "Arada"])
+  const [developers, setDevelopers] = useState([
     {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9RL7jZBdy-GACBLVMZSCDp44yr93lDryEQQ&s",
@@ -24,13 +30,13 @@ const Explore = () => {
       image:
         "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",
     },
-  ];
+  ])
+  
 
-  const housedata = [];
-
-  const realestates = ["Noah", "Ayat", "Arada"];
-
-  const [SelectedFilter, setSelectedFilter] = useState("apartment");
+  async function findListings () {
+    const response = await fetch('https://fake-api.example.com/api/v1/listings/search',{method:'GET'})
+    setRealestates(response.data)
+  }
 
   const handleSelectingFilter = (filter) => {
     setSelectedFilter(filter);
@@ -42,7 +48,7 @@ const Explore = () => {
       vertical={true}
       showsVerticalScrollIndicator={false}
     >
-      <SearchProperty placeholder="Search Property" />
+      <SearchProperty placeholder="Search Property" search={findListings} />
       <View className="">
         <View className=" px-4 pt-3 flex flex-row items-center justify-between">
           <Text className="text-lg font-bold">Developers</Text>
