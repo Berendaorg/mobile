@@ -24,15 +24,7 @@ const BottomSheetModals = ({
         enablePanDownToClose={true}
         animateOnMount={true}
       >
-        <BottomSheetScrollView
-          className="pt-5 h-full"
-          decelerationRate="fast"
-          vertical={true}
-          showsVerticalScrollIndicator={false}
-        >
-          <Text className="text-xl opacity-80 pl-4 font-bold my-4">
-            Property Type
-          </Text>
+        <BottomSheetScrollView className="pt-5 h-full">
           {PropertyType.map((property) => {
             return (
               <View className="flex-row justify-between mb-5 px-4">

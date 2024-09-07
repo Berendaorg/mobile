@@ -11,8 +11,33 @@ import blacklocationicon from "../assets/icons/blacklocationicon.png";
 import bedroomiconwhite from "../assets/icons/bedroomiconwhite.png";
 import bathroomiconwhite from "../assets/icons/bathroomiconwhite.png";
 import areaiconwhite from "../assets/icons/areaiconwhite.png";
+import notificationoutline from "../assets/icons/notificationoutline.png";
+import filtericon from "../assets/icons/filtericon.png";
+import searchicon from "../assets/icons/searchicon.png";
+import staricon from "../assets/icons/staricon.png";
+import Transfericon from "../assets/icons/Transfer.png";
+import Flighticon from "../assets/icons/Flight.png";
+import Languageicon from "../assets/icons/languageicon.png";
+import Downarrow from "../assets/icons/downarrowicon.png";
+import Measurementicon from "../assets/icons/measurementicon.png";
+import Privacyicon from "../assets/icons/privacyicon.png";
+import Termsicon from "../assets/icons/termsicon.png";
+import Themesicon from "../assets/icons/themesicon.png";
+import Abouticon from "../assets/icons/abouticon.png";
 
 export default {
+  filtericon,
+  Languageicon,
+  Abouticon,
+  Downarrow,
+  Measurementicon,
+  Themesicon,
+  Privacyicon,
+  Termsicon,
+  Transfericon,
+  Flighticon,
+  staricon,
+  searchicon,
   bookmarkicon,
   backicon,
   bookmarkoutline,
@@ -26,4 +51,5 @@ export default {
   bedroomiconwhite,
   bathroomiconwhite,
   areaiconwhite,
+  notificationoutline,
 };

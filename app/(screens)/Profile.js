@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text } from "react-native";
 
-const Home = () => {
+const Profile = () => {
   return (
     <>
       <Text>home</Text>
@@ -13,4 +13,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Profile;

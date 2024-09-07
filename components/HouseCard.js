@@ -23,7 +23,7 @@ const HouseCard = ({ house }) => {
             <View className="flex-row items-center">
               <Text className="text-base text-white  font-bold">
                 {house.listedBy.name}
-                </Text>
+              </Text>
               {house.listedBy.verified && (
                 <Image
                   source={icon.verifiedicon}
@@ -40,7 +40,10 @@ const HouseCard = ({ house }) => {
 
         <View>
           <View className="relative mt-2">
-            <Image source={house.image} className="w-full h-[250px] rounded-lg" />
+            <Image
+              source={house.image}
+              className="w-full h-[250px] rounded-lg"
+            />
           </View>
           <TouchableOpacity className="z-50 absolute top-4 right-2 p-2 font-bold bg-white rounded-full">
             <Image
@@ -57,15 +60,15 @@ const HouseCard = ({ house }) => {
                 {house.description.slice(0, 20)}
               </Text>
               <View className="flex-row -ml-2 gap-1 items-center justify-center ">
-              <Image
-                source={icon.blacklocationicon}
-                className="w-5 h-5 opacity-80 bg-white p-1 rounded-full"
-                resizeMode="contain"
-              />
-              <Text className="text-[11px] font-bold text-gray-200">
-                {house.address}
-              </Text>
-            </View>
+                <Image
+                  source={icon.blacklocationicon}
+                  className="w-5 h-5 opacity-80 bg-white p-1 rounded-full"
+                  resizeMode="contain"
+                />
+                <Text className="text-[11px] font-bold text-gray-200">
+                  {house.address}
+                </Text>
+              </View>
             </View>
             <View className="flex-row  justify-between">
               <Text className="text-base font-bold text-white">
@@ -82,10 +85,7 @@ const HouseCard = ({ house }) => {
                   className="w-6 h-6 "
                   resizeMode="contain"
                 />
-                <Text className="text-white font-bold">
-                  {house.bedrooms}
-                  </Text>
-
+                <Text className="text-white font-bold">{house.bedrooms}</Text>
               </View>
 
               <View className="w-1 h-1 bg-white rounded-full"></View>
@@ -109,7 +109,9 @@ const HouseCard = ({ house }) => {
                   className="w-4 h-4"
                   resizeMode="contain"
                 />
-                <Text className="text-white  font-bold">{house.houseSize}m&#178;</Text>
+                <Text className="text-white  font-bold">
+                  {house.houseSize}m&#178;
+                </Text>
               </View>
             </View>
           </View>
