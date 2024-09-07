@@ -1,7 +1,8 @@
 import image from "../constants/image";
+import icon from "../constants/icon";
 
 
-// const houseData = [
+// const listingData = [
 //     {
 //       "image": image.detailimg,
 //       "house_id": "1",
@@ -134,7 +135,7 @@ import image from "../constants/image";
 //     }
 //   ]
 
-const houseData = [{
+const listingData = [{
     "houseId": "1",
     "image": image.detailimg,
     "address": "123 Main St, City, Country",
@@ -535,7 +536,6 @@ const houseData = [{
     "listedFor": "sell"
   }]
 
-
 const categMapData = [
     {
       "type": "5",
@@ -767,5 +767,33 @@ const rooms = [
   }
 ]
 
-export {houseData, categMapData, roomData}
+const notificationData = [
+    {
+    time:'1:57',
+    body:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
+    icon: icon.Transfericon
+    },
+    {
+    time:'1:57',
+    body:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
+    icon: icon.Transfericon
+    },
+    {
+    time:'1:57',
+    body:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
+    icon: icon.Transfericon
+    },
+    {
+    time:'1:57',
+    body:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
+    icon: icon.Transfericon
+    },
+    {
+    time:'1:57',
+    body:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
+    icon: icon.Transfericon
+    },
+]
+
+export {listingData, categMapData, roomData, notificationData}
   
