@@ -16,7 +16,7 @@ const fetch =
     // You can inspect the URL or options to return different mocks based on the request
     const fakeApi = 'https://fake-api.example.com/api/v1/';
     switch (true) {
-      case url.includes(`${fakeApi}users`):
+      case url==(`${fakeApi}users`):
         switch (options?.method) {
           case methods.GET:
             return {
@@ -44,7 +44,7 @@ const fetch =
               ok: true,
             };
         }
-      case url.includes(`${fakeApi}developers`):
+      case url==(`${fakeApi}developers`):
         switch (options.method) {
           case methods.GET:
             return {
@@ -72,7 +72,7 @@ const fetch =
               ok: true,
             };
         }
-      case url.includes(`${fakeApi}listings`):
+      case url==(`${fakeApi}listings`):
         switch (options.method) {
           case methods.GET:
             return {
@@ -100,14 +100,15 @@ const fetch =
               ok: true,
             };
         }
-      case url.includes(`${fakeApi}listings/search`):
+      case url==(`${fakeApi}listings/search`):
         switch (options.method){
             case methods.GET:
+                console.log('search listing')
                 return {
-                    
+                    data: ["Arada","Ayat","Noah"]
                 }
         }
-      case url.includes(`${fakeApi}notifications`):
+      case url==(`${fakeApi}notifications`):
         switch (options.method) {
         case methods.GET:
                 return {
