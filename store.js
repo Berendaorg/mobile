@@ -1,17 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-// import mapSlice from './slices/mapSlice'
-import houseSlice from './slices/houseSlice'
-import searchSlice from './slices/searchSlice'
-import notificationSlice from './slices/notificationSlice'
+import listingReducer from './slices/listingSlice'
+import searchReducer from './slices/searchSlice'
+import notificationReducer from './slices/notificationSlice'
+import userReducer from './slices/userSlice'
+import developerReducer from './slices/developerSlice'
 
 export const store = configureStore({
   reducer: {
-    // map:mapSlice,
-    house:houseSlice,
-    search:searchSlice,
-    notification:notificationSlice
-    // listings
-    // auth
-    // developers
+    listing:listingReducer,
+    search:searchReducer,
+    notification:notificationReducer,
+    developer:developerReducer,
+    user: userReducer
   },
 })
