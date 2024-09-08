@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
+import { useSelector,useDispatch } from "react-redux";
+
+import { selectUser,getUser } from "../../slices/userSlice";
 
 const Profile = () => {
+
+  const dispatch = useDispatch()
+  const user = useSelector(selectUser)
+
+  useEffect(()=>{
+    dispatch(getUser())
+  },[])
+
   return (
     <>
     <View className="h-full w-full pt-3  flex-col gap-6 justify-start items-center">
@@ -14,19 +25,19 @@ const Profile = () => {
       
       <View className="flex flex-row justify-around w-full">
         <Text className="rounded-lg pt-3 px-1 font-bold border border-black items-center p-3">
-          First Name
+          {user.firstName}
         </Text>
         <Text className="rounded-lg pt-3 px-1 font-bold border border-black items-center p-3">
-          Last Name
+          {user.lastName}
         </Text>
       </View>
 
         <Text className="rounded-lg font-bold border border-black items-center p-3 w-full text-center">
-        Email
+        {user.email}
         </Text>
       
         <Text className="rounded-lg font-bold border border-black items-center p-3 w-full text-center">
-          +2519547543
+          {user.phoneNumber}
         </Text>
     </View>
     </>

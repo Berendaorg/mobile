@@ -6,7 +6,7 @@ import icon from "../constants/icon";
 
 const HouseCard = ({ house }) => {
   return (
-    <Link href={`/details/${house.houseId}`}>
+    <Link href={`/details/${house.listingId}`}>
       <View className="relative w-screen  px-4 mt-3 mb-3">
         {/* <Link href= "/details"> */}
         <View className="flex-row items-center gap-2">

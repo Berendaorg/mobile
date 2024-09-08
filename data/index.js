@@ -136,7 +136,8 @@ import icon from "../constants/icon";
 //   ]
 
 const listingData = [{
-    "houseId": "1",
+    "listingId": "1",
+    "name":"listing 1",
     "image": image.detailimg,
     "address": "123 Main St, City, Country",
     "price": 250000,
@@ -176,7 +177,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "2",
+    "listingId": "2",
+    "name":"listing 2",
     "image": image.detailimg,
     "address": "456 Elm St, City, Country",
     "price": 190787000,
@@ -216,7 +218,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "3",
+    "listingId": "3",
+    "name":"listing 3",
     "image": image.detailimg,
     "address": "789 Oak St, City, Country",
     "price": 300000,
@@ -256,7 +259,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "4",
+    "listingId": "4",
+    "name":"listing 4",
     "image": image.detailimg,
     "address": "321 Pine St, City, Country",
     "price": 500000,
@@ -296,7 +300,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "5",
+    "listingId": "5",
+    "name":"listing 5",
     "image": image.detailimg,
     "address": "246 Maple St, City, Country",
     "price": 180000,
@@ -336,7 +341,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "6",
+    "listingId": "6",
+    "name":"listing 6",
     "image": image.detailimg,
     "address": "789 Cedar St, City, Country",
     "price": 400000,
@@ -376,7 +382,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "7",
+    "listingId": "7",
+    "name":"listing 7",
     "image": image.detailimg,
     "address": "1010 Walnut St, City, Country",
     "price": 600000,
@@ -416,7 +423,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "8",
+    "listingId": "8",
+    "name":"listing 8",
     "image": image.detailimg,
     "address": "1313 Oak St, City, Country",
     "price": 350000,
@@ -456,7 +464,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "9",
+    "listingId": "9",
+    "name":"listing 9",
     "image": image.detailimg,
     "address": "1717 Maple St, City, Country",
     "price": 200000,
@@ -496,7 +505,8 @@ const listingData = [{
     "listedFor": "sell"
   },
   {
-    "houseId": "0",
+    "listingId": "0",
+    "name":"listing 0",
     "image": image.detailimg,
     "address": "2121 Cedar St, City, Country",
     "price": 450000,
@@ -795,5 +805,36 @@ const notificationData = [
     },
 ]
 
-export {listingData, categMapData, roomData, notificationData}
+const developerData = [
+  {
+    id:1,
+    name:"developer 1",
+    email:"developer1@email.com",
+    profilePhoto:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9RL7jZBdy-GACBLVMZSCDp44yr93lDryEQQ&s",
+  },
+  {
+    id:2,
+    name:"developer 2",
+    email:"developer2@email.com",
+    profilePhoto:
+      "https://iconape.com/wp-content/png_logo_vector/aldar-properties-logo.png",
+  },
+  {
+    id:3,
+    name:"developer 3",
+    email:"developer3@email.com",
+    profilePhoto:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQbFW_-3yGH3koFlg80RcrRl7H8QfhkH5xQ&s",
+  },
+  {
+    id:4,
+    name:"developer 4",
+    email:"developer4@email.com",
+    profilePhoto:
+      "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",
+  },
+]
+
+export {listingData, categMapData, roomData, notificationData, developerData}
   
