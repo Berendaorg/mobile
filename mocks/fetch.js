@@ -149,5 +149,5 @@ const fetch =
         }
     }
 }
-
+ }
 export { fetch }
