@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import image from "../../constants/image";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
+import { useSelector, useDispatch } from "react-redux";
+import { getDevelopersById,selectdevelopers } from "../../slices/developerSlice";
 
 const DeveloperDetail = () => {
+  const developer = useSelector(selectdevelopers)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getDevelopersById())
+    console.log(developer)
+  },[])
+
   return (
     <View className="bg-[#FAFAFB] w-full h-full">
       <View className="px-4 py-8 bg-highlight flex flex-row gap-1 items-center">
@@ -16,7 +25,7 @@ const DeveloperDetail = () => {
         />
         <View className="flex flex-col gap-2">
           <Text className="text-lg font-semibold text-primary">
-            About Dubai Properties
+            About {developer[0].name}
           </Text>
           <Text className="text-sm text-primary w-[40%]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

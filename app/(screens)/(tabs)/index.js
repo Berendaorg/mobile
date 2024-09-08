@@ -11,16 +11,16 @@ import {
 import React, { useState, useRef } from "react";
 
 import { Link } from "expo-router";
-import HouseCard from "../../../components/HouseCard";
+// import HouseCard from "../../../components/HouseCard";
 import  {
   BottomSheetScrollView,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 
-import { selectHouseData } from "../../../slices/houseSlice";
+// import { selectHouseData } from "../../../slices/houseSlice";
 
-import * as Location from "expo-location";
+import * as Location from "expo-location";``
 import Checkbox from "expo-checkbox";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import LabelInput from "../../../components/LabelInput";
@@ -43,7 +43,7 @@ const Home = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isChecked, setChecked] = useState(false);
 
-  const houseData = useSelector(selectHouseData);
+  // const houseData = useSelector(selectHouseData);
   const bathrooms = useSelector(selectBathrooms);
   const bedrooms = useSelector(selectedBedrooms);
   const propertyType = useSelector(selectPropertyType);
@@ -153,7 +153,7 @@ const Home = () => {
         vertical={true}
         showsVerticalScrollIndicator={false}
       >
-        <FlatList
+        {/* <FlatList
           data={houseData}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
@@ -162,7 +162,7 @@ const Home = () => {
               <HouseCard house={item} />
             </Link>
           )}
-        />
+        /> */}
       </ScrollView>
 
       {/* search modal  */}

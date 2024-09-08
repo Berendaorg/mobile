@@ -18,9 +18,9 @@ import { Link, useLocalSearchParams, useSearchParams } from "expo-router";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectSelectedHouse, getHouse } from "../../../slices/houseSlice";
 import MapView, { Marker } from "react-native-maps";
 import icon from "../../../constants/icon";
+// import { selectSelectedHouse, getHouse } from "../../../slices/houseSlice";
 
 const Details = () => {
   const dispatch = useDispatch();

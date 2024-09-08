@@ -4,7 +4,7 @@ import Carousel from "react-native-reanimated-carousel";
 import icon from "../constants/icon";
 import { router, Redirect } from "expo-router";
 import { useDispatch } from "react-redux";
-import { setSaved } from "../slices/houseSlice";
+// import { setSaved } from "../slices/houseSlice";
 
 const CarouselRoom = ({ rooms, width }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,9 @@ const CarouselRoom = ({ rooms, width }) => {
       </TouchableOpacity>
       <TouchableOpacity
         className="z-50 absolute top-4 right-4 p-2 bg-primary rounded-full"
-        onPress={() => dispatch(setSaved(rooms[0]))}
+        onPress={() => 
+          // dispatch(setSaved(rooms[0]))
+        {}}
       >
         <Image
           source={icon.bookmarkicon}

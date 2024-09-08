@@ -3,13 +3,13 @@ import { ScrollView, Text, View } from 'react-native'
 import ResultList from '../../components/ResultList';
 
 import { useSelector } from "react-redux";
-import {selectHouseData} from "../../slices/houseSlice";
+// import {selectHouseData} from "../../slices/houseSlice";
 import { Result } from 'postcss';
 
 
 const profile = () => {
 
-  const houseData = useSelector(selectHouseData)
+  // const houseData = useSelector(selectHouseData)
 
   return (
     <>
@@ -26,7 +26,7 @@ const profile = () => {
             <Text className="text-sm">Real Estate City</Text>
             <Text className="text-sm mt05">Also from this client</Text>
           </View>
-          <ResultList arrayData={houseData}  />
+          {/* <ResultList arrayData={houseData}  /> */}
         </ScrollView>
     </View>
     </>
