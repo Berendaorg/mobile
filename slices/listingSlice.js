@@ -59,10 +59,23 @@ export const getListings = createAsyncThunk(
   }
 )
 
+export const getListingsById = createAsyncThunk(
+  '/listings/getlistingById',
+  async (id) => {
+    const response = await fetch(`${fakeApi}listings`,{
+      method:'GET',
+      params:{
+        id
+      }
+    })
+    return response.data
+  }
+)
+
 export const getSavedListings = createAsyncThunk(
   '/listings/getSavedListings',
   async () => {
-    console.log('first')
+    console.log('getSavedListings')
     const response = await fetch(`${fakeApi}listings/saved`,{
       method:'GET'
     })
@@ -70,17 +83,7 @@ export const getSavedListings = createAsyncThunk(
   }
 )
 
-export const addSavedListing = createAsyncThunk(
-  '/listings/addSavedListings',
-  async () => {
-    const response = await fetch(`${fakeApi}listings/saved`,{
-      method:'post'
-    })
-    return response.data
-  }
-)
-
-export const deleteSavedListings = createAsyncThunk(
+export const deleteSavedListing = createAsyncThunk(
   '/listings/deleteSavedListing',
   async (id) => {
     const response = await fetch(`${fakeApi}listings/saved`,{
@@ -93,14 +96,11 @@ export const deleteSavedListings = createAsyncThunk(
   }
 )
 
-export const getListingsById = createAsyncThunk(
-  '/listings/getlistingById',
-  async (id) => {
-    const response = await fetch(`${fakeApi}listings`,{
-      method:'GET',
-      params:{
-        id
-      }
+export const addSavedListing = createAsyncThunk(
+  '/listings/addSavedListings',
+  async () => {
+    const response = await fetch(`${fakeApi}listings/saved`,{
+      method:'POST'
     })
     return response.data
   }
@@ -118,6 +118,13 @@ export const listingSlice = createSlice({
         return action.payload
       }),
       builder.addCase(getSavedListings.fulfilled, (state, action) => {
+        state.saved[0] = action.payload
+      }),
+      builder.addCase(addSavedListing.fulfilled, (state, action) => {
+        state.saved[0] = action.payload
+      }),
+      builder.addCase(deleteSavedListing.fulfilled, (state, action) => {
+        // return noolean
         state.saved[0] = action.payload
       })
     }

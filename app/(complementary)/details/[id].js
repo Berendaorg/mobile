@@ -20,20 +20,23 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import MapView, { Marker } from "react-native-maps";
 import icon from "../../../constants/icon";
+import { getListings, getListingsById, selectlistings } from "../../../slices/listingSlice";
 // import { selectSelectedHouse, getHouse } from "../../../slices/houseSlice";
 
 const Details = () => {
+
   const dispatch = useDispatch();
   const { id } = useLocalSearchParams();
-  const house = [];
+  const listing = useSelector(selectlistings);
 
   const { width } = Dimensions.get("window");
 
-  // useEffect(() => {
-  //   dispatch(getHouse(id));
-  //   latitude = house.location.coords.lat;
-  //   longitude = house.location.coords.lng;
-  // }, [id]);
+  useEffect(() => {
+    dispatch(getListingsById())
+    // dispatch(getHouse(id));
+    // latitude = house.location.coords.lat;
+    // longitude = house.location.coords.lng;
+  }, [id]);
 
   const rooms = [
     {

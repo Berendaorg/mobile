@@ -115,7 +115,7 @@ const fetch =
                   ok:true
                 }
               }
-              case methods.POST:
+            case methods.POST:
                   console.log(`Add to saved listing`)
               return {
                     data: true,
