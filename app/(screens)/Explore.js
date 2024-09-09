@@ -1,77 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import icon from "../../constants/icon";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
+
 import { fetch } from "../../mocks/fetch";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { getDevelopers, selectdevelopers, selectDeveloperLoading } from "../../slices/developerSlice";
+import { getListings, selectListingLoading, selectListings } from "../../slices/listingSlice";
+import { listingData } from "../../data";
+import LoadingScreen from "../../components/LoadingScreen";
 
 const Explore = () => {
 
-  const housedata = [];
-
+  const dispatch = useDispatch()
+  
+  const developers = useSelector(selectdevelopers)
+  const isDeveloperLoading = useSelector(selectDeveloperLoading)
+  
+  const listings = useSelector(selectListings)
+  const isListingLoading = useSelector(selectListingLoading)
+  
   const [SelectedFilter, setSelectedFilter] = useState("apartment");
-  const [realestates, setRealestates] = useState(["Noah", "Ayat", "Arada"])
-  const [developers, setDevelopers] = useState([
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9RL7jZBdy-GACBLVMZSCDp44yr93lDryEQQ&s",
-    },
-    {
-      image:
-        "https://iconape.com/wp-content/png_logo_vector/aldar-properties-logo.png",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQbFW_-3yGH3koFlg80RcrRl7H8QfhkH5xQ&s",
-    },
-    {
-      image:
-        "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",
-    },
-  ])
+
+
+  useEffect(()=>{
+    dispatch(getDevelopers())
+    dispatch(getListings())
+  },[])
   
 
-  async function findListings () {
-    const response = await fetch('https://fake-api.example.com/api/v1/listings/search',{method:'GET'})
-    setRealestates(response.data)
-  }
+  // async function findListings () {
+  //   const response = await fetch('https://fake-api.example.com/api/v1/listings/search',{method:'GET'})
+  //   setRealestates(response.data)
+  // }
 
   const handleSelectingFilter = (filter) => {
     setSelectedFilter(filter);
   };
+
   return (
     <ScrollView
       className="flex-1 gap-0 bg-[#FAFAFB]"
       decelerationRate="fast"
       vertical={true}
-      showsVerticalScrollIndicator={false}
-    >
-      <SearchProperty placeholder="Search Property" search={findListings} />
+      showsVerticalScrollIndicator={false}>
+{/*  */}
+      <SearchProperty placeholder="Search Property" />
+{/*  */}
       <View className="">
         <View className=" px-4 pt-3 flex flex-row items-center justify-between">
           <Text className="text-lg font-bold">Developers</Text>
-          <Text className="">View all</Text>
+          <Link
+          href="/developers">
+              View all
+          </Link>
         </View>
-
+{/*  */}
+    {
+          (isDeveloperLoading) ? <LoadingScreen /> :
         <FlatList
           data={developers}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.image}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => router.push("/developers")}>
+            
+            <TouchableOpacity onPress={() => 
+              router.push({
+              pathname:"/developers",
+              params: {id:item.id}
+              })}>
+              
               <Image
-                source={{ uri: item.image }}
+                source={{ uri: item.profilePhoto }}
                 className="w-32 h-32 mr-4 mt-3 rounded-[10px]"
               />
-            </TouchableOpacity>
-          )}
-          className=""
-        />
-      </View>
 
+            </TouchableOpacity>
+            
+          )}
+        />
+    }
+      </View>
+{/*  */}
       <View className="px-4 pt-4">
         <Text className="text-lg font-bold">What are you looking for?</Text>
         <View className="flex flex-row pt-4 items-center gap-2">
@@ -107,43 +123,48 @@ const Explore = () => {
           </Text>
         </View>
       </View>
-      {realestates.map((item) => (
-        <View className="">
+{/*  */}
+        {
+        (isListingLoading) ? <LoadingScreen />:
+      <>
+      { developers?.map((item) => 
+      (
+      <View>
           <View className="px-4 pt-4 flex flex-row items-center justify-between">
             <View className="flex flex-col gap-1">
-              <Text className="font-bold text-[18px]">{item}</Text>
+              <Text className="font-bold text-[18px]">{item.name}</Text>
               <Text className="">127 results</Text>
             </View>
             <View>
-              <Text>View all</Text>
+              <Link
+              href={`/developer_details/${item.id}`}
+              >
+                View all
+                </Link>
             </View>
           </View>
 
           <View className="pl-2 pb-4">
-            {/* <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ width: "90%" }}
-    >
-      <View className="pt-4 flex flex-row w-full">
-        {developers.map((item) => (
-          <MainHouseCard key={item} housedata={housedata} width="100%" />
-        ))}
-      </View>
-    </ScrollView> */}
-            <FlatList
-              data={developers}
+             <FlatList
+              data={listings}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => item.image}
+              keyExtractor={(item) => item.id}
+              // refreshing={isDeveloperLoading}
+              // onRefresh={dispatch(getListings())}
               renderItem={({ item }) => (
-                <MainHouseCard housedata={housedata} width="100%" />
+                <MainHouseCard listing={item} width="100%" />
               )}
               className="w-full"
             />
           </View>
         </View>
-      ))}
+      )
+    )
+  } 
+  </>
+}
+
     </ScrollView>
   );
 };

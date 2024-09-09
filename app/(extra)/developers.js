@@ -3,25 +3,36 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import SearchProperty from "../../components/SearchProperty";
 import { router } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
-import { getDevelopers, getDevelopersById, selectdevelopers } from "../../slices/developerSlice";
+import { getDevelopers, selectDeveloperLoading, selectdevelopers } from "../../slices/developerSlice";
+import LoadingScreen from "../../components/LoadingScreen";
 
 
 const developers = () => {
+  
   const dispatch = useDispatch()
+  
   const developers = useSelector(selectdevelopers)
+  const isDeveloperLoading = useSelector(selectDeveloperLoading)
 
   useEffect(()=>{
-    dispatch(getDevelopers('1'))
+    dispatch(getDevelopers())
   },[])
 
   return (
     <View className="bg-[#FAFAFB] h-full w-full">
       <SearchProperty placeholder="Search Developers" />
+      {
+          (isDeveloperLoading) ? <LoadingScreen />:
       <View className="flex flex-row flex-wrap justify-between w-full item-center px-4">
+        
         {developers.map((item) => (
           <TouchableOpacity 
           onPress={() =>{ 
-            router.push("/developerdetail")
+            router.push(
+              {
+              pathname:"/developer_details",
+              params: {id:item.id}
+            })
           }
           }>
           <Image
@@ -36,6 +47,7 @@ const developers = () => {
             </Text>
         </View>
       </View>
+}
     </View>
   );
 };
