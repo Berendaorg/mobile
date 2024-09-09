@@ -25,7 +25,7 @@ const ExtraLayout = () => {
         }}
       />
       <Stack.Screen
-        name="developerdetail"
+        name="developer_details"
         options={{
           headerStyle: { backgroundColor: "#FAFAFB" },
           headerTitle: "Developers Detail",
