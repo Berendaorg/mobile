@@ -50,6 +50,19 @@ const fetch =
               ok: true,
             };
         }
+      case url==(`${fakeApi}users/logout`):
+        switch (options?.method) {
+          case methods.GET:
+            return {
+              data: {},
+              ok: true,
+            };
+          default:
+            return {
+              data: 'mocked logout',
+              ok: true,
+            };
+        }
       case url==(`${fakeApi}developers`):
         switch (options.method) {
           case methods.GET:

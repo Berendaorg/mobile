@@ -5,7 +5,6 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
-  Button,
   TextInput,
 } from "react-native";
 import React, { useEffect } from "react";
@@ -13,33 +12,28 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../../constants/image";
 import CarouselRoom from "../../../components/CarouselRoom";
 import { StatusBar } from "expo-status-bar";
-import HorizontalScrollRooms from "../../../components/HorizontalScrollRooms";
-import { Link, useLocalSearchParams, useSearchParams } from "expo-router";
-import { useNavigation, useRoute } from "@react-navigation/native";
-
+import { useGlobalSearchParams, useLocalSearchParams} from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
-import MapView, { Marker } from "react-native-maps";
 import icon from "../../../constants/icon";
-import { getListings, getListingsById, selectlistings } from "../../../slices/listingSlice";
-import HouseDetails from "../../../components/HouseDetails";
-// import { selectSelectedHouse, getHouse } from "../../../slices/houseSlice";
+import { getListingsById, selectListingById } from "../../../slices/listingSlice";
+import Toast from "react-native-root-toast";
 
 const Details = () => {
 
-  const dispatch = useDispatch();
-  const { id } = useLocalSearchParams();
-  const listing = useSelector(selectlistings);
-  console.log(listing)
+  const dispatch = useDispatch()
+  const { id } = useGlobalSearchParams();
+  const listing = useSelector((state)=>(selectListingById(state,Number(id))));
+
+  function toast (){
+    Toast.show('You will recieve a call shortly',{
+      duration: Toast.durations.LONG
+    })
+  }
+  useEffect(()=>{
+    dispatch(getListingsById(id))
+  },[])
 
   const { width } = Dimensions.get("window");
-
-  useEffect(() => {
-    dispatch(getListingsById())
-    // dispatch(getHouse(id));
-    // latitude = house.location.coords.lat;
-    // longitude = house.location.coords.lng;
-  }, [id]);
-
   const rooms = [
     {
       image: image.detailimg,
@@ -71,71 +65,84 @@ const Details = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View className="bg-[#FAFAFB] h-full w-full">
-          <View>
+       
+        <View className="bg-[#FAFAFB] h-full w-full">          
+          
+          {/* carousel */}
             <CarouselRoom rooms={rooms} width={width} />
-          </View>
-
-          <View className="mt-2">
-            <HorizontalScrollRooms rooms={rooms} />
-          </View>
-
-          {/* detail */}
+          
+          {/* listing details  */}
           <View className="px-2 mt-4">
             {/* availability */}
             <View className="flex-row items-center gap-2">
-              {/* {!house.offMarket ?
-                          <>
-                        <Text className="p-2 bg-green-600 rounded-full w-2 h-2"></Text>
-                        <Text className=" text-green-500">Available </Text>
-                          </>
-                          : 
-                          <>
-                          <Text className="p-2 bg-slate-600 rounded-full w-2 h-2"></Text>
-                          <Text className=" text-white">off-market </Text>
-                          </>
-                } */}
+              {!listing.offMarket ?
+                <>
+                  <Text className="p-2 bg-green-600 rounded-full w-2 h-2"></Text>
+                  <Text className=" text-green-500">Available </Text>
+                </>: 
+                <>
+                  <Text className="p-2 bg-slate-600 rounded-full w-2 h-2"></Text>
+                  <Text className=" text-white">off-market </Text>
+                </>
+                }
             </View>
-<HouseDetails />
 
-            <View className="flex-col gap-2 mt-1 px-3">
-              {/* <Text className="text-lg font-extrabold text-black">
-                ETB {house.price} $200000
-              </Text>
-
-              <View>
-                <View></View>
-                <View></View>
+            <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
+              <View className="flex flex-row justify-between px-3 items-center">
+                <Text className="font-bold text-[17px] text-primary">
+                  {listing.name}
+                </Text>
+                <Text className="text-[17px] text-primary font-bold">
+                  ETB {listing.price}
+                </Text>
               </View>
 
-              <Text className="text-lg font-extrabold text-black">
-                3{house.bedrooms}BD . 4{house.bathrooms}BA . 2020
-                {house.houseSize} SQFT
-              </Text> */}
+              <View className="flex flex-row items-center">
+                <Image
+                  source={icon.blacklocationicon}
+                  className="w-5 h-5 opacity-60 ml-2"
+                />
+                <Text className="opacity-60 text-[15px] text-primary">{listing.address}</Text>
+              </View>
 
-              {/* <Text className="text-black text-sm">
-                Address:{house.address}
-              </Text> */}
+              <View className="flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center gap-2 pl-3 mr-3">
+                  <Image
+                    source={icon.bedroomicon}
+                    className="w-4 h-4 opacity-60 ml-1"
+                  />
+                  <Text className="opacity-60 text-[14px] text-primary">{listing.bedrooms}</Text>
+                </View>
 
-              {/* <Text className="underline text-white">Read More</Text> */}
+                <View className="flex flex-row items-center gap-2 mr-3">
+                  <Image
+                    source={icon.bathroomicon}
+                    className="w-4 h-4 opacity-60 ml-2"
+                  />
+                  <Text className="opacity-60 text-[14px] text-primary">{listing.bathrooms}</Text>
+                </View>
 
-              <Text className=" font-extrabold underline text-black">
-                Call (+251923234562)
-              </Text>
+                <View className="flex flex-row items-center gap-2 mr-3">
+                  <Image
+                    source={icon.areaicon}
+                    className="w-4 h-4 opacity-60 ml-2"
+                  />
+                  <Text className="opacity-60 text-[14px] text-primary">{listing.houseSize}</Text>
+                </View>
+              </View>
 
-              <Text className="text-gray-400 text-sm">
-                By Calling You Are Concenting To Our Policy.{" "}
-                <Text className="underline text-white">Read More</Text>
-              </Text>
             </View>
 
-            {/* <View className="mt-4">
+            {/* 
+            <View className="mt-4">
               <Text className="text-white text-lg ">{house.description}</Text>
-            </View> */}
+            </View> 
+            */}
+
           </View>
 
           {/* Map  */}
-          <View className="">
+          <View>
             {/* <View className="flex-1 border border-white h-72">
               <MapView
                 region={{
@@ -162,7 +169,9 @@ const Details = () => {
                 <Text className="text-black font-bold">Get Directions</Text>
               </TouchableOpacity> */}
 
-              <TouchableOpacity className="bg-highlight text-primary w-full p-4 rounded-2xl inline">
+              <TouchableOpacity 
+                onPress={() =>  toast()}
+              className="bg-highlight text-primary w-full p-4 rounded-2xl inline">
                 <Text className="text-white font-bold text-center">
                   Request A Private Showing
                 </Text>
@@ -170,15 +179,17 @@ const Details = () => {
             </View>
           </View>
 
+          {/* leave a review */}
           <View className="mt-3 ">
             <View>
-              <Text className=" px-6 font-bold">Rate our service</Text>
+              <Text className="px-6 font-bold">
+                Leave a review
+              </Text>
               <View
-                className="flex flex-row px-5 items-center mt-1 
-              "
+                className="flex flex-row px-5 items-center mt-1"
               >
                 {[1, 2, 3, 4, 5].map((item) => (
-                  <Image source={icon.staricon} className="w-6 h-6" />
+                  <Image source={icon.staricon} className="w-10 aspect-square" />
                 ))}
               </View>
             </View>
@@ -232,7 +243,9 @@ const Details = () => {
               </ScrollView>
             </View>
           </View>
+
         </View>
+
       </ScrollView>
       <StatusBar backgroundColor="#012847" style="light" />
     </SafeAreaView>

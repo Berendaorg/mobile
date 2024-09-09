@@ -1,7 +1,7 @@
 import { Button, ScrollView, Text, View } from "react-native";
 import React from "react";
 
-import HouseCard from "../../../components/HouseCard";
+// import HouseCard from "../../../components/HouseCard";
 
 import { useSelector } from "react-redux";
 // import {selectHouseData} from "../../../slices/houseSlice";

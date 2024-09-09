@@ -4,13 +4,20 @@ import image from "../../../constants/image";
 import SearchProperty from "../../../components/SearchProperty";
 import MainHouseCard from "../../../components/MainHouseCard";
 import { useSelector, useDispatch } from "react-redux";
-import { getDevelopersById,selectdevelopers } from "../../../slices/developerSlice";
+import { getDevelopersById,selectdeveloperById } from "../../../slices/developerSlice";
+import { useGlobalSearchParams } from "expo-router";
+import { getListings, selectListings } from "../../../slices/listingSlice";
 
 const DeveloperDetail = () => {
-  const developer = useSelector(selectdevelopers)
   const dispatch = useDispatch()
+  const { id } = useGlobalSearchParams();
+
+  const developer = useSelector((state)=>selectdeveloperById(state,Number(id)));
+  const listings = useSelector(selectListings)
+
   useEffect(()=>{
-    dispatch(getDevelopersById())
+    dispatch(getDevelopersById(id))
+    dispatch(getListings())
     console.log(developer)
   },[])
 
@@ -25,7 +32,7 @@ const DeveloperDetail = () => {
         />
         <View className="flex flex-col gap-2">
           <Text className="text-lg font-semibold text-primary">
-            About {developer[0].name}
+            About {developer?.name}
           </Text>
           <Text className="text-sm text-primary w-[40%]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -78,8 +85,8 @@ const DeveloperDetail = () => {
             vertical={true}
             showsVerticalScrollIndicator={false}
           >
-            {[1, 2, 3, 4, 5].map((item) => (
-              <MainHouseCard width={"w-full"} key={item} />
+            {listings.map((item) => (
+              <MainHouseCard listing={item} width={"w-full"} key={item} />
             ))}
           </ScrollView>
         </View>

@@ -3,10 +3,10 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Link, router } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
 import icon from "../constants/icon";
-
+// @deprecated has been commented everywhere
 const HouseCard = ({ house }) => {
   return (
-    <Link href={`/details/${house.listingId}`}>
+    <Link href={`/details/${house.id}`}>
       <View className="relative w-screen  px-4 mt-3 mb-3">
         {/* <Link href= "/details"> */}
         <View className="flex-row items-center gap-2">
