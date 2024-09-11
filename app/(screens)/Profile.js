@@ -2,22 +2,30 @@ import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
 import { useSelector,useDispatch } from "react-redux";
 
-import { selectUser,getUser, logOut } from "../../slices/userSlice";
+import { selectUser,getUser, logOut, selectUserLoading, selectUserLoggedIn } from "../../slices/userSlice";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import LoadingScreen from "../../components/LoadingScreen";
 
 const Profile = () => {
 
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
+  const isLoading = useSelector(selectUserLoading)
+  const isLoggedIn = useSelector(selectUserLoggedIn)
 
   useEffect(()=>{
     dispatch(getUser())
   },[])
+
+  if (isLoading) {
+    return <LoadingScreen />
+  }
 return (
   <>
   {
-    (!user.isLoggedIn)? 
+    (!isLoggedIn)? 
     <>
+    {/* signin */}
     <View className="px-4 pb-4 mt-5 justify-end">
         <TouchableOpacity
           className="py-3 bg-black rounded-[30px]"
@@ -28,6 +36,7 @@ return (
       </View>
     </>:
      <>
+     {/* profile */}
     <View className="h-fit full w-full pt-3 flex-col gap-5 justify-start items-center">
       <Image
         source={{

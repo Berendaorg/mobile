@@ -17,23 +17,21 @@ const Saved = () => {
   useEffect(()=>{
     dispatch(getSavedListings())
   },[])
+
+  if(isSavedLoading)
+    return <LoadingScreen />
   
   return (
     <ScrollView
       className="flex-1 gap-0"
       decelerationRate="fast"
       vertical={true}
-      showsVerticalScrollIndicator={false}
-    >
-      {
-        (isSavedLoading)?
-          <LoadingScreen />:
-      <>
+      showsVerticalScrollIndicator={false}>
+        
           {saved?.map((item, index) => ( 
             <MainHouseCard listing={item} key={index} />
           ))}
-      </>
-  } 
+
       {/*@deprecated to be replaced by ButtonPrimary  */}
       <View className="px-4 pb-4 justify-end ">
         <TouchableOpacity
