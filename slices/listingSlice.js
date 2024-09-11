@@ -68,7 +68,7 @@ const initialState = {
   listings:[],
   listing :  {},
   saved:[],
-  isLoading:false,
+  isLoading:true,
 }
 
 export const listingSlice = createSlice({
