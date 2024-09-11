@@ -87,7 +87,11 @@ export const listingSlice = createSlice({
         state.listing = action.payload
       }),
       builder.addCase(getSavedListings.fulfilled, (state, action) => {
+        state.isLoading = false
         state.saved[0] = action.payload
+      }),
+      builder.addCase(getSavedListings.pending, (state, action) => {
+        state.isLoading = true
       }),
       builder.addCase(addSavedListing.fulfilled, (state, action) => {
         state.saved.push(action.payload)

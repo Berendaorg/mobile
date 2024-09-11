@@ -46,7 +46,6 @@ export const developerSlice = createSlice({
       }),
       builder.addCase(getDevelopers.pending, (state,action)=>{
         state.isLoading = true
-        state.developers = action.payload
       }),
       builder.addCase(getDevelopersById.fulfilled, (state,action)=>{
         state.developer = action.payload

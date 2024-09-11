@@ -10,6 +10,7 @@ export const getUser = createAsyncThunk(
       const response = await fetch(`${fakeApi}users/me`,{
         method:"GET"
       })
+      await asyncTimeout(3000)
       return response.data
     },
   )
@@ -17,23 +18,31 @@ export const getUser = createAsyncThunk(
 export const logOut = createAsyncThunk(
   'users/logout',
   async () => {
-    const response = await fetch(`${fakeApi}users/logout`,{
-      method:"GET"
-    })
-    await asyncTimeout(1000)
-    return response.data
+    try {
+      
+      await fetch(`${fakeApi}users/logout`,{
+        method:"GET"
+      })
+      await asyncTimeout(3000)
+      return 
+    } 
+  catch (error) {
+    console.log(error)      
+    }
   },
 )
 
 const initialState = {
+  user:{
   firstName:"",
   lastName:"",
   email:"",
   phoneNumber:"",
+  },
   status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
-  isLoading: true,
   error: null,
   isLoggedIn: false,
+  isLoading: true,
 }
 
 
@@ -42,23 +51,26 @@ export const userSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers: (builder) => {
+    builder.addCase(getUser.pending, (state, action) => {
+      state.isLoading = true
+      // return  action.payload
+      }),
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.isLoading = false
       state.isLoggedIn = true
-      return  action.payload
+      state.user =  action.payload
       }),
+    builder.addCase(logOut.pending, (state,action) => {
+        state.isLoading = true
+      })
     builder.addCase(logOut.fulfilled, (state,action) => {
       state.isLoading = false
-      state.isLoggedIn = true
-      return {}
+      state.isLoggedIn = false
+      state.user = null
     })
-    // builder.addCase(logOut.pending, (state,action) => {
-    //   state.isLoading = true
-    //   // return {}
-    // })
-    // },
   }})
 
-export const selectUser = (state) => state.user
-    
+export const selectUser = (state) => state.user.user
+export const selectUserLoading = (state) => state.user.isLoading
+export const selectUserLoggedIn = (state) => state.user.isLoggedIn
 export default userSlice.reducer;
