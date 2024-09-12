@@ -14,6 +14,7 @@ import { getDevelopers, selectdevelopers, selectDeveloperLoading } from "../../s
 import { getListings, selectListingLoading, selectListings } from "../../slices/listingSlice";
 import { listingData } from "../../data";
 import LoadingScreen from "../../components/LoadingScreen";
+import { getlocations, selectLocationLoading, selectLocations } from "../../slices/locationSlice";
 
 const Explore = () => {
 
@@ -24,6 +25,9 @@ const Explore = () => {
   
   const listings = useSelector(selectListings)
   const isListingLoading = useSelector(selectListingLoading)
+
+  const locations = useSelector(selectLocations)
+  const isLocationLoading = useSelector(selectLocationLoading)
   
   const [SelectedFilter, setSelectedFilter] = useState("apartment");
 
@@ -31,6 +35,7 @@ const Explore = () => {
   useEffect(()=>{
     dispatch(getDevelopers())
     dispatch(getListings())
+    dispatch(getlocations())
   },[])
 
   const handleSelectingFilter = (filter) => {
@@ -66,7 +71,7 @@ const Explore = () => {
             
             <TouchableOpacity onPress={() => 
               router.push({
-              pathname:"/developers",
+              pathname:"/developer_details",
               params: {id:item.id}
               })}>
               
@@ -124,7 +129,7 @@ const Explore = () => {
         {
         (isListingLoading) ? <LoadingScreen />:
       <>
-      { developers?.map((item) => 
+      { locations?.map((item) => 
       (
       <View>
           <View className="px-4 pt-4 flex flex-row items-center justify-between">

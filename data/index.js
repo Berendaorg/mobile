@@ -709,5 +709,36 @@ const developerData = [
   },
 ]
 
-export {listingData, categMapData, roomData, notificationData, developerData}
+const locationData = [
+   {
+    id:1,
+    name:"Addis Ketema"
+   },{
+    id:1,
+    name:"Akaki Kaliti"
+   },{
+    id:1,
+    name:"Arada"
+   },{
+    id:1,
+    name:"Bole"
+   },{
+    id:1,
+    name:"Gulale"
+   },{
+    id:1,
+    name:"Kirkos"
+   },{
+    id:1,
+    name:"Kolfe Keranio"
+   },{
+    id:1,
+    name:"Lideta"
+   },{
+    id:1,
+    name:"Nefas Silk Yeka"
+  }]
+ 
+
+export {listingData, categMapData, roomData, notificationData, developerData, locationData}
   
