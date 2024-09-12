@@ -40,6 +40,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1234567890"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -81,6 +82,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1098765432"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -122,6 +124,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1122334455"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -163,6 +166,7 @@ const listingData = [{
       "verified": true,
       "phone": "+9988776655"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -204,6 +208,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1122334455"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -245,6 +250,7 @@ const listingData = [{
       "verified": true,
       "phone": "+9988776655"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -286,6 +292,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1122334455"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -327,6 +334,7 @@ const listingData = [{
       "verified": true,
       "phone": "+9988776655"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -368,6 +376,7 @@ const listingData = [{
       "verified": true,
       "phone": "+1122334455"
     },
+    "saved": true,
     "listedFor": "sell"
   },
   {
@@ -409,6 +418,7 @@ const listingData = [{
       "verified": true,
       "phone": "+9988776655"
     },
+    "saved": true,
     "listedFor": "sell"
   }]
 
@@ -636,13 +646,6 @@ const roomData = [
   },
 ];
 
-const rooms = [
-  {
-    "house_id": 1,
-    "room_id": 1
-  }
-]
-
 const notificationData = [
     {
     time:'1:57',
@@ -702,7 +705,7 @@ const developerData = [
   },
   {
     id:5,
-    name:"developer 4",
+    name:"developer 5",
     email:"developer4@email.com",
     profilePhoto:
       "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",

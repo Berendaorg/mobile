@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetch, URL } from "../mocks/fetch";
+import { fetch, URL, wait } from "../mocks/fetch";
 import { asyncTimeout } from "../util/asyncTimeout";
 
 
@@ -9,7 +9,7 @@ export const getUser = createAsyncThunk(
       const response = await fetch(`${URL}users/me`,{
         method:"GET"
       })
-      await asyncTimeout(3000)
+      await asyncTimeout(wait)
       return response.data
     },
   )
@@ -22,7 +22,7 @@ export const logOut = createAsyncThunk(
       await fetch(`${URL}users/logout`,{
         method:"GET"
       })
-      await asyncTimeout(3000)
+      await asyncTimeout(wait)
       return 
     } 
   catch (error) {

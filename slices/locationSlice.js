@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetch, URL } from '../mocks/fetch';
+import { fetch, URL, wait } from '../mocks/fetch';
 import { asyncTimeout } from '../util/asyncTimeout';
 
-    
+
 export const getlocations = createAsyncThunk(
   'locations/getlocations',
   async () => {
     const response = await fetch(`${URL}locations`,{
       method: "GET",
     })
-    await asyncTimeout(1000);
+    await asyncTimeout(wait);
     return response.data
   },
 )

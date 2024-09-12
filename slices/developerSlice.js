@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetch, URL } from '../mocks/fetch';
+import { fetch, URL, wait } from '../mocks/fetch';
 import { asyncTimeout } from '../util/asyncTimeout';
 
 // const URL = 'https://fake-api.example.com/api/v1/';
@@ -10,7 +10,7 @@ export const getDevelopers = createAsyncThunk(
     const response = await fetch(`${URL}developers`,{
       method: "GET",
     })
-    await asyncTimeout(1000);
+    await asyncTimeout(wait);
     return response.data
   },
 )

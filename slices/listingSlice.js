@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { roomData } from '../data'
+import { listingData, roomData } from '../data'
 import { asyncTimeout } from '../util/asyncTimeout';
-import { URL } from '../mocks/fetch';
+import { fetch,URL, wait } from '../mocks/fetch';
 
 
 export const getListings = createAsyncThunk(
@@ -10,7 +10,7 @@ export const getListings = createAsyncThunk(
     const response = await fetch(`${URL}listings`,{
       method:'GET'
     })
-    await asyncTimeout(2000);
+    await asyncTimeout(wait);
     return response.data
   }
 )
@@ -35,7 +35,7 @@ export const getSavedListings = createAsyncThunk(
     const response = await fetch(`${URL}listings/saved`,{
       method:'GET'
     })
-    await asyncTimeout(2000);
+    await asyncTimeout(wait);
     return response.data
   }
 )
@@ -45,27 +45,33 @@ export const deleteSavedListing = createAsyncThunk(
   async (id) => {
     const response = await fetch(`${URL}listings/saved`,{
       method:'DELETE',
-      params:{
+      params:{ 
         id
       }
     })
+    console.log('delete')
+    // @deprecated: will be replace by actual response from the backend
     return response.data
   }
 )
 
 export const addSavedListing = createAsyncThunk(
   '/listings/addSavedListings',
-  async () => {
+  async (id) => {
     const response = await fetch(`${URL}listings/saved`,{
-      method:'POST'
+      method:'POST',
+      params:{
+        id
+      }
     })
-    return response.data
+    // @deprecated: will be replace by actual response from the backend
+    return id
   }
 )
 
 const initialState = {
   listings:[],
-  listing :  {},
+  listing : {},
   saved:[],
   isLoading:true,
 }
@@ -80,6 +86,7 @@ export const listingSlice = createSlice({
       }),
       builder.addCase(getListings.fulfilled, (state, action) => {
         state.isLoading=false
+        console.log("in rtk")
         state.listings = action.payload
       }),
       builder.addCase(getListingsById.fulfilled, (state, action) => {
@@ -87,13 +94,19 @@ export const listingSlice = createSlice({
       }),
       builder.addCase(getSavedListings.fulfilled, (state, action) => {
         state.isLoading = false
-        state.saved[0] = action.payload
+        state.saved = action.payload
       }),
       builder.addCase(getSavedListings.pending, (state, action) => {
         state.isLoading = true
       }),
       builder.addCase(addSavedListing.fulfilled, (state, action) => {
-        state.saved.push(action.payload)
+        // copy state
+        let saved = state.saved
+        // make to set, to rmeove duplicates
+        // push 
+        const newSaved = new Set(saved.push(action.payload))
+        // add to state
+        state.saved = newSaved
       }),
       builder.addCase(deleteSavedListing.fulfilled, (state, action) => {
         // return boolean
