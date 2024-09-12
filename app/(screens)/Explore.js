@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { RefreshControl, ScrollView, TextInput } from "react-native-gesture-handler";
 import icon from "../../constants/icon";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
@@ -12,8 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getDevelopers, selectdevelopers, selectDeveloperLoading } from "../../slices/developerSlice";
 import { getListings, selectListingLoading, selectListings } from "../../slices/listingSlice";
-import { listingData } from "../../data";
+
 import LoadingScreen from "../../components/LoadingScreen";
+
 import { getlocations, selectLocationLoading, selectLocations } from "../../slices/locationSlice";
 
 const Explore = () => {
@@ -33,8 +34,8 @@ const Explore = () => {
 
 
   useEffect(()=>{
+    dispatch(getListings()) // should be the only in this page
     dispatch(getDevelopers())
-    dispatch(getListings())
     dispatch(getlocations())
   },[])
 
@@ -42,16 +43,30 @@ const Explore = () => {
     setSelectedFilter(filter);
   };
 
+  const [refreshing,setRefreshing] = useState(false)
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
     <ScrollView
       className="flex-1 gap-0 bg-[#FAFAFB]"
       decelerationRate="fast"
       vertical={true}
-      showsVerticalScrollIndicator={false}>
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+      >
+
 {/*  */}
       <SearchProperty placeholder="Search Property" />
 {/*  */}
       <View className="">
+        
         <View className=" px-4 pt-3 flex flex-row items-center justify-between">
           <Text className="text-lg font-bold">Developers</Text>
           <Link
@@ -61,7 +76,7 @@ const Explore = () => {
         </View>
 {/*  */}
     {
-          (isDeveloperLoading) ? <LoadingScreen /> :
+      (isDeveloperLoading) ? <LoadingScreen /> :
         <FlatList
           data={developers}
           horizontal={true}
@@ -72,22 +87,16 @@ const Explore = () => {
             <TouchableOpacity onPress={() => 
               router.push({
               pathname:"/developer_details",
-              params: {id:item.id}
-              })}>
-              
+              params: {id:item.id} })}>
               <Image
-                source={{ uri: item.profilePhoto }}
-                className="w-32 h-32 mr-4 mt-3 rounded-[10px]"
-              />
-
+              source={{ uri: item.profilePhoto }}
+              className="w-32 h-32 mr-4 mt-3 rounded-[10px]"/>
             </TouchableOpacity>
-            
+
           )}
         />
     }
-      </View>
-
-
+    </View>
 
 {/*  */}
       <View className="px-4 pt-4">

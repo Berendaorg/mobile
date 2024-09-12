@@ -12,11 +12,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../../constants/image";
 import CarouselRoom from "../../../components/CarouselRoom";
 import { StatusBar } from "expo-status-bar";
-import { useGlobalSearchParams, useLocalSearchParams} from "expo-router";
+import { router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "../../../constants/icon";
-import { getListingsById, selectListingById } from "../../../slices/listingSlice";
+import { addSavedListing, deleteSavedListing, getListingsById, selectListingById } from "../../../slices/listingSlice";
 import Toast from "react-native-root-toast";
+import Back from "../../../components/Back";
+import Heart from "../../../components/Heart";
 
 const Details = () => {
 
@@ -65,11 +67,36 @@ const Details = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-       
+
         <View className="bg-[#FAFAFB] h-full w-full">          
+          
+          {/* Navigation */}
+
+          <View className="relative">
+
+            <TouchableOpacity
+              className="z-50 absolute top-4 left-4 p-2 bg-primary rounded-full"
+              onPress={() => router.back()}>
+              <Back />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="z-50 absolute top-4 right-4 p-2 bg-primary rounded-full"
+              onPress={() => 
+              {
+                !listing.saved? 
+                dispatch(deleteSavedListing(listing.id)):
+                dispatch(addSavedListing(listing.id))
+              }}>
+            <Heart saved={listing.saved}/> 
+            </TouchableOpacity>
+
+          </View>
+          {/* Navigation */}
           
           {/* carousel */}
             <CarouselRoom rooms={rooms} width={width} />
+          {/* carousel */}
           
           {/* listing details  */}
           <View className="px-2 mt-4">
@@ -82,7 +109,7 @@ const Details = () => {
                 </>: 
                 <>
                   <Text className="p-2 bg-slate-600 rounded-full w-2 h-2"></Text>
-                  <Text className=" text-white">off-market </Text>
+                  <Text className=" text-white">Off-market </Text>
                 </>
                 }
             </View>
