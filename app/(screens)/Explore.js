@@ -32,12 +32,6 @@ const Explore = () => {
     dispatch(getDevelopers())
     dispatch(getListings())
   },[])
-  
-
-  // async function findListings () {
-  //   const response = await fetch('https://fake-api.example.com/api/v1/listings/search',{method:'GET'})
-  //   setRealestates(response.data)
-  // }
 
   const handleSelectingFilter = (filter) => {
     setSelectedFilter(filter);
@@ -87,6 +81,9 @@ const Explore = () => {
         />
     }
       </View>
+
+
+
 {/*  */}
       <View className="px-4 pt-4">
         <Text className="text-lg font-bold">What are you looking for?</Text>

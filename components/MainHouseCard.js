@@ -33,9 +33,9 @@ const MainHouseCard = ({ listing, width }) => {
                 />
               )}
             </View>
-            <Text className="text-[12px] font-semibold text-gray-200">
+            {/* <Text className="text-[12px] font-semibold text-gray-200">
               {listing.listedBy.phone}
-            </Text>
+            </Text> */}
           </View>
         </View>
       {/* profile */}
