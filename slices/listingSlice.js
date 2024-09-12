@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { roomData } from '../data'
 import { asyncTimeout } from '../util/asyncTimeout';
-
-const fakeApi = 'https://fake-api.example.com/api/v1/';
+import { URL } from '../mocks/fetch';
 
 
 export const getListings = createAsyncThunk(
   '/listings/getListings',
   async () => {
-    const response = await fetch(`${fakeApi}listings`,{
+    const response = await fetch(`${URL}listings`,{
       method:'GET'
     })
     await asyncTimeout(2000);
@@ -19,7 +18,7 @@ export const getListings = createAsyncThunk(
 export const getListingsById = createAsyncThunk(
   '/listings/getlistingById',
   async (id) => {
-    const response = await fetch(`${fakeApi}listings`,{
+    const response = await fetch(`${URL}listings`,{
       method:'GET',
       params:{
         id
@@ -33,7 +32,7 @@ export const getSavedListings = createAsyncThunk(
   '/listings/getSavedListings',
   async () => {
     console.log('getSavedListings')
-    const response = await fetch(`${fakeApi}listings/saved`,{
+    const response = await fetch(`${URL}listings/saved`,{
       method:'GET'
     })
     await asyncTimeout(2000);
@@ -44,7 +43,7 @@ export const getSavedListings = createAsyncThunk(
 export const deleteSavedListing = createAsyncThunk(
   '/listings/deleteSavedListing',
   async (id) => {
-    const response = await fetch(`${fakeApi}listings/saved`,{
+    const response = await fetch(`${URL}listings/saved`,{
       method:'DELETE',
       params:{
         id
@@ -57,7 +56,7 @@ export const deleteSavedListing = createAsyncThunk(
 export const addSavedListing = createAsyncThunk(
   '/listings/addSavedListings',
   async () => {
-    const response = await fetch(`${fakeApi}listings/saved`,{
+    const response = await fetch(`${URL}listings/saved`,{
       method:'POST'
     })
     return response.data

@@ -1,6 +1,7 @@
 import {
    developerData,
-   listingData
+   listingData,
+   locationData
  } from '../data';
 
 global.fetch = require('node-fetch');
@@ -12,6 +13,8 @@ const methods = {
     DELETE: 'DELETE' || 'delete',
   };
 
+export const URL = 'https://fake-api.example.com/api/v1/';
+
 const fetch =
  global.fetch = async (url, options) => {
     console.log({
@@ -20,9 +23,8 @@ const fetch =
         params:options?.params
     })
     // You can inspect the URL or options to return different mocks based on the request
-    const fakeApi = 'https://fake-api.example.com/api/v1/';
     switch (true) {
-      case url==(`${fakeApi}users/me`):
+      case url==(`${URL}users/me`):
         switch (options?.method) {
           case methods.GET:
             return {
@@ -50,7 +52,7 @@ const fetch =
               ok: true,
             };
         }
-      case url==(`${fakeApi}users/logout`):
+      case url==(`${URL}users/logout`):
         switch (options?.method) {
           case methods.GET:
             return {
@@ -63,7 +65,7 @@ const fetch =
               ok: true,
             };
         }
-      case url==(`${fakeApi}developers`):
+      case url==(`${URL}developers`):
         switch (options.method) {
           case methods.GET:
             if (options.params) {
@@ -85,7 +87,7 @@ const fetch =
               ok: true,
             };
         }
-      case url==(`${fakeApi}listings`):
+      case url==(`${URL}listings`):
         switch (options.method) {
           case methods.GET:
             if (options.params){
@@ -106,7 +108,7 @@ const fetch =
               data: 'mocked listings data',
               ok: true,
       };
-      case url==(`${fakeApi}listings/saved`):
+      case url==(`${URL}listings/saved`):
         switch (options.method){
             case methods.GET:
                 console.log('get listing')
@@ -134,7 +136,7 @@ const fetch =
                     data: true,
                     ok:true
               }
-      case url==(`${fakeApi}listings/search`):
+      case url==(`${URL}listings/search`):
           switch (options.method){
               case methods.GET:
                   console.log('search listing')
@@ -142,7 +144,7 @@ const fetch =
                       data: ["Arada","Ayat","Noah"]
                   }
         }
-      case url==(`${fakeApi}notifications`):
+      case url==(`${URL}notifications`):
         switch (options.method) {
         case methods.GET:
                 return {
@@ -160,7 +162,28 @@ const fetch =
             ok: true,
         };
         }
-    }
+        }
+      case url==(`${URL}locations`):
+        switch (options.method) {
+          case methods.GET:
+            if (options.params) {
+              return {
+                  data: locationData[+options.params.id],
+                  ok: true,
+              }
+            } 
+            else {
+              return {
+                data: locationData,
+                ok: true,
+              };
+            }
+          default:
+            return {
+              data: 'mocked location data',
+              ok: true,
+            };
+        }
 }
  }
 export { fetch }
