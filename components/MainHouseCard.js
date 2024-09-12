@@ -9,17 +9,16 @@ const MainHouseCard = ({ listing, width }) => {
       {/* profile */}
       <View className="flex-row items-center gap-2">
           <View>
-            <TouchableOpacity onPress={() => router.push({
-              pathname:"/developer_details",
-              params: {id:listing.id}
-              })}>
+            <View class="relative border">
               <Image
                 source={icon.avataricon}
-                className="w-14 h-14"
+                className="w-14 h-14 relative mix-blend-overlay"
                 resizeMode="contain"
               />
-            </TouchableOpacity>
+              <View class="absolute inset-0 bg-red-500 opacity-50"></View>
+            </View>
           </View>
+          
           <View>
             <View className="flex-row items-center">
               <Text className="text-base text-black  font-bold">

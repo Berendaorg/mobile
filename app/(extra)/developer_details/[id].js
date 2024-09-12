@@ -39,7 +39,7 @@ const DeveloperDetail = () => {
           />
           <View className="flex flex-col gap-2">
             <Text className="text-lg font-semibold text-primary">
-              About {developer?.name}
+              {developer?.name}
             </Text>
             <Text className="text-sm text-primary w-[40%]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -48,7 +48,6 @@ const DeveloperDetail = () => {
             </Text>
           </View>
         </View>
-        <View className="px-3 py-4">
 
         <View className="px-4 pt-4"> 
 
@@ -67,39 +66,7 @@ const DeveloperDetail = () => {
           />
         {/* </View>        */}
 
-</View>
-          {/* <ScrollView
-            decelerationRate="fast"
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
-            {[1, 2, 3, 4, 5].map((ad) => (
-              <View
-                key={ad}
-                onPress={() => {
-                  router.push("/details/2");
-                }}
-                className="relative w-32 items-center justify-center rounded-xl mr-4"
-              >
-                <Image
-                  source={image.detailimg}
-                  className=" w-32 h-20 rounded-t-xl z-10"
-                />
-                <View className="mt-2">
-                  <View className="flex-row items-center gap-2">
-                    <Text className="p-1 bg-green-600 rounded-full w-1 h-1"></Text>
-
-                    <Text className=" text-green-500 text-xs">Open</Text>
-                  </View>
-                  <View className="flex-col gap-2 opacity-90 mt-[1px]">
-                    <Text className="text-sm font-extrabold ">
-                      some type of desc
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            ))}
-          </ScrollView> */}
+        </View>
 
           <View>
             <SearchProperty placeholder={"Search 162 properties"} />
@@ -117,7 +84,7 @@ const DeveloperDetail = () => {
             </ScrollView>
           </View>
         </View>
-      </View>
+
     </ScrollView>
   );
 };

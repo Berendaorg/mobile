@@ -22,91 +22,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import icon from "../../constants/icon";
 import Headericons from "../../components/headericons";
+import { selectUserLoggedIn } from "../../slices/userSlice";
+import { useSelector } from "react-redux";
 
 const Drawer = createDrawerNavigator();
 
 const ScreensLayout = () => {
+
+  const isLoggedIn = useSelector(selectUserLoggedIn)
   return (
-    // <Drawer.Navigator>
-    //   <DrawerContentScrollView>
-    //     <DrawerItem label="Help" />
-    //   </DrawerContentScrollView>
-    //   <Drawer.Screen name="Explore" component={Explore} />
-    //   <Drawer.Screen name="Saved" component={Saved} />
-    //   <Drawer.Screen name="Profile" component={Profile} />
-    //   <Drawer.Screen name="Settings" component={Settings} />
-    // </Drawer.Navigator>
-    // <GestureHandlerRootView className="flex-1">
-    //   <Drawer.Navigator
-    //     screenOptions={{
-    //       drawerStyle: { backgroundColor: "#151414" },
-    //     }}
-    //   >
-    //     <Drawer.Screen
-    //       name="Home"
-    //       options={{
-    //         drawerLabel: "Home",
-    //         title: "Home",
-    //         headerStyle: { backgroundColor: "#2E2C2C" },
-    //         drawerActiveBackgroundColor: "#2E2C2C",
-    //         headerTintColor: "white",
-    //         drawerLabelStyle: {
-    //           color: "white",
-    //         },
-    //       }}
-    //     />
-    //     <Drawer.Screen
-    //       name="(tabs)"
-    //       options={{
-    //         drawerLabel: "Search",
-    //         title: "Search",
-    //         headerStyle: { backgroundColor: "#2E2C2C" },
-    //         headerTintColor: "white",
-    //         drawerLabelStyle: {
-    //           color: "white",
-    //         },
-    //       }}
-    //     />
-    //     <Drawer.Screen
-    //       name="add listing"
-    //       options={{
-    //         drawerLabel: "Add listing",
-    //         headerStyle: { backgroundColor: "#2E2C2C" },
-    //         headerTintColor: "white",
-    //         title: "Add listing",
-    //         drawerLabelStyle: {
-    //           color: "white",
-    //         },
-    //       }}
-    //     />
-    //     <Drawer.Screen
-    //       name="saved"
-    //       options={{
-    //         drawerLabel: "Saved",
-    //         title: "Saved",
-    //         headerStyle: { backgroundColor: "#2E2C2C" },
-    //         headerTintColor: "white",
-    //         drawerLabelStyle: {
-    //           color: "white",
-    //         },
-    //       }}
-    //     />
-    //     <Drawer.Screen
-    //       name="settings"
-    //       options={{
-    //         drawerLabel: "Settings",
-    //         title: "Settings",
-    //         headerStyle: { backgroundColor: "#2E2C2C" },
-    //         headerTintColor: "white",
-    //         drawerLabelStyle: {
-    //           color: "white",
-    //         },
-    //       }}
-    //     />
-    //     {/* <Drawer.Screen name="details"  component={Details} /> */}
-    //     {/* <StatusBar barStyle="light-content" style="dark" /> */}
-    //   </Drawer.Navigator>
-    // </GestureHandlerRootView>
     <NavigationContainer independent={true}>
       <Drawer.Navigator
         drawerContent={(props) => {
@@ -180,8 +104,8 @@ const ScreensLayout = () => {
         />
         <Drawer.Screen
           options={{
-            drawerLabel: "Profile",
-            title: "Profile",
+            drawerLabel: isLoggedIn ? "Profile": "Sign In",
+            title: isLoggedIn ? "Profile": "Sign In",
             headerStyle: { backgroundColor: "#FAFAFB" },
             drawerActiveBackgroundColor: "#2E2C2C",
             headerTintColor: "#000",
