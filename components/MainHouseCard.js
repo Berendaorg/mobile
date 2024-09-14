@@ -50,7 +50,7 @@ const MainHouseCard = ({ listing, width }) => {
           source={{
             uri: "https://cdn.in.emaar.com/wp-content/uploads/2020/11/HI-1620x832.jpg",
           }}
-          className="w-full h-[180px] object-cover rounded-[30px]"
+          className="w-[300px] h-[180px] object-cover rounded-[30px]"
         />
       </TouchableOpacity>
       <View className="pt-3 flex flex-col gap-2">

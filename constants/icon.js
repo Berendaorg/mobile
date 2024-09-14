@@ -24,9 +24,22 @@ import Privacyicon from "../assets/icons/privacyicon.png";
 import Termsicon from "../assets/icons/termsicon.png";
 import Themesicon from "../assets/icons/themesicon.png";
 import Abouticon from "../assets/icons/abouticon.png";
+import Rightarrow from "../assets/icons/rightarrow.png";
+import Whitehouseicon from "../assets/icons/whitehouseicon.png";
+import Whitebedicon from "../assets/icons/whitebedicon.png";
+import Whitelocationicon from "../assets/icons/whitelocationicon.png";
+import Whiteareaicon from "../assets/icons/whiteareaicon.png";
+import Whitebathicon from "../assets/icons/whitebathroomicon.png";
+
 
 export default {
   filtericon,
+  Rightarrow,
+  Whitehouseicon,
+  Whitelocationicon,
+  Whitebedicon,
+  Whitebathicon,
+  Whiteareaicon,
   Languageicon,
   Abouticon,
   Downarrow,

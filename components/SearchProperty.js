@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, TextInput, Touchable, View } from "react-native";
 import icon from "../constants/icon";
 import { TouchableRipple } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
 
 const SearchProperty = ({ placeholder, search }) => {
+  const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
   return (
     <View className="relative pt-5 px-4">
       <TouchableRipple
@@ -20,10 +22,11 @@ const SearchProperty = ({ placeholder, search }) => {
         placeholderTextColor={"#CFCFCF"}
         className="text-[#2E2C2C] text-sm font-medium  bg-[#EFECEC]  py-2 px-8 rounded-[60px]"
       />
+      <TouchableOpacity onPress={() => setBottomSheetOpen(!bottomSheetOpen)}>
       <Image
         source={icon.filtericon}
         className="w-9 h-9 absolute top-6 right-5 opacity-40"
-      />
+      /></TouchableOpacity>
     </View>
   );
 };

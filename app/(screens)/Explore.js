@@ -144,7 +144,7 @@ const Explore = () => {
             </View>
           </View>
 
-          <View className="pl-2 pb-4">
+          <View className="pl-2 pb-4 w-full">
              <FlatList
               data={listings}
               horizontal={true}

@@ -89,45 +89,60 @@ const Details = () => {
 
             <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
               <View className="flex flex-row justify-between px-3 items-center">
-                <Text className="font-bold text-[17px] text-primary">
+                <Text className="font-bold text-[20px] text-primary ">
                   {listing.name}
                 </Text>
-                <Text className="text-[17px] text-primary font-bold">
+                <Text className="text-[20px] text-primary font-bold">
                   ETB {listing.price}
                 </Text>
               </View>
-
+                <View className="px-3 py-2 flex flex-row items-center justify-between">
+                  <View className="flex flex-row items-center  gap-1">
+                    <Image source={icon.Whitehouseicon} className="w-8 h-8" />
+                    <View className="flex flex-col  justify-between">
+                      <Text className="text-sm  text-white">Type</Text>
+                      <Text className="text-lg font-bold text-white">Villa</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row items-center  gap-1">
+                    <Image source={icon.Whitebedicon} className="w-8 h-8" />
+                    <View className="flex flex-col  justify-between">
+                      <Text className="text-sm  text-white">Bedrooms</Text>
+                      <Text className="text-lg font-bold text-white">6 Bedrooms</Text>
+                    </View>
+                  </View>
+                </View>
               <View className="flex flex-row items-center">
                 <Image
-                  source={icon.blacklocationicon}
-                  className="w-5 h-5 opacity-60 ml-2"
+                  source={icon.Whitelocationicon}
+                  className="w-5 h-5  ml-2"
                 />
-                <Text className="opacity-60 text-[15px] text-primary">{listing.address}</Text>
+                <Text className=" text-[15px] text-white">{listing.address}</Text>
               </View>
 
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center gap-2 pl-3 mr-3">
                   <Image
-                    source={icon.bedroomicon}
-                    className="w-4 h-4 opacity-60 ml-1"
+                    source={icon.Whitebedicon}
+                    className="w-4 h-4  ml-1"
                   />
-                  <Text className="opacity-60 text-[14px] text-primary">{listing.bedrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing.bedrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
                   <Image
-                    source={icon.bathroomicon}
-                    className="w-4 h-4 opacity-60 ml-2"
+                    source={icon.Whitebathicon}
+                    className="w-4 h-4  ml-2"
                   />
-                  <Text className="opacity-60 text-[14px] text-primary">{listing.bathrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing.bathrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
                   <Image
-                    source={icon.areaicon}
-                    className="w-4 h-4 opacity-60 ml-2"
+                    source={icon.Whiteareaicon}
+                    className="w-4 h-4  ml-2"
                   />
-                  <Text className="opacity-60 text-[14px] text-primary">{listing.houseSize}</Text>
+                  <Text className=" text-[14px] text-white">{listing.houseSize}</Text>
                 </View>
               </View>
 
@@ -164,7 +179,7 @@ const Details = () => {
               </MapView>
             </View> */}
 
-            <View className="items-center justify-center flex-row px-6 ">
+            <View className="items-center justify-center flex-row px-6 py-6">
               {/* <TouchableOpacity className="bg-white flex-row justify-evenly text-black p-4 mt-4 rounded-2xl inline">
                 <Text className="text-black font-bold">Get Directions</Text>
               </TouchableOpacity> */}
