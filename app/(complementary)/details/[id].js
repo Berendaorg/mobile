@@ -19,6 +19,7 @@ import { addSavedListing, deleteSavedListing, getListingsById, selectListingById
 import Toast from "react-native-root-toast";
 import Back from "../../../components/Back";
 import Heart from "../../../components/Heart";
+import AdCard from "../../../components/AdCard";
 
 const Details = () => {
 
@@ -219,6 +220,9 @@ const Details = () => {
               </TouchableOpacity>
             </View>
           </View>
+
+          {/* Ad Card */}
+          <AdCard />
 
           {/* leave a review */}
           <View className="mt-3 ">
