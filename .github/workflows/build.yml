@@ -9,27 +9,46 @@ jobs:
   Build-for-android:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/setup-java@v1.4.3
-        with:
-          java-version: '9.0.4' # The JDK version to make available on the path.
-          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-          architecture: x64 # (x64 or x86) - defaults to x64
-      - uses: expo/expo-github-action@v5
-        with:
-          expo-version: 3.x
-          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
-          expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
-      - name: Install deps
-        run: yarn install
-      - name: Build Android APK Bundle
-        run: expo build:android
+    # - name: Check for EXPO_TOKEN
+    #   run: |
+    #     if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+    #       echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+    #       exit 1
+    #     fi
+    
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18.x
+
+    - name: Setup JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 17
+
+    - name: Setup EAS
+      uses: expo/expo-github-action@v8
+      with:
+        eas-version: "12.4.1"
+        token: FX5de0QqTCjqpaa7q1RwJawi1Vegr1cBu05fnWEf
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Android APK Bundle
+      run: npm run build:preview:local
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-apk
+        path: /home/runner/work/realestate-v1/realestate-v1/*.apk
   Push-to-Playstore:
     needs: [Build-for-android]
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
