@@ -8,9 +8,9 @@ import { Tabs, Stack } from 'expo-router';
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import Featured from "./featured"
-import Index from "./index"  
-import Reccomendation from "./reccomendation"
+// import Featured from "./featured"
+// import Index from "./index"  
+// import Reccomendation from "./reccomendation"
 import { Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from '../../../store';

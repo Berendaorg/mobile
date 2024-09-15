@@ -8,7 +8,7 @@ import { getDevelopersById,selectdeveloperById } from "../../../slices/developer
 import { useGlobalSearchParams } from "expo-router";
 import { getListings, selectListings } from "../../../slices/listingSlice";
 import { FlatList } from "react-native-gesture-handler";
-import AdCard from "../../../components/AdCard";
+import BoardCard from "../../../components/BoardCard";
 
 import { roomData } from "../../../data";
 
@@ -18,7 +18,7 @@ import icon from "../../../constants/icon";
 import Tag from "../../../components/Tag";
 // 
 
-const DeveloperDetail = () => {
+const Ad = () => {
   const dispatch = useDispatch()
   const { id } = useGlobalSearchParams();
 
@@ -33,24 +33,26 @@ const DeveloperDetail = () => {
 
   return (
     // <ScrollView>
-      <View className="bg-primary w-full h-full">
+      <View className="bg-white w-full h-full">
       {/* <View className="relative"> */}
-      <Text>
+      <Text className="text-3xl p-2">
         Title
       </Text>
-      <View className="relative">
+      <View className="relative w-full h-[300px] pt-[-100px]">
+        <View className="absolute w-full h-full top-8 left-1 z-10">
             <Tag />
+        </View>
             <Image
             source={roomData[0].image}
-            className="w-full h-50"
+            className="w-full h-[300px]"
             resizeMode="contain"
           />
         </View>
 
-<Text>
+<Text className="font-bold px-2">
   June 2, 2024  
 </Text>
-        <Text>
+        <Text className="px-2 py-2">
           
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra ligula a diam venenatis, sit amet feugiat metus hendrerit. Aliquam malesuada odio sed augue tincidunt elementum. Suspendisse tempus commodo pellentesque. Sed posuere neque et purus sagittis, at dignissim ipsum faucibus. Vivamus congue varius neque a tempor. Praesent porttitor dignissim pretium. Curabitur a vestibulum urna. Duis eget eleifend lacus. Nullam eu aliquet mi. Nulla maximus ac felis id aliquam. Ut vitae diam tortor. Nullam sit amet ipsum sed risus maximus accumsan at id quam. Curabitur eleifend venenatis urna. Suspendisse id justo eget nulla pellentesque ultricies ut ornare lacus.
 
@@ -71,4 +73,4 @@ Nam sit amet cursus nisi. Donec turpis lorem, mollis quis hendrerit eu, egestas 
   );
 };
 
-export default DeveloperDetail;
+export default Ad;

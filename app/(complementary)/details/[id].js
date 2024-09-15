@@ -12,19 +12,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../../constants/image";
 import CarouselRoom from "../../../components/CarouselRoom";
 import { StatusBar } from "expo-status-bar";
-import { router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
+import { Link, router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "../../../constants/icon";
-import { addSavedListing, deleteSavedListing, getListingsById, selectListingById } from "../../../slices/listingSlice";
+import { addSavedListing, deleteSavedListing, getListingsById, selectListingById, selectListingLoading } from "../../../slices/listingSlice";
 import Toast from "react-native-root-toast";
 import Back from "../../../components/Back";
 import Heart from "../../../components/Heart";
+import AdCard from "../../../components/AdCard";
+import LoadingScreen from "../../../components/LoadingScreen";
 
 const Details = () => {
 
   const dispatch = useDispatch()
   const { id } = useGlobalSearchParams();
+
   const listing = useSelector((state)=>(selectListingById(state,Number(id))));
+  const isLoading = useSelector(selectListingLoading)
 
   function toast (){
     Toast.show('You will recieve a call shortly',{
@@ -33,7 +37,8 @@ const Details = () => {
   }
   useEffect(()=>{
     dispatch(getListingsById(id))
-  },[])
+    console.log('first')
+  },[id])
 
   const { width } = Dimensions.get("window");
   const rooms = [
@@ -64,6 +69,9 @@ const Details = () => {
     },
   ];
 
+  // if (isLoading)
+  //   return<LoadingScreen />
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -76,7 +84,7 @@ const Details = () => {
 
             <TouchableOpacity
               className="z-50 absolute top-4 left-4 p-2 bg-primary rounded-full"
-              onPress={() => router.push("/explore")}>
+              onPress={() => router.back()}>
               <Back />
             </TouchableOpacity>
 
@@ -85,24 +93,24 @@ const Details = () => {
               onPress={() => 
               {
                 !listing.saved? 
-                dispatch(deleteSavedListing(listing.id)):
+                dispatch(deleteSavedListing(listing.id)):                                                                                                      
                 dispatch(addSavedListing(listing.id))
               }}>
-            <Heart saved={listing.saved}/> 
+            <Heart saved={listing?.saved}/> 
             </TouchableOpacity>
 
           </View>
           {/* Navigation */}
           
           {/* carousel */}
-            <CarouselRoom rooms={rooms} width={width} />
-          {/* carousel */}
-          
+          <CarouselRoom rooms={rooms} width={width} />
+
           {/* listing details  */}
           <View className="px-2 mt-4">
+
             {/* availability */}
             <View className="flex-row items-center gap-2">
-              {!listing.offMarket ?
+              {!listing?.offMarket ?
                 <>
                   <Text className="p-2 bg-green-600 rounded-full w-2 h-2"></Text>
                   <Text className=" text-green-500">Available </Text>
@@ -113,14 +121,15 @@ const Details = () => {
                 </>
                 }
             </View>
-
+            
+            {/* info card */}
             <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
               <View className="flex flex-row justify-between px-3 items-center">
                 <Text className="font-bold text-[20px] text-primary ">
-                  {listing.name}
+                  {listing?.name}
                 </Text>
                 <Text className="text-[20px] text-primary font-bold">
-                  ETB {listing.price}
+                  ETB {listing?.price}
                 </Text>
               </View>
                 <View className="px-3 py-2 flex flex-row items-center justify-between">
@@ -144,7 +153,7 @@ const Details = () => {
                   source={icon.Whitelocationicon}
                   className="w-5 h-5  ml-2"
                 />
-                <Text className=" text-[15px] text-white">{listing.address}</Text>
+                <Text className=" text-[15px] text-white">{listing?.address}</Text>
               </View>
 
               <View className="flex flex-row items-center justify-between">
@@ -153,7 +162,7 @@ const Details = () => {
                     source={icon.Whitebedicon}
                     className="w-4 h-4  ml-1"
                   />
-                  <Text className=" text-[14px] text-white">{listing.bedrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.bedrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
@@ -161,7 +170,7 @@ const Details = () => {
                     source={icon.Whitebathicon}
                     className="w-4 h-4  ml-2"
                   />
-                  <Text className=" text-[14px] text-white">{listing.bathrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.bathrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
@@ -169,7 +178,7 @@ const Details = () => {
                     source={icon.Whiteareaicon}
                     className="w-4 h-4  ml-2"
                   />
-                  <Text className=" text-[14px] text-white">{listing.houseSize}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.houseSize}</Text>
                 </View>
               </View>
 
@@ -206,10 +215,7 @@ const Details = () => {
               </MapView>
             </View> */}
 
-            <View className="items-center justify-center flex-row px-6 py-6">
-              {/* <TouchableOpacity className="bg-white flex-row justify-evenly text-black p-4 mt-4 rounded-2xl inline">
-                <Text className="text-black font-bold">Get Directions</Text>
-              </TouchableOpacity> */}
+            <View className="items-center justify-center flex-row px-3 py-6">
 
               <TouchableOpacity 
                 onPress={() =>  toast()}
@@ -220,6 +226,9 @@ const Details = () => {
               </TouchableOpacity>
             </View>
           </View>
+
+          {/* Ad Card */}
+          <AdCard />
 
           {/* leave a review */}
           <View className="mt-3 ">
@@ -289,7 +298,7 @@ const Details = () => {
         </View>
 
       </ScrollView>
-      <StatusBar backgroundColor="#012847" style="light" />
+      <StatusBar backgroundColor="white" style="dark" />
     </SafeAreaView>
   );
 };

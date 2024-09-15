@@ -9,7 +9,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 const RootLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* remove of toast doesnt work */}
+      {/* remove if toast doesnt work */}
       <RootSiblingParent> 
       <Provider store={store}>
         <Stack>

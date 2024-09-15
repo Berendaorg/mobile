@@ -38,6 +38,9 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import LabelInput from "../../components/LabelInput";
 import ScrollRoomNumber from "../../components/ScrollRoomNumber";
 import Checkbox from "expo-checkbox";
+import AdCard from "../../components/AdCard";
+import BoardCard from "../../components/BoardCard";
+import { listingData } from "../../data";
 
 const Explore = () => {
 
@@ -121,13 +124,15 @@ const Explore = () => {
       }
       >
 
-{/*  */}
-<TouchableOpacity onPress={() => handlePresentModal()}>
-<View>
-            <SearchProperty placeholder={"Search 162 properties"} />
-          </View>
-{/*  */}</TouchableOpacity>
-      <View className="">
+    {/*  */}
+    <TouchableOpacity onPress={() => handlePresentModal()}>
+        <View>
+          <SearchProperty placeholder={"Search 162 properties"} />
+        </View>
+    {/*  */}
+    </TouchableOpacity>
+
+    <View className="">
         
         <View className=" px-4 pt-3 flex flex-row items-center justify-between">
           <Text className="text-lg font-bold">Developers</Text>
@@ -136,14 +141,14 @@ const Explore = () => {
               View all
           </Link>
         </View>
-{/*  */}
+    {/*  */}
     {
       (isDeveloperLoading) ? <LoadingScreen /> :
         <FlatList
           data={developers}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => `dev`+item.id}
           renderItem={({ item }) => (
             
             <TouchableOpacity onPress={() => 
@@ -159,6 +164,30 @@ const Explore = () => {
         />
     }
     </View>
+
+    {/* Ad card */}
+      <AdCard />
+
+  <View className="px-4 pt-3">
+    <Text className="text-lg font-bold">Announcements</Text>
+  </View>
+  
+    {/* Announcements Boards  */}
+    <View className="px-4 pt-4"> 
+      <FlatList
+        data={listingData}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => `listing`+item.id}
+        // refreshing={isDeveloperLoading}
+        // onRefresh={dispatch(getListings())}
+        renderItem={({ item }) => (
+          <BoardCard listing={item} width="100%" />
+        )}
+        className="w-full"
+      />
+    </View>
+
 
 {/*  */}
       <View className="px-4 pt-4">
@@ -199,10 +228,15 @@ const Explore = () => {
 {/*  */}
         {
         (isListingLoading) ? <LoadingScreen />:
-      <>
-      { locations?.map((item) => 
-      (
-      <View>
+       
+        <FlatList
+        data={locations}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => `locations`+item.id}
+        refreshing={false}
+        onRefresh={()=>{}}
+        renderItem={({ item }) => (
+        <View>
           <View className="px-4 pt-4 flex flex-row items-center justify-between">
             <View className="flex flex-col gap-1">
               <Text className="font-bold text-[18px]">{item.name}</Text>
@@ -222,7 +256,7 @@ const Explore = () => {
               data={listings}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => `list`+item.id}
               // refreshing={isDeveloperLoading}
               // onRefresh={dispatch(getListings())}
               renderItem={({ item }) => (
@@ -232,11 +266,8 @@ const Explore = () => {
             />
           </View>
         </View>
-      )
-    )
-  } 
-  </>
-}
+        )}/>
+      }
 
     </ScrollView>
 
@@ -365,10 +396,11 @@ const Explore = () => {
             </View>
             <TouchableOpacity
                   className=" bg-highlight p-[17px] rounded-full mt-4 w-full items-center"
-                  onPress={handlePresentModal}
-                  title="">
+                  onPress={() => 
+                    router.push("/results")}
+                  title="" >
 
-                  <Text className="text-white font-bold">Search</Text> 
+                  <Text className="text-white font-bold">Search</Text>
             </TouchableOpacity>
 
           </View>

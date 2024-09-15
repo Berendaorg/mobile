@@ -8,11 +8,10 @@ import { getDevelopersById,selectdeveloperById } from "../../../slices/developer
 import { useGlobalSearchParams } from "expo-router";
 import { getListings, selectListings } from "../../../slices/listingSlice";
 import { FlatList } from "react-native-gesture-handler";
-import AdCard from "../../../components/AdCard";
-
-// 
+import BoardCard from "../../../components/BoardCard";
+ 
 import { listingData } from "../../../data";
-// 
+
 
 const DeveloperDetail = () => {
   const dispatch = useDispatch()
@@ -60,7 +59,7 @@ const DeveloperDetail = () => {
             // refreshing={isDeveloperLoading}
             // onRefresh={dispatch(getListings())}
             renderItem={({ item }) => (
-              <AdCard listing={item} width="100%" />
+              <BoardCard listing={item} width="100%" />
             )}
             className="w-full"
           />
