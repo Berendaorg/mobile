@@ -18,7 +18,7 @@ import icon from "../../../constants/icon";
 import Tag from "../../../components/Tag";
 // 
 
-const DeveloperDetail = () => {
+const Ad = () => {
   const dispatch = useDispatch()
   const { id } = useGlobalSearchParams();
 
@@ -73,4 +73,4 @@ Nam sit amet cursus nisi. Donec turpis lorem, mollis quis hendrerit eu, egestas 
   );
 };
 
-export default DeveloperDetail;
+export default Ad;

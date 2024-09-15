@@ -16,9 +16,8 @@ const Profile = () => {
   const [isDropped, setIsDropped] = useState(false);
 
 
-  if (isLoading) {
-    return <LoadingScreen />
-  }
+  if (isLoading) return <LoadingScreen />
+
 return (
   <View className="bg-[#FAFAFB] h-full w-full">
   {

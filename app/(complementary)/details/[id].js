@@ -12,20 +12,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../../constants/image";
 import CarouselRoom from "../../../components/CarouselRoom";
 import { StatusBar } from "expo-status-bar";
-import { router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
+import { Link, router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "../../../constants/icon";
-import { addSavedListing, deleteSavedListing, getListingsById, selectListingById } from "../../../slices/listingSlice";
+import { addSavedListing, deleteSavedListing, getListingsById, selectListingById, selectListingLoading } from "../../../slices/listingSlice";
 import Toast from "react-native-root-toast";
 import Back from "../../../components/Back";
 import Heart from "../../../components/Heart";
 import AdCard from "../../../components/AdCard";
+import LoadingScreen from "../../../components/LoadingScreen";
 
 const Details = () => {
 
   const dispatch = useDispatch()
   const { id } = useGlobalSearchParams();
+
   const listing = useSelector((state)=>(selectListingById(state,Number(id))));
+  const isLoading = useSelector(selectListingLoading)
 
   function toast (){
     Toast.show('You will recieve a call shortly',{
@@ -34,7 +37,8 @@ const Details = () => {
   }
   useEffect(()=>{
     dispatch(getListingsById(id))
-  },[])
+    console.log('first')
+  },[id])
 
   const { width } = Dimensions.get("window");
   const rooms = [
@@ -64,6 +68,9 @@ const Details = () => {
       index: 5,
     },
   ];
+
+  // if (isLoading)
+  //   return<LoadingScreen />
 
   return (
     <SafeAreaView>
@@ -96,15 +103,14 @@ const Details = () => {
           {/* Navigation */}
           
           {/* carousel */}
-            <CarouselRoom rooms={rooms} width={width} />
-          {/* carousel */}
-          
+          <CarouselRoom rooms={rooms} width={width} />
+
           {/* listing details  */}
           <View className="px-2 mt-4">
 
             {/* availability */}
             <View className="flex-row items-center gap-2">
-              {!listing.offMarket ?
+              {!listing?.offMarket ?
                 <>
                   <Text className="p-2 bg-green-600 rounded-full w-2 h-2"></Text>
                   <Text className=" text-green-500">Available </Text>
@@ -120,10 +126,10 @@ const Details = () => {
             <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
               <View className="flex flex-row justify-between px-3 items-center">
                 <Text className="font-bold text-[20px] text-primary ">
-                  {listing.name}
+                  {listing?.name}
                 </Text>
                 <Text className="text-[20px] text-primary font-bold">
-                  ETB {listing.price}
+                  ETB {listing?.price}
                 </Text>
               </View>
                 <View className="px-3 py-2 flex flex-row items-center justify-between">
@@ -147,7 +153,7 @@ const Details = () => {
                   source={icon.Whitelocationicon}
                   className="w-5 h-5  ml-2"
                 />
-                <Text className=" text-[15px] text-white">{listing.address}</Text>
+                <Text className=" text-[15px] text-white">{listing?.address}</Text>
               </View>
 
               <View className="flex flex-row items-center justify-between">
@@ -156,7 +162,7 @@ const Details = () => {
                     source={icon.Whitebedicon}
                     className="w-4 h-4  ml-1"
                   />
-                  <Text className=" text-[14px] text-white">{listing.bedrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.bedrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
@@ -164,7 +170,7 @@ const Details = () => {
                     source={icon.Whitebathicon}
                     className="w-4 h-4  ml-2"
                   />
-                  <Text className=" text-[14px] text-white">{listing.bathrooms}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.bathrooms}</Text>
                 </View>
 
                 <View className="flex flex-row items-center gap-2 mr-3">
@@ -172,7 +178,7 @@ const Details = () => {
                     source={icon.Whiteareaicon}
                     className="w-4 h-4  ml-2"
                   />
-                  <Text className=" text-[14px] text-white">{listing.houseSize}</Text>
+                  <Text className=" text-[14px] text-white">{listing?.houseSize}</Text>
                 </View>
               </View>
 
@@ -292,7 +298,7 @@ const Details = () => {
         </View>
 
       </ScrollView>
-      <StatusBar backgroundColor="#012847" style="light" />
+      <StatusBar backgroundColor="white" style="dark" />
     </SafeAreaView>
   );
 };

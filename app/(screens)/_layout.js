@@ -17,7 +17,6 @@ import Profile from "./Profile";
 import Settings from "./settings";
 import {
   NavigationContainer,
-  NavigationContainerRefContext,
 } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import icon from "../../constants/icon";

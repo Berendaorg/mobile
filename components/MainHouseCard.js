@@ -21,9 +21,11 @@ const MainHouseCard = ({ listing, width }) => {
           
           <View>
             <View className="flex-row items-center">
-              <Text className="text-base text-black  font-bold">
+              <Link 
+              href={`developer_details/${listing.id}`}
+              className="text-base text-black  font-bold">
                 {listing.listedBy.name}
-              </Text>
+              </Link>
               {listing.listedBy.verified && (
                 <Image
                   source={icon.verifiedicon}

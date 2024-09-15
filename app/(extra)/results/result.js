@@ -39,6 +39,7 @@ import {
   selectPropertyType,
   selectHouseAge,
 } from "../../../slices/searchSlice"
+import SearchProperty from "../../../components/SearchProperty";
 
 const Home = () => {
   const listings = useSelector(selectListings)
@@ -114,14 +115,21 @@ const Home = () => {
 
   return (
     <>
-     <ScrollView
-          className="flex-1 gap-0 px-2"
-          decelerationRate="fast"
-          vertical={true}
-          showsVerticalScrollIndicator={false}>
-          {listings.map((house, index) => ( <MainHouseCard listing={house} width="w-full" />))}
-      </ScrollView>
-
+    <SearchProperty placeholder={'search property'} />
+    <View className="px-2">
+      <FlatList
+        data={listings}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        refreshing={false}
+        onRefresh={()=>{}}
+        renderItem={({ item }) => (
+          <MainHouseCard listing={item} width="w-full" />
+        )}
+        className="w-full"
+      />
+    </View>
    </>
   );
 };

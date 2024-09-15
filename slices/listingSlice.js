@@ -25,6 +25,7 @@ export const getListingsById = createAsyncThunk(
         id
       }
     })
+    await asyncTimeout(wait);
     return response.data
   }
 )
@@ -90,8 +91,12 @@ export const listingSlice = createSlice({
         console.log("in rtk")
         state.listings = action.payload
       }),
+      builder.addCase(getListingsById.pending, (state, action) => {
+        state.isLoading = true
+      }),
       builder.addCase(getListingsById.fulfilled, (state, action) => {
         state.listing = action.payload
+        state.isLoading = false
       }),
       builder.addCase(getSavedListings.fulfilled, (state, action) => {
         state.isLoading = false
