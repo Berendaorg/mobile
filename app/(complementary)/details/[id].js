@@ -76,7 +76,7 @@ const Details = () => {
 
             <TouchableOpacity
               className="z-50 absolute top-4 left-4 p-2 bg-primary rounded-full"
-              onPress={() => router.push("/explore")}>
+              onPress={() => router.back()}>
               <Back />
             </TouchableOpacity>
 
@@ -88,7 +88,7 @@ const Details = () => {
                 dispatch(deleteSavedListing(listing.id)):                                                                                                      
                 dispatch(addSavedListing(listing.id))
               }}>
-            <Heart saved={listing.saved}/> 
+            <Heart saved={listing?.saved}/> 
             </TouchableOpacity>
 
           </View>
@@ -100,6 +100,7 @@ const Details = () => {
           
           {/* listing details  */}
           <View className="px-2 mt-4">
+
             {/* availability */}
             <View className="flex-row items-center gap-2">
               {!listing.offMarket ?
@@ -113,7 +114,8 @@ const Details = () => {
                 </>
                 }
             </View>
-
+            
+            {/* info card */}
             <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
               <View className="flex flex-row justify-between px-3 items-center">
                 <Text className="font-bold text-[20px] text-primary ">
@@ -206,10 +208,7 @@ const Details = () => {
               </MapView>
             </View> */}
 
-            <View className="items-center justify-center flex-row px-6 py-6">
-              {/* <TouchableOpacity className="bg-white flex-row justify-evenly text-black p-4 mt-4 rounded-2xl inline">
-                <Text className="text-black font-bold">Get Directions</Text>
-              </TouchableOpacity> */}
+            <View className="items-center justify-center flex-row px-3 py-6">
 
               <TouchableOpacity 
                 onPress={() =>  toast()}

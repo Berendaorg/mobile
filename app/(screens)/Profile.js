@@ -15,9 +15,6 @@ const Profile = () => {
   const isLoggedIn = useSelector(selectUserLoggedIn)
   const [isDropped, setIsDropped] = useState(false);
 
-  useEffect(()=>{
-    dispatch(getUser())
-  },[])
 
   if (isLoading) {
     return <LoadingScreen />
