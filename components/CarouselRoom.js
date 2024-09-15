@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Carousel from "react-native-reanimated-carousel";
 import icon from "../constants/icon";
+import { router } from "expo-router";
 
 const CarouselRoom = ({ rooms, width }) => {
   return (

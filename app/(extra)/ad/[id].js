@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import image from "../../../constants/image";
 import SearchProperty from "../../../components/SearchProperty";
 import MainHouseCard from "../../../components/MainHouseCard";
@@ -9,7 +9,6 @@ import { useGlobalSearchParams } from "expo-router";
 import { getListings, selectListings } from "../../../slices/listingSlice";
 import { FlatList } from "react-native-gesture-handler";
 import AdCard from "../../../components/AdCard";
-import { addSavedListing, deleteSavedListing, getListingsById, selectListingById } from "../../../slices/listingSlice";
 
 import { roomData } from "../../../data";
 
@@ -17,9 +16,6 @@ import { roomData } from "../../../data";
 import { listingData } from "../../../data";
 import icon from "../../../constants/icon";
 import Tag from "../../../components/Tag";
-import { SafeAreaView } from "react-native-safe-area-context";
-import CarouselRoom from "../../../components/CarouselRoom";
-import { StatusBar } from "expo-status-bar";
 // 
 
 const DeveloperDetail = () => {
@@ -28,7 +24,6 @@ const DeveloperDetail = () => {
 
   const developer = useSelector((state)=>selectdeveloperById(state,Number(id)));
   const listings = useSelector(selectListings)
-  const listing = useSelector((state)=>(selectListingById(state,Number(id))));
 
   useEffect(()=>{
     dispatch(getDevelopersById(id))
@@ -36,180 +31,43 @@ const DeveloperDetail = () => {
     console.log(developer)
   },[])
 
-  const { width } = Dimensions.get("window");
-  const rooms = [
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 1,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 2,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 3,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 4,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 5,
-    },
-  ];
-
   return (
-    <SafeAreaView>
-    <ScrollView  className="bg-[#FAFAFB] h-full w-full">
-
-      <View className="bg-[#FAFAFB] h-full w-full">          
-        
-        {/* Navigation */}
-
-        <View className="relative">
-
-     
-        </View>
-        {/* Navigation */}
-        
-        {/* carousel */}
-          <CarouselRoom rooms={rooms} width={width}/>
-        {/* carousel */}
-        
-        {/* listing details  */}
-        <View className="px-2 mt-4">
-          {/* availability */}
-          <View className="flex-row items-center gap-2">
-            
-              <>
-                <Text className="p-2 bg-green-600 rounded-full w-2 h-2"></Text>
-                <Text className=" text-green-500">Available </Text>
-              </> 
-              <>
-                <Text className="p-2 bg-slate-600 rounded-full w-2 h-2"></Text>
-                <Text className=" text-white">Off-market </Text>
-              </>
-            
-          </View>
-
-          <View className="p-3 flex flex-col gap-2 bg-highlight rounded-lg mt-2 ml-1">
-            <View className="flex flex-row justify-between px-3 items-center">
-              <Text className="font-bold text-[20px] text-primary ">
-                Some Name
-              </Text>
-              <Text className="text-[20px] text-primary font-bold">
-                ETB 10000
-              </Text>
-            </View>
-              <View className="px-3 py-2 flex flex-row items-center justify-between">
-                <View className="flex flex-row items-center  gap-1">
-                  <Image source={icon.Whitehouseicon} className="w-8 h-8" />
-                  <View className="flex flex-col  justify-between">
-                    <Text className="text-sm  text-white">Type</Text>
-                    <Text className="text-lg font-bold text-white">Villa</Text>
-                  </View>
-                </View>
-                <View className="flex flex-row items-center  gap-1">
-                  <Image source={icon.Whitebedicon} className="w-8 h-8" />
-                  <View className="flex flex-col  justify-between">
-                    <Text className="text-sm  text-white">Bedrooms</Text>
-                    <Text className="text-lg font-bold text-white">6 Bedrooms</Text>
-                  </View>
-                </View>
-              </View>
-            <View className="flex flex-row items-center">
-              <Image
-                source={icon.Whitelocationicon}
-                className="w-5 h-5  ml-2"
-              />
-              <Text className=" text-[15px] text-white">675546746</Text>
-            </View>
-
-            <View className="flex flex-row items-center justify-between">
-              <View className="flex flex-row items-center gap-2 pl-3 mr-3">
-                <Image
-                  source={icon.Whitebedicon}
-                  className="w-4 h-4  ml-1"
-                />
-                <Text className=" text-[14px] text-white">4</Text>
-              </View>
-
-              <View className="flex flex-row items-center gap-2 mr-3">
-                <Image
-                  source={icon.Whitebathicon}
-                  className="w-4 h-4  ml-2"
-                />
-                <Text className=" text-[14px] text-white">3</Text>
-              </View>
-
-              <View className="flex flex-row items-center gap-2 mr-3">
-                <Image
-                  source={icon.Whiteareaicon}
-                  className="w-4 h-4  ml-2"
-                />
-                <Text className=" text-[14px] text-white">140</Text>
-              </View>
-            </View>
-
-          </View>
-
-          {/* 
-          <View className="mt-4">
-            <Text className="text-white text-lg ">{house.description}</Text>
-          </View> 
-          */}
-
+    // <ScrollView>
+      <View className="bg-primary w-full h-full">
+      {/* <View className="relative"> */}
+      <Text>
+        Title
+      </Text>
+      <View className="relative">
+            <Tag />
+            <Image
+            source={roomData[0].image}
+            className="w-full h-50"
+            resizeMode="contain"
+          />
         </View>
 
-        {/* Map  */}
-        <View>
-          {/* <View className="flex-1 border border-white h-72">
-            <MapView
-              region={{
-                latitude: house.location.coords.lat,
-                longitude: house.location.coords.lng,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-              className="flex-1"
-            >
-              <Marker
-                coordinate={{
-                  latitude: house.location.coords.lat,
-                  longitude: house.location.coords.lng,
-                }}
-                title={house.address}
-                description={"description"}
-              />
-            </MapView>
-          </View> */}
+<Text>
+  June 2, 2024  
+</Text>
+        <Text>
+          
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra ligula a diam venenatis, sit amet feugiat metus hendrerit. Aliquam malesuada odio sed augue tincidunt elementum. Suspendisse tempus commodo pellentesque. Sed posuere neque et purus sagittis, at dignissim ipsum faucibus. Vivamus congue varius neque a tempor. Praesent porttitor dignissim pretium. Curabitur a vestibulum urna. Duis eget eleifend lacus. Nullam eu aliquet mi. Nulla maximus ac felis id aliquam. Ut vitae diam tortor. Nullam sit amet ipsum sed risus maximus accumsan at id quam. Curabitur eleifend venenatis urna. Suspendisse id justo eget nulla pellentesque ultricies ut ornare lacus.
 
-          <View className="items-center justify-center flex-row px-6 py-6">
-            {/* <TouchableOpacity className="bg-white flex-row justify-evenly text-black p-4 mt-4 rounded-2xl inline">
-              <Text className="text-black font-bold">Get Directions</Text>
-            </TouchableOpacity> */}
+Vestibulum vitae consectetur tortor, id eleifend justo. Donec quis feugiat augue, ac pretium eros. Sed suscipit iaculis ante, at consectetur purus gravida mollis. In et tortor massa. Nunc metus nibh, dignissim ut vestibulum in, feugiat a velit. Proin id hendrerit orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum et ligula quis tellus tristique consectetur.
 
-            <TouchableOpacity 
-            
-            className="bg-highlight text-primary w-full p-4 rounded-2xl inline">
-              <Text className="text-white font-bold text-center">
-                Request A Private Showing
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+Nullam pellentesque lectus at leo consequat, non pellentesque nunc posuere. Suspendisse mattis odio in varius maximus. Integer vehicula nisl eget risus imperdiet, in rutrum mi sagittis. Vivamus sit amet bibendum ligula. Sed in mattis purus, a imperdiet dui. Integer ac purus nisl. Donec aliquam ornare sodales. Aenean sed sodales mauris. Integer sollicitudin libero et augue accumsan, ac faucibus quam consectetur.
+
+Cras gravida erat ut arcu cursus condimentum. Vestibulum lacus metus, interdum sed varius eu, gravida nec libero. Mauris porttitor arcu sed nulla ultricies auctor. Nunc quis egestas nisi, sed maximus augue. Morbi a nulla eros. Duis porta orci eu eros bibendum semper. Nulla feugiat erat ut neque varius vulputate. Ut ex libero, tempor in ante quis, tempus pellentesque massa. Nulla ultrices quam enim. Aliquam semper tincidunt libero vel hendrerit. Ut ut dui non purus vestibulum tristique nec vitae tellus.
+
+Nam sit amet cursus nisi. Donec turpis lorem, mollis quis hendrerit eu, egestas tincidunt velit. Curabitur sed pellentesque mi, quis blandit orci. Curabitur et porta justo. Suspendisse nec dolor ut metus finibus cursus et nec nisl. Etiam vehicula sed ligula a tempor. Cras varius facilisis dolor, vel efficitur massa tincidunt id. Vestibulum eget bibendum purus. Phasellus aliquam at diam eu placerat. Nulla vulputate, magna a faucibus malesuada, justo eros efficitur nunc, convallis pellentesque nisi metus eu purus. Nulla varius commodo massa, nec faucibus nulla consequat ut. 
+
+        </Text>
+
+          {/* <Tag /> */}
+      {/* </View> */}
       </View>
-
-    </ScrollView>
-    <StatusBar backgroundColor="#012847" style="light" />
-  </SafeAreaView>
+    // {/* </ScrollView> */}
   );
 };
 
