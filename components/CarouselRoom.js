@@ -7,29 +7,6 @@ import { router } from "expo-router";
 const CarouselRoom = ({ rooms, width }) => {
   return (
     <View className="relative">
-      
-      <TouchableOpacity
-        className="z-50 absolute top-4 left-4 p-2 bg-black rounded-full"
-        onPress={() => router.back()}
-      >
-        <Image
-          source={icon.backicon}
-          className="w-6 h-6 "
-          resizeMode="contain"
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
-        className="z-50 absolute top-4 right-4 p-2 bg-black rounded-full"
-        onPress={() => 
-          // dispatch(setSaved(rooms[0]))
-        {}}
-      >
-        <Image
-          source={icon.bookmarkicon}
-          className="w-6 h-6"
-          resizeMode="contain"
-        />
-      </TouchableOpacity>
 
       <Carousel
         loop
@@ -40,17 +17,17 @@ const CarouselRoom = ({ rooms, width }) => {
         scrollAnimationDuration={1000}
         renderItem={({ item }) => (
           <View className="relative w-full h-full">
+
             <Image
               source={item.image}
-              className="w-full h-full absolute top-0 right-0"
-            />
+              className="w-full h-full absolute top-0 right-0"/>
+
             <View className="bg-black/50 opacity-40 w-full h-full absolute top-0 right-0"></View>
-            <Text className="text-white text-xs py-1 px-2 rounded-2xl bg-black m-4 absolute bottom-0 left-0">
-              {item.title}
-            </Text>
-            <Text className="text-white text-xs py-1 px-2 rounded-2xl bg-black m-4 absolute bottom-0 right-0">
+
+            <Text className="text-black text-xs py-1 px-2 rounded-2xl bg-white m-4 absolute bottom-0 right-0">
               {item.index}/{rooms.length}
             </Text>
+
           </View>
         )}
       />
