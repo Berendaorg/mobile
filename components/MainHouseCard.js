@@ -7,7 +7,7 @@ const MainHouseCard = ({ listing, width }) => {
   return (
     <View className={`pt-3 mr-5 ${width}`}>
       {/* profile */}
-      <View className="flex-row items-center gap-2">
+      <View className="flex-row items-center gap-2 w-full">
           <View>
             <View class="relative border">
               <Image
@@ -49,7 +49,7 @@ const MainHouseCard = ({ listing, width }) => {
           source={{
             uri: "https://cdn.in.emaar.com/wp-content/uploads/2020/11/HI-1620x832.jpg",
           }}
-          className="w-full h-[180px] object-cover rounded-[30px]"
+          className={`${width != "" ? width : "w-[300px]"} h-[180px] object-cover rounded-[30px]`}
         />
       </TouchableOpacity>
       <View className="pt-3 flex flex-col gap-2">

@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { listingData, roomData } from '../data'
 import { asyncTimeout } from '../util/asyncTimeout';
@@ -119,5 +120,8 @@ export const selectListings = (state) => state.listing.listings
 export const selectListingById = (state, id) => state.listing.listings.find(listing =>listing.id == id)
 export const selectSaved = (state) => state.listing.saved
 export const selectListingLoading = (state) => state.listing.isLoading
+
+
+
 
 export default listingSlice.reducer

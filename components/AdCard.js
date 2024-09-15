@@ -21,11 +21,11 @@ const AdCard = ({ listing, width }) => {
             source={{
                 uri: "https://cdn.in.emaar.com/wp-content/uploads/2020/11/HI-1620x832.jpg",
                 }}
-                className="w-full h-[180px] object-cover rounded-[30px]"
+                className="w-[300px] h-[180px] object-cover rounded-[30px]"
                 />
             </View>
       
-      <View className="pt-3 flex flex-col gap-2">
+      <View className="pt-3 flex flex-col justify-center gap-2">
         <View className="flex flex-row justify-between px-3 items-center">
           {/* <Text className="font-bold text-[17px]">{listing.name}</Text> */}
           <Text className="text-[17px] text-highlight">
@@ -39,7 +39,7 @@ const AdCard = ({ listing, width }) => {
           />
           <Text className="opacity-60 text-[15px] ">{listing.address}</Text>
         </View>
-        <View className="flex flex-row items-center">
+        <View className="px-3">
             <Link href={`/developer`} className="opacity-60 text-[15px]">
                 Read More
             </Link>
