@@ -8,7 +8,7 @@ import { getDevelopersById,selectdeveloperById } from "../../../slices/developer
 import { useGlobalSearchParams } from "expo-router";
 import { getListings, selectListings } from "../../../slices/listingSlice";
 import { FlatList } from "react-native-gesture-handler";
-import AdCard from "../../../components/AdCard";
+import BoardCard from "../../../components/BoardCard";
 
 import { roomData } from "../../../data";
 

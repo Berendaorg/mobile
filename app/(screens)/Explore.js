@@ -38,6 +38,7 @@ import SegmentedControl from "@react-native-segmented-control/segmented-control"
 import LabelInput from "../../components/LabelInput";
 import ScrollRoomNumber from "../../components/ScrollRoomNumber";
 import Checkbox from "expo-checkbox";
+import AdCard from "../../components/AdCard";
 
 const Explore = () => {
 
@@ -122,12 +123,13 @@ const Explore = () => {
       >
 
 {/*  */}
-<TouchableOpacity onPress={() => handlePresentModal()}>
-<View>
-            <SearchProperty placeholder={"Search 162 properties"} />
-          </View>
-{/*  */}</TouchableOpacity>
-      <View className="">
+    <TouchableOpacity onPress={() => handlePresentModal()}>
+        <View>
+          <SearchProperty placeholder={"Search 162 properties"} />
+        </View>
+{/*  */}
+</TouchableOpacity>
+    <View className="">
         
         <View className=" px-4 pt-3 flex flex-row items-center justify-between">
           <Text className="text-lg font-bold">Developers</Text>
@@ -159,6 +161,10 @@ const Explore = () => {
         />
     }
     </View>
+
+    {/* <View className="w-full h-full border"> */}
+      <AdCard />
+    {/* </View> */}
 
 {/*  */}
       <View className="px-4 pt-4">
