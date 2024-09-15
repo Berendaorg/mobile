@@ -11,11 +11,11 @@ import {selectedBedrooms,selectBathrooms,setBathrooms,setBedrooms } from "../sli
 import { useDispatch, useSelector } from "react-redux";
 
 
-const ScrollRoomNumber = ({ setFor,title }) => {
+const ScrollRoomNumber = ({ setFor,title, data, rounded }) => {
   const [isSelected, setIsSelected] = useState("Any");
-  const [isSelectedStyle, setIsSelectedStyle] = useState("bg-black text-white");
+  const [isSelectedStyle, setIsSelectedStyle] = useState("bg-highlight border border-highlight text-white");
 
-  const rooms = ["Any", "1", "2", "3", "4", "5+"];
+  // const rooms = ["Any", "1", "2", "3", "4", "5"];
   
       const bedrooms = useSelector(selectedBedrooms)
       const bathrooms = useSelector(selectBathrooms)
@@ -40,27 +40,29 @@ const ScrollRoomNumber = ({ setFor,title }) => {
 
   return (
     <View>
-      <Text className=" text-white text-lg">{title}</Text>
-      <ScrollView
+      <Text className=" text-black text-lg">{title}</Text>
+      {/* <ScrollView
         className="mt-4 gap-x-4"
         decelerationRate="fast"
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-      >
-        {rooms.map((item, index) => (
+      > */}
+      <View className="flex flex-row flex-wrap items-center gap-4 mt-1">
+        {data?.map((item, index) => (
           <TouchableOpacity onPress={() => handleSelected(item)}>
             <Text
               className={`${
-                isSelected === item ? isSelectedStyle : "bg-white text-black"
-              } p-5 ${
-                item === "Any" ? "rounded-3xl" : "rounded-full"
-              }  border px-6 w-auto`}
+                isSelected === item ? isSelectedStyle : "bg-hightlight text-gray-500"
+              } p-2 ${
+                item === "Any" ? "rounded-[10px]" : rounded
+              }  border border-gray-400  px-[14px] w-auto`}
             >
               {item}
             </Text>
           </TouchableOpacity>
         ))}
-      </ScrollView>
+        </View>
+      {/* </ScrollView> */}
     </View>
   );
 };

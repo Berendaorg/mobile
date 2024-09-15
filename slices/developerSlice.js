@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetch, URL, wait } from '../mocks/fetch';
 import { asyncTimeout } from '../util/asyncTimeout';
@@ -58,5 +59,7 @@ export const developerSlice = createSlice({
 export const selectdevelopers = (state) => state.developer.developers
 export const selectdeveloperById = (state, id) => state.developer.developers.find(dev => dev.id === id)
 export const selectDeveloperLoading = (state) => state.developer.isLoading
+
+
 
 export default developerSlice.reducer

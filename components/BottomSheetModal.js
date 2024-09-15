@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   BottomSheetScrollView,
@@ -9,17 +9,14 @@ import {
 import Checkbox from "expo-checkbox";
 
 const BottomSheetModals = ({
-  PropertyType,
-  ref,
-  isChecked,
-  setChecked,
   snapPoints,
 }) => {
+  const PropertyType = ["Any", "House", "Apartment", "Condo", "Real Estate"];
+const [isChecked, setChecked] = useState(false);
   return (
     <BottomSheetModalProvider>
       <BottomSheetModal
         className="h-full"
-        ref={ref}
         snapPoints={["50%", "100%"]}
         enablePanDownToClose={true}
         animateOnMount={true}
