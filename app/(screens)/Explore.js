@@ -365,10 +365,11 @@ const Explore = () => {
             </View>
             <TouchableOpacity
                   className=" bg-highlight p-[17px] rounded-full mt-4 w-full items-center"
-                  onPress={handlePresentModal}
-                  title="">
+                  onPress={() => 
+                    router.push("/results")}
+                  title="" >
 
-                  <Text className="text-white font-bold">Search</Text> 
+                  <Text className="text-white font-bold">Search</Text>
             </TouchableOpacity>
 
           </View>

@@ -9,7 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import Featured from "./featured"
-import Index from "./index"  
+import result from "./result"  
 import Reccomendation from "./reccomendation"
 import { Text } from 'react-native';
 import { Provider } from 'react-redux';
@@ -54,17 +54,17 @@ export default function TabLayout() {
     <Tabs 
     // initialRouteName='results'
     screenOptions={{ 
-      tabBarActiveTintColor: "#F0DE93",
+      tabBarActiveTintColor: "white",
       tabBarInactiveTintColor: "gray",
       tabBarStyle: {
-        backgroundColor: "#012847",
+        backgroundColor: "#C33535",
         height: 60,
         paddingBottom: 10,
         paddingTop: 10,
       },      
       }}>
       <Tabs.Screen
-        name="index"
+        name="result"
         options={{
         title: 'Results',
         // href:null,
@@ -73,7 +73,7 @@ export default function TabLayout() {
         }}
       /> 
       <Tabs.Screen
-      name="index.second"
+      name="result.second"
       options={{
       title: 'Results',
       href:null,
@@ -93,7 +93,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="featured"
           options={{
-            title: "Featured",
+            title: "AD",
             //   href:null,
             headerShown: false,
             tabBarLabelStyle: { fontSize: 14 },
@@ -106,7 +106,7 @@ export default function TabLayout() {
       <StatusBar
         barStyle="light-content"
         style="light"
-        backgroundColor="#012847"
+        backgroundColor="#C33535"
       />
     </>
   );

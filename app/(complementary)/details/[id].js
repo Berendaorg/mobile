@@ -85,7 +85,7 @@ const Details = () => {
               onPress={() => 
               {
                 !listing.saved? 
-                dispatch(deleteSavedListing(listing.id)):
+                dispatch(deleteSavedListing(listing.id)):                                                                                                      
                 dispatch(addSavedListing(listing.id))
               }}>
             <Heart saved={listing.saved}/> 

@@ -32,6 +32,14 @@ const ExtraLayout = () => {
           headerRight: () => <Headericons />,
         }}
       />
+       <Stack.Screen
+        name="results"
+        options={{
+          headerStyle: { backgroundColor: "#FAFAFB" },
+          headerTitle: "Results",
+          headerRight: () => <Headericons />,
+        }}
+      />
     </Stack>
   );
 };
