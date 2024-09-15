@@ -32,7 +32,7 @@ jobs:
     - name: Setup EAS
       uses: expo/expo-github-action@v8
       with:
-        eas-version: "50.0.14"
+        eas-version: "12.4.1"
         token: FX5de0QqTCjqpaa7q1RwJawi1Vegr1cBu05fnWEf
 
     - name: Install dependencies
