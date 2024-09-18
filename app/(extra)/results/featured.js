@@ -1,29 +1,39 @@
+import { Button, ScrollView, Text, View } from "react-native";
+import React from "react";
 
-// import { Button, ScrollView, Text, View } from "react-native";
-// import React from "react";
+// import HouseCard from "../../../components/HouseCard";
+import { FlatList } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
+import MainHouseCard from "../../../components/MainHouseCard";
+import { getListings, selectListingLoading, selectListings } from "../../../slices/listingSlice";
+import SearchProperty from "../../../components/SearchProperty";
+// import {selectHouseData} from "../../../slices/houseSlice";
 
-// // import HouseCard from "../../../components/HouseCard";
+const Home = () => {
 
-// import { useSelector } from "react-redux";
-// // import {selectHouseData} from "../../../slices/houseSlice";
+  // const houseData = useSelector(selectHouseData)
+  const listings = useSelector(selectListings)
 
-// const Home = () => {
+  const filters = ["bedrooms", "bathrooms", "property type", "price"]
 
-//   // const houseData = useSelector(selectHouseData)
+  return (
+    <>
+    <SearchProperty placeholder={'search property'} />
+    <View className="px-2">
+      <FlatList
+        data={listings}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        refreshing={true}
+        onRefresh={()=>{}}
+        renderItem={({ item }) => (
+          <MainHouseCard listing={item} width="w-full" />
+        )}
+        className="w-full"
+      />      
+      </View>
+  </>
+  );
+};
 
-//   const filters = ["bedrooms", "bathrooms", "property type", "price"]
-
-//   return (
-//     <>
-//       {/* <ScrollView
-//           className="flex-1 gap-0"
-//           decelerationRate="fast"
-//           vertical={true}
-//           showsVerticalScrollIndicator={false}>
-//           {houseData.map((house, index) => ( <HouseCard house={house} key={index} />))}
-//       </ScrollView> */}
-//   </>
-//   );
-// };
-
-// export default Home;
+export default Home;
