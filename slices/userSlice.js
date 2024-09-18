@@ -42,7 +42,7 @@ const initialState = {
   status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
   isLoggedIn: false,
-  isLoading: true,
+  isLoading: false,
 }
 
 
