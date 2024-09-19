@@ -26,7 +26,7 @@ export default function TabLayout() {
         options={{
         title: 'Results',
         headerShown: false, 
-        tabBarIcon: ({ color }) => <FontAwesome size={28} name="list" color={color} />,
+        tabBarIcon: ({ color }) => <FontAwesome size={14} name="search" color={color} />,
         }}
       /> 
       <Tabs.Screen
@@ -34,7 +34,7 @@ export default function TabLayout() {
         options={{
           title: 'Reccomendation',
           headerShown: false,
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome size={14} name="list" color={color} />,
         }} />
         <Tabs.Screen
           name="featured"
@@ -43,7 +43,7 @@ export default function TabLayout() {
             headerShown: false,
             tabBarLabelStyle: { fontSize: 14 },
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={14} name="list" color={color} />
+              <FontAwesome size={14} name="star" color={color} />
             ),
           }}
         />

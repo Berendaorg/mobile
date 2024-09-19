@@ -72,7 +72,7 @@ export default function TabLayout() {
         tabBarIcon: ({ color }) => <FontAwesome size={28} name="list" color={color} />,
         }}
       /> 
-      <Tabs.Screen
+      {/* <Tabs.Screen
       name="index.second"
       options={{
       title: 'Results',
@@ -80,7 +80,7 @@ export default function TabLayout() {
       headerShown: false, 
       tabBarIcon: ({ color }) => <FontAwesome size={28} name="list" color={color} />,
       }}
-    />
+    /> */}
       <Tabs.Screen
         name="reccomendation"
         options={{

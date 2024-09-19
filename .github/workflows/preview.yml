@@ -15,7 +15,7 @@ jobs:
           echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
           exit 1
         fi
-    
+        
     - name: Checkout repository
       uses: actions/checkout@v4
     
@@ -45,4 +45,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-apk
-        path: /home/runner/work/realestate-v1/realestate-v1/*.apk
+        path: /home/runner/work/mobile/mobile/*.apk
