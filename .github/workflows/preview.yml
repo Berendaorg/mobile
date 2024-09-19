@@ -42,8 +42,8 @@ jobs:
     # - name: Build Android APK Bundle
     #   run: npm run build:preview:local
 
-    # - name: Upload APK
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: build-apk
-    #     path: /home/runner/work/${{ github.repository.name }}/${{ github.repository.name }}/*.apk
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-apk
+        path: /home/runner/work/${{ github.repository.name }}/${{ github.repository.name }}/*.apk
