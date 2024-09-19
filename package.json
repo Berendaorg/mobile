@@ -4,8 +4,8 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
-    "build:preview":"eas build -p android --profile preview",
-    "build:preview:local":"eas build -p android --profile preview --local",
+    "build:preview": "eas build -p android --profile preview",
+    "build:preview:local": "eas build -p android --profile preview --local",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -27,6 +27,7 @@
     "expo-media-library": "~15.9.2",
     "expo-router": "~3.4.8",
     "expo-status-bar": "~1.11.1",
+    "mysql2": "^3.11.3",
     "nativewind": "^2.0.11",
     "postcss": "^8.4.23",
     "react": "18.2.0",
