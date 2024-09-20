@@ -41,11 +41,11 @@ const developers = () => {
           />
           </TouchableOpacity>
           ))}
-        <View className="w-40 h-40 bg-highlight rounded-[10px] flex flex-row justify-center items-center">
+        <TouchableOpacity className="w-40 h-40 mr-4 mt-3 bg-highlight rounded-[10px] flex flex-row justify-center items-center">
           <Text className="text-white">
             View all developers
             </Text>
-        </View>
+        </TouchableOpacity>
       </View>
 }
     </View>
