@@ -31,7 +31,7 @@ fetch = async (url, options) => {
             data: {
               firstName:"Sam",
               lastName:" Altman",
-              email:"sq@gmail.com",
+              email:"sA@gmail.com",
               phoneNumber:"12345678",
             },
             ok: true,

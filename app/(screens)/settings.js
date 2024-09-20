@@ -40,7 +40,10 @@ const Settings = () => {
       {settings.map((items) => (
         <View className="py-4 px-3 flex flex-row items-center justify-between">
           <View className="flex flex-row items-center gap-2">
-            <Image source={items.icon} className="w-6 h-6" />
+            <Image source={items.icon}
+            className="w-6 h-6"
+            resizeMode="contain"
+             />
             <Text className="text-lg font-semibold opacity-70">
               {items.name}
             </Text>

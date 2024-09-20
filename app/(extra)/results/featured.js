@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 import MainHouseCard from "../../../components/MainHouseCard";
 import { getListings, selectListingLoading, selectListings } from "../../../slices/listingSlice";
 import SearchProperty from "../../../components/SearchProperty";
+import { listingData } from "../../../data";
+import BoardCard from "../../../components/BoardCard";
+import AdCard from "../../../components/AdCard";
 // import {selectHouseData} from "../../../slices/houseSlice";
 
 const Home = () => {
@@ -17,10 +20,15 @@ const Home = () => {
   const filters = ["bedrooms", "bathrooms", "property type", "price"]
 
   return (
-    <>
+    <ScrollView>
     <SearchProperty placeholder={'search property'} />
-    <View className="px-2">
-      <FlatList
+    <View className="flex flex-col items-center justify-center px-4 pt-4 mx-auto w-full">
+    {/* <View className="px-4 pt-3">
+      <Text className="text-lg font-bold">Announcements</Text>
+    </View>  */}
+
+
+<FlatList
         data={listings}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
@@ -30,9 +38,41 @@ const Home = () => {
           <MainHouseCard listing={item} width="w-full" />
         )}
         className="w-full"
-      />      
+      />   
+    {/* </View> */}
+    {/* <View className="px-2"> */}
+
+    <AdCard />
+
+    <FlatList
+        data={listings}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        refreshing={true}
+        onRefresh={()=>{}}
+        renderItem={({ item }) => (
+          <MainHouseCard listing={item} width="w-full" />
+        )}
+        className="w-full"
+      />   
+
+    <AdCard />
+
+    <FlatList
+        data={listings}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        refreshing={true}
+        onRefresh={()=>{}}
+        renderItem={({ item }) => (
+          <MainHouseCard listing={item} width="w-full" />
+        )}
+        className="w-full"
+      />   
+
+   
       </View>
-  </>
+  </ScrollView>
   );
 };
 
