@@ -11,7 +11,7 @@ const MainHouseCard = ({ listing, width }) => {
           <View>
             <View class="relative border">
               <Image
-                source={icon.avataricon}
+                source={listing.image}
                 className="w-14 h-14 relative mix-blend-overlay"
                 resizeMode="contain"
               />

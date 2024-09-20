@@ -1,10 +1,11 @@
 import image from "../constants/image";
 import icon from "../constants/icon";
 
-const listingData = [{
+const listingData = [
+  {
     id : 1,
     "name":"listing 1",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "123 Main St, City, Country",
     "price": 250000,
     "propertyType": "townhouse",
@@ -36,7 +37,7 @@ const listingData = [{
     "listedDate": "2024-04-18",
     "listedBy": {
       "photoUrl": "https://example.com/photo1.jpg",
-      "name": "John Doe",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+1234567890"
     },
@@ -46,7 +47,7 @@ const listingData = [{
   {
     id : 2,
     "name":"listing 2",
-    "image": image.detailimg,
+    "image": image.dunabeprop,
     "address": "456 Elm St, City, Country",
     "price": 190000,
     "propertyType": "apartment",
@@ -78,7 +79,7 @@ const listingData = [{
     "listedDate": "2024-04-17",
     "listedBy": {
       "photoUrl": "https://example.com/photo2.jpg",
-      "name": "Jane Smith",
+      "name": "Danube Properties",
       "verified": true,
       "phone": "+1098765432"
     },
@@ -88,7 +89,7 @@ const listingData = [{
   {
     id : 3,
     "name":"listing 3",
-    "image": image.detailimg,
+    "image": image.aldarprop,
     "address": "789 Oak St, City, Country",
     "price": 300000,
     "propertyType": "condominium",
@@ -120,7 +121,7 @@ const listingData = [{
     "listedDate": "2024-04-19",
     "listedBy": {
       "photoUrl": "https://example.com/photo3.jpg",
-      "name": "Emily Brown",
+      "name": "Aldar Properties",
       "verified": true,
       "phone": "+1122334455"
     },
@@ -130,7 +131,7 @@ const listingData = [{
   {
     id : 4,
     "name":"listing 4",
-    "image": image.detailimg,
+    "image": image.aldarprop,
     "address": "321 Pine St, City, Country",
     "price": 500000,
     "propertyType": "house",
@@ -162,7 +163,7 @@ const listingData = [{
     "listedDate": "2024-04-20",
     "listedBy": {
       "photoUrl": "https://example.com/photo4.jpg",
-      "name": "Michael Johnson",
+      "name": "Aldar properties",
       "verified": true,
       "phone": "+9988776655"
     },
@@ -172,7 +173,7 @@ const listingData = [{
   {
     id : 5,
     "name":"listing 5",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "246 Maple St, City, Country",
     "price": 180000,
     "propertyType": "apartment",
@@ -204,7 +205,7 @@ const listingData = [{
     "listedDate": "2024-04-21",
     "listedBy": {
       "photoUrl": "https://example.com/photo5.jpg",
-      "name": "Sophia Lee",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+1122334455"
     },
@@ -214,7 +215,7 @@ const listingData = [{
   {
     id : 6,
     "name":"listing 6",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "789 Cedar St, City, Country",
     "price": 400000,
     "propertyType": "townhouse",
@@ -246,7 +247,7 @@ const listingData = [{
     "listedDate": "2024-04-22",
     "listedBy": {
       "photoUrl": "https://example.com/photo6.jpg",
-      "name": "David Wilson",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+9988776655"
     },
@@ -256,7 +257,7 @@ const listingData = [{
   {
     id : 7,
     "name":"listing 7",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "1010 Walnut St, City, Country",
     "price": 600000,
     "propertyType": "house",
@@ -288,7 +289,7 @@ const listingData = [{
     "listedDate": "2024-04-23",
     "listedBy": {
       "photoUrl": "https://example.com/photo7.jpg",
-      "name": "Emma Johnson",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+1122334455"
     },
@@ -298,7 +299,7 @@ const listingData = [{
   {
     id : 8,
     "name":"listing 8",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "1313 Oak St, City, Country",
     "price": 350000,
     "propertyType": "condominium",
@@ -330,7 +331,7 @@ const listingData = [{
     "listedDate": "2024-04-24",
     "listedBy": {
       "photoUrl": "https://example.com/photo8.jpg",
-      "name": "Olivia Brown",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+9988776655"
     },
@@ -340,7 +341,7 @@ const listingData = [{
   {
     id : 9,
     "name":"listing 9",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "1717 Maple St, City, Country",
     "price": 200000,
     "propertyType": "apartment",
@@ -372,7 +373,7 @@ const listingData = [{
     "listedDate": "2024-04-25",
     "listedBy": {
       "photoUrl": "https://example.com/photo9.jpg",
-      "name": "William Wilson",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+1122334455"
     },
@@ -382,7 +383,7 @@ const listingData = [{
   {
     id : 0,
     "name":"listing 0",
-    "image": image.detailimg,
+    "image": image.dubaiprop,
     "address": "2121 Cedar St, City, Country",
     "price": 450000,
     "propertyType": "house",
@@ -414,7 +415,7 @@ const listingData = [{
     "listedDate": "2024-04-26",
     "listedBy": {
       "photoUrl": "https://example.com/photo10.jpg",
-      "name": "Ethan Lee",
+      "name": "Dubai Properties",
       "verified": true,
       "phone": "+9988776655"
     },
@@ -717,31 +718,33 @@ const locationData = [
     id:1,
     name:"Addis Ketema"
    },{
-    id:1,
+    id:2,
     name:"Akaki Kaliti"
    },{
-    id:1,
+    id:3,
     name:"Arada"
    },{
-    id:1,
+    id:4,
     name:"Bole"
    },{
-    id:1,
+    id:5,
     name:"Gulale"
    },{
-    id:1,
+    id:6,
     name:"Kirkos"
    },{
-    id:1,
+    id:7,
     name:"Kolfe Keranio"
    },{
-    id:1,
+    id:8,
     name:"Lideta"
    },{
-    id:1,
+    id:9,
     name:"Nefas Silk Yeka"
   }]
+
+const adData = [{"image":image.ad_1},{"image":image.ad_2}]
  
 
-export {listingData, categMapData, roomData, notificationData, developerData, locationData}
+export {adData, listingData, categMapData, roomData, notificationData, developerData, locationData}
   

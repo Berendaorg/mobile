@@ -11,7 +11,7 @@ const BoardCard = ({ listing, width }) => {
       <TouchableOpacity 
       onPress={() => 
       router.push({
-        pathname:"/ad",
+        pathname:"/board",
         params: {id:listing.id}
       })        
         }>

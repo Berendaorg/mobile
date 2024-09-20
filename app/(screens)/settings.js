@@ -9,16 +9,16 @@ const Settings = () => {
       option: true,
       icon: icon.Themesicon,
     },
-    {
-      name: "Preffered Language",
-      option: true,
-      icon: icon.Languageicon,
-    },
-    {
-      name: "Measurment Unit",
-      option: true,
-      icon: icon.Measurementicon,
-    },
+    // {
+    //   name: "Preffered Language",
+    //   option: true,
+    //   icon: icon.Languageicon,
+    // },
+    // {
+    //   name: "Measurment Unit",
+    //   option: true,
+    //   icon: icon.Measurementicon,
+    // },
     {
       name: "About",
       option: false,
@@ -46,9 +46,9 @@ const Settings = () => {
             </Text>
           </View>
           {items.option ? (
-            <View className="flex flex-row items-center gap-1">
-              <Text>Text</Text>
-              <Image source={icon.Downarrow} className="w-4 h-4" />
+            <View className="flex flex-row items-center gap-1 mr-5">
+              <Text>Light</Text>
+              {/* <Image source={icon.Downarrow} className="w-4 h-4" /> */}
             </View>
           ) : null}
         </View>

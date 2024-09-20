@@ -1,7 +1,7 @@
 import { View, Text, Image, Dimensions } from "react-native";
 import React from "react";
 import Carousel from "react-native-reanimated-carousel";
-import { roomData } from "../data";
+import { adData } from "../data";
 
 
 const { width } = Dimensions.get("window");
@@ -13,15 +13,16 @@ const AdCard = () => {
       <Carousel
         loop
         width={width}
-        height={width / 5}
+        height={width / 4}
         autoPlay={true}
         pagingEnabled
-        data={roomData}
+        data={adData}
         scrollAnimationDuration={1000}
         renderItem={({ item }) => (
           <View className="relative w-full h-full bg-transparent">
 
             <Image
+              // resizeMode="contain"
               source={item.image}
               className="w-full h-full absolute top-0 right-0  rounded-2xl"/>
 
@@ -36,7 +37,7 @@ const AdCard = () => {
         width={10}
         height={10}
         autoPlay={false}
-        data={roomData}
+        data={adData}
         scrollAnimationDuration={1000}
         renderItem={({ item }) => (
 

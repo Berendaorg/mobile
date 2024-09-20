@@ -6,6 +6,8 @@ import aldarprop from "../assets/images/aldarprop.png";
 import dubaiprop from "../assets/images/dubaiprop.png";
 import emaarprop from "../assets/images/emaarprop.png";
 import dunabeprop from "../assets/images/dunabeprop.png";
+import ad_1 from "../assets/images/ad_1.jpeg"
+import ad_2 from "../assets/images/ad_2.jpeg"
 
 export default {
   logo,
@@ -13,7 +15,9 @@ export default {
   basemap,
   routedirection,
   aldarprop,
+  dunabeprop,
   dubaiprop,
   emaarprop,
-  dunabeprop,
+  ad_1,
+  ad_2
 };
