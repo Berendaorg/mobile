@@ -41,6 +41,7 @@ import Checkbox from "expo-checkbox";
 import AdCard from "../../components/AdCard";
 import BoardCard from "../../components/BoardCard";
 import { listingData } from "../../data";
+import { boardData } from "../../data";
 
 const Explore = () => {
 
@@ -175,14 +176,14 @@ const Explore = () => {
     {/* Announcements Boards  */}
     <View className="px-4 pt-4"> 
       <FlatList
-        data={listingData}
+        data={boardData}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => `listing`+item.id}
         // refreshing={isDeveloperLoading}
         // onRefresh={dispatch(getListings())}
         renderItem={({ item }) => (
-          <BoardCard listing={item} width="100%" />
+          <BoardCard board={item} width="100%" />
         )}
         className="w-full"
       />

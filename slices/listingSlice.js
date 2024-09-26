@@ -1,6 +1,5 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { listingData, roomData } from '../data'
 import { asyncTimeout } from '../util/asyncTimeout';
 import { fetch,URL, wait } from '../mocks/fetch';
 

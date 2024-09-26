@@ -39,9 +39,9 @@ const onRefresh = React.useCallback(() => {
               <Image source={items.icon} className="w-8 h-8" />
               <View>
                 <Text className="font-bold w-[50%]">
-                  {items.body}
+                  {items.message}
                 </Text>
-                <Text className="text-xs opacity-50">{items.time} mins ago</Text>
+                <Text className="text-xs opacity-50">{items.created} mins ago</Text>
               </View>
             </View>
           </View>
@@ -51,7 +51,7 @@ const onRefresh = React.useCallback(() => {
         <TouchableOpacity
           className="py-3 bg-black rounded-[30px]"
           onPress={() => dispatch(clearNotification())}
-          >
+        >
           <Text className="text-center text-white">Clear all</Text>
         </TouchableOpacity>
       </View>

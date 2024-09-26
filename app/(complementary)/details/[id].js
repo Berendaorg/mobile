@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import image from "../../../constants/image";
 import CarouselRoom from "../../../components/CarouselRoom";
 import { StatusBar } from "expo-status-bar";
-import { Link, router, useGlobalSearchParams, useLocalSearchParams} from "expo-router";
+import { router, useGlobalSearchParams } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "../../../constants/icon";
 import { addSavedListing, deleteSavedListing, getListingsById, selectListingById, selectListingLoading } from "../../../slices/listingSlice";
@@ -20,7 +20,6 @@ import Toast from "react-native-root-toast";
 import Back from "../../../components/Back";
 import Heart from "../../../components/Heart";
 import AdCard from "../../../components/AdCard";
-import LoadingScreen from "../../../components/LoadingScreen";
 
 const Details = () => {
 
@@ -37,37 +36,10 @@ const Details = () => {
   }
   useEffect(()=>{
     dispatch(getListingsById(id))
-    console.log('first')
   },[id])
 
   const { width } = Dimensions.get("window");
-  const rooms = [
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 1,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 2,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 3,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 4,
-    },
-    {
-      image: image.detailimg,
-      title: "Bedroom",
-      index: 5,
-    },
-  ];
+
 
   // if (isLoading)
   //   return<LoadingScreen />
@@ -79,7 +51,6 @@ const Details = () => {
         <View className="bg-[#FAFAFB] h-full w-full">          
           
           {/* Navigation */}
-
           <View className="relative">
 
             <TouchableOpacity
@@ -103,7 +74,7 @@ const Details = () => {
           {/* Navigation */}
           
           {/* carousel */}
-          <CarouselRoom rooms={rooms} width={width} />
+          <CarouselRoom pictures={listing?.pictures} width={width} />
 
           {/* listing details  */}
           <View className="px-2 mt-4">
@@ -184,12 +155,7 @@ const Details = () => {
 
             </View>
 
-            {/* 
-            <View className="mt-4">
-              <Text className="text-white text-lg ">{house.description}</Text>
-            </View> 
-            */}
-
+            
           </View>
 
           {/* Map  */}
@@ -262,16 +228,16 @@ const Details = () => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                {rooms.map((room) => (
+                {listing.pictures?.map((room,index) => (
                   <View
-                    key={room.index}
+                    key={index}
                     onPress={() => {
                       router.push("/details/2");
                     }}
                     className="relative w-32 items-center justify-center rounded-xl ml-6"
                   >
                     <Image
-                      source={room.image}
+                      source={room}
                       className=" w-32 h-20 rounded-t-xl z-10"
                     />
                     <View className="mt-2">
