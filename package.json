@@ -4,8 +4,8 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
-    "build:preview":"eas build -p android --profile preview",
-    "build:preview:local":"eas build -p android --profile preview --local",
+    "build:preview": "eas build -p android --profile preview",
+    "build:preview:local": "eas build -p android --profile preview --local",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -46,7 +46,9 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-tab-view": "^3.5.2",
-    "react-redux": "^9.1.1"
+    "react-redux": "^9.1.1",
+    "typescript": "^5.3.0",
+    "@types/react": "~18.2.45"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
