@@ -4,7 +4,7 @@ import icon from "../constants/icon";
 import { Link, router } from "expo-router";
 import Tag from "./Tag";
 
-const BoardCard = ({ listing, width }) => {
+const BoardCard = ({ board, width }) => {
   return (
     <View className={`pt-3 mr-5 ${width}`}>
      
@@ -12,33 +12,26 @@ const BoardCard = ({ listing, width }) => {
       onPress={() => 
       router.push({
         pathname:"/board",
-        params: {id:listing.id}
-      })        
+        params: {id:board.id}
+      })
         }>
         <View className="relative">
-            <Tag />
+          {board.tags && <Tag labels={board.tags} /> }
             <Image
-            source={{
-                uri: "https://cdn.in.emaar.com/wp-content/uploads/2020/11/HI-1620x832.jpg",
-                }}
+            source={board.image}
                 className="w-[300px] h-[180px] object-cover rounded-[30px]"
                 />
             </View>
       
       <View className="pt-3 flex flex-col justify-center gap-2">
         <View className="flex flex-row justify-between px-3 items-center">
-          {/* <Text className="font-bold text-[17px]">{listing.name}</Text> */}
+          {/* <Text className="font-bold text-[17px]">{board.name}</Text> */}
           <Text className="text-[17px] text-highlight">
-            Ad
-            </Text>
+            {board.title}
+          </Text>
         </View>
-         <View className="flex flex-row items-center">
-          <Image
-            source={icon.blacklocationicon}
-            className="w-5 h-5 opacity-60 ml-2"
-          />
-          <Text className="opacity-60 text-[15px] ">{listing.address}</Text>
-        </View>
+         {/* <View className="flex flex-row items-center">
+        </View> */}
         <View className="px-3">
             <Link href={`/developer`} className="opacity-60 text-[15px]">
                 Read More

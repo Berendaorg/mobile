@@ -24,9 +24,9 @@ const MainHouseCard = ({ listing, width }) => {
               <Link 
               href={`developer_details/${listing.id}`}
               className="text-base text-black  font-bold">
-                {listing.listedBy.name}
+                {listing.listedBy}
               </Link>
-              {listing.listedBy.verified && (
+              {listing.verified && (
                 <Image
                   source={icon.verifiedicon}
                   className="w-7 h-7"

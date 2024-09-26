@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Image, ScrollView, View } from "react-native";
-import { roomData } from "../../../data";
+import { listingData } from "../../../data";
 
 const Gallery = () => {
   useEffect(()=>{
@@ -10,9 +10,9 @@ const Gallery = () => {
       <View className="bg-white w-full h-full">
 
       <ScrollView className="w-full h-full">
-          {roomData.map((item)=>{
+          {listingData[0]?.pictures?.map((item)=>{
             return(
-              <Image source={item.image}
+              <Image source={item}
                />
               )})}      
       </ScrollView>

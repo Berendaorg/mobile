@@ -1,20 +1,11 @@
 import React, { useEffect } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import image from "../../../constants/image";
-import SearchProperty from "../../../components/SearchProperty";
-import MainHouseCard from "../../../components/MainHouseCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getDevelopersById,selectdeveloperById } from "../../../slices/developerSlice";
 import { useGlobalSearchParams } from "expo-router";
 import { getListings, selectListings } from "../../../slices/listingSlice";
-import { FlatList } from "react-native-gesture-handler";
-import BoardCard from "../../../components/BoardCard";
 
-import { roomData } from "../../../data";
-
-// 
-import { listingData } from "../../../data";
-import icon from "../../../constants/icon";
+import { boardData } from "../../../data";
 import Tag from "../../../components/Tag";
 // 
 
@@ -43,7 +34,7 @@ const Ad = () => {
             <Tag />
         </View>
             <Image
-            source={roomData[0].image}
+            source={boardData[0].image}
             className="w-full h-[300px] rounded-lg"
             resizeMode="contain"
           />
