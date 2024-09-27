@@ -5,9 +5,7 @@ import { fetch, axiosInstance } from '../mocks/fetch'
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params, headers }) => {
-    console.log({ url, method, data, params, headers })
     try {
-    console.log({ url, method, data, params, headers })
       const result = await axiosInstance({
         url: baseUrl + url,
         method,
@@ -17,7 +15,6 @@ export const axiosBaseQuery =
       });
       return { data: result.data };
     } catch (axiosError) {
-      console.log({axiosError})
       const err = axiosError;
       return {
         error: {
@@ -27,6 +24,8 @@ export const axiosBaseQuery =
       };
     }
   };
+
+const URL = 'https://fake-api.example.com/api/v1/';
 
 export const apiSlice = createApi({
     reducerPath: 'api', // optional

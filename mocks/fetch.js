@@ -8,7 +8,7 @@ import {
 
 let fetch = require('node-fetch');
 
-export const URL = 'https://fake-api.example.com/api/v1/';
+const URL = 'https://fake-api.example.com/api/v1/';
 
 // Create an instance of Axios
 const axiosInstance = axios.create({

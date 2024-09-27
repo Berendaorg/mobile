@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { Button, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { RefreshControl, ScrollView, TextInput } from "react-native-gesture-handler";
 import icon from "../../constants/icon";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
 import { Link, router } from "expo-router";
 
-import { fetch } from "../../mocks/fetch";
+import { axiosInstance, fetch } from "../../mocks/fetch";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -141,6 +141,13 @@ const Explore = () => {
       >
 
     {/*  */}
+    <Button title="Get Developers"
+    onPress={ async()=> { 
+        const response = await axiosInstance.get('https://fake-api.example.com/api/v1/developers');
+        console.log({respose:response.data.data})
+        console.log({respose:response.data.data[0]})
+    }}
+    />
     <TouchableOpacity onPress={() => handlePresentModal()}>
         <View>
           <SearchProperty placeholder={"Search 162 properties"} />
@@ -161,7 +168,7 @@ const Explore = () => {
     {
       (isDeveloperLoading) ? 
       <>
-      {/* <Text> {JSON.stringify(isDeveloperLoading)}</Text> */}
+      <Text> {JSON.stringify(typeof(isDeveloperLoading))}</Text>
       <Text> {JSON.stringify(typeof(developers))}</Text>
       <LoadingScreen />
       </>
