@@ -42,7 +42,8 @@ import AdCard from "../../components/AdCard";
 import BoardCard from "../../components/BoardCard";
 import { listingData } from "../../data";
 import { boardData } from "../../data";
-import { getDevelopers } from "../../slices/developerSlice copy";
+// import { getDevelopers } from "../../slices/developerSlice copy";
+import { store } from "../../store";
 
 const Explore = () => {
 
@@ -103,8 +104,8 @@ const Explore = () => {
 
   useEffect(()=>{
     dispatch(getListings()) // should be the only in this page
-    getDevelopers()
-    // dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
+    // getDevelopers()
+    // store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
     dispatch(getlocations())
   },[])
 
@@ -115,6 +116,10 @@ const Explore = () => {
   const [refreshing,setRefreshing] = useState(false)
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
+    console.log('refreshing')
+    store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
+    // store.dispatch(getDevelopers())
+    // console.log(getDevelopers())
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -156,7 +161,7 @@ const Explore = () => {
     {
       (isDeveloperLoading) ? 
       <>
-      <Text> {JSON.stringify(isDeveloperLoading)}</Text>
+      {/* <Text> {JSON.stringify(isDeveloperLoading)}</Text> */}
       <Text> {JSON.stringify(typeof(developers))}</Text>
       <LoadingScreen />
       </>

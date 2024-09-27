@@ -7,9 +7,11 @@ import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { LogBox } from 'react-native';
+import { developersApiSlice } from "../slices/developerSlice";
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
+store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
 
 const RootLayout = () => {
   return (
