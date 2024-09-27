@@ -6,6 +6,11 @@ import { RootSiblingParent } from "react-native-root-siblings";
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+
+
 const RootLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

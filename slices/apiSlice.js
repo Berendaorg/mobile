@@ -1,20 +1,18 @@
-import { createApi } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { fetch } from '../mocks/fetch'
 
 
 const URL = 'https://fake-api.example.com/api/v1/';
 const mockFetchBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, options }) => {
+  async ({ url, method, data, params, headers }) => {
     try {
       const result = await fetch({
         url: baseUrl + url,
-        options:{
         method,
         data,
         params,
         headers,
-        }
       })
       return { data: result.data }
     } catch (error) {

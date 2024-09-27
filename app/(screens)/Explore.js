@@ -10,7 +10,7 @@ import { fetch } from "../../mocks/fetch";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getDevelopers, selectdevelopers, selectDeveloperLoading } from "../../slices/developerSlice";
+import { developersApiSlice, selectdevelopers, selectDeveloperLoading, useGetDevelopersQuery, selectAllDevelopers } from "../../slices/developerSlice";
 import { getListings, selectListingLoading, selectListings } from "../../slices/listingSlice";
 
 import LoadingScreen from "../../components/LoadingScreen";
@@ -42,6 +42,7 @@ import AdCard from "../../components/AdCard";
 import BoardCard from "../../components/BoardCard";
 import { listingData } from "../../data";
 import { boardData } from "../../data";
+import { getDevelopers } from "../../slices/developerSlice copy";
 
 const Explore = () => {
 
@@ -64,8 +65,16 @@ const Explore = () => {
   const [isChecked, setChecked] = useState(false);
   const PropertyType = ["Any", "House", "Apartment", "Condo", "Real Estate"];
   const houseAge = 21;
-  const developers = useSelector(selectdevelopers)
-  const isDeveloperLoading = useSelector(selectDeveloperLoading)
+  // const developers = useSelector(selectAllDevelopers)
+  // const isDeveloperLoading = useSelector(selectDeveloperLoading)
+
+  const {
+    data: developers,
+    isLoading: isDeveloperLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetDevelopersQuery()
   
   const listings = useSelector(selectListings)
   const isListingLoading = useSelector(selectListingLoading)
@@ -94,7 +103,8 @@ const Explore = () => {
 
   useEffect(()=>{
     dispatch(getListings()) // should be the only in this page
-    dispatch(getDevelopers())
+    getDevelopers()
+    // dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
     dispatch(getlocations())
   },[])
 
@@ -144,7 +154,13 @@ const Explore = () => {
         </View>
     {/*  */}
     {
-      (isDeveloperLoading) ? <LoadingScreen /> :
+      (isDeveloperLoading) ? 
+      <>
+      <Text> {JSON.stringify(isDeveloperLoading)}</Text>
+      <Text> {JSON.stringify(typeof(developers))}</Text>
+      <LoadingScreen />
+      </>
+      :
         <FlatList
           data={developers}
           horizontal={true}

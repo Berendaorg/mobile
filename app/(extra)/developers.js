@@ -3,7 +3,7 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import SearchProperty from "../../components/SearchProperty";
 import { router } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
-import { getDevelopers, selectDeveloperLoading, selectdevelopers } from "../../slices/developerSlice";
+import { developersApiSlice, getDevelopers, selectDeveloperLoading, selectdevelopers, useGetDevelopersQuery } from "../../slices/developerSlice";
 import LoadingScreen from "../../components/LoadingScreen";
 
 
@@ -11,11 +11,19 @@ const developers = () => {
   
   const dispatch = useDispatch()
   
-  const developers = useSelector(selectdevelopers)
-  const isDeveloperLoading = useSelector(selectDeveloperLoading)
+  // const developers = useSelector(selectdevelopers)
+  // const isDeveloperLoading = useSelector(selectDeveloperLoading)
+  const {
+    data: developers,
+    isLoading: isDeveloperLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetDevelopersQuery()
 
   useEffect(()=>{
-    dispatch(getDevelopers())
+    developersApiSlice.endpoints.getDevelopers.initiate()
+    // dispatch(getDevelopers())
   },[])
 
   return (

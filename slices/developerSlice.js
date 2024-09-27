@@ -13,10 +13,9 @@ import { apiSlice } from "./apiSlice";
 
 const developerAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.date.localeCompare(a.date),
-  isLoading: true
 })
 
-const initialState = developerAdapter.getInitialState()
+const initialState = developerAdapter.getInitialState({})
 
 // export const getDevelopers = createAsyncThunk(
 //   'developers/getDevelopers',
@@ -49,13 +48,13 @@ const initialState = developerAdapter.getInitialState()
 //   isLoading: true
 // }
 
-export const extendedApiSlice = apiSlice.injectEndpoints({
+export const developersApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
       getDevelopers: builder.query({
-          query: () => '/developer',
+          query: () => '/developers',
           transformResponse: responseData => {
             return developerAdapter.setAll(initialState, responseData)
-        },          
+        },
         providesTags: (result, error, arg) => [
               { type: 'Developer', id: "LIST" },
               ...result.ids.map(id => ({ type: 'Developer', id }))
@@ -130,4 +129,6 @@ export const {
   selectById: selectDeveloperById,
   selectIds: selectDeveloperIds
   // Pass in a selector that returns the developers slice of state
-} = developerAdapter.getSelectors(state => selectDevelopersData(state) ?? initialState)
+} = developerAdapter.getSelectors(state => {
+  console.log({state})
+  return selectDevelopersData(state) ?? initialState})

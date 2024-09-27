@@ -6,7 +6,7 @@ import userReducer from './slices/userSlice'
 import developerReducer from './slices/developerSlice'
 import locationReducer from './slices/locationSlice'
 
-import { apiSlice } from '../features/api/apiSlice';
+import { apiSlice } from './slices/apiSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,11 +14,12 @@ export const store = configureStore({
     location:locationReducer,
     search:searchReducer,
     notification:notificationReducer,
-    developer:developerReducer,
+    // developer:developerReducer,
     user: userReducer,
     listing:listingReducer,
-    middleware: getDefaultMiddleware =>
-      getDefaultMiddleware().concat(apiSlice.middleware),
-    devTools: true,
   },
+  // manages cache lifetimes and expirations
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
 })

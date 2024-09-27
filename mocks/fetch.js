@@ -16,10 +16,10 @@ const methods = {
 export const URL = 'https://fake-api.example.com/api/v1/';
 export const wait = 0
 
-fetch = async (url, options) => {
+fetch = async ({url, method, data, params, headers }) => {
   console.log({
       url,
-      method:options.method,
+      method:method,
       params:options?.params
   })
     // You can inspect the URL or options to return different mocks based on the request
@@ -66,11 +66,11 @@ fetch = async (url, options) => {
           };
       }
     case url==(`${URL}developers`):
-      switch (options.method) {
-        case methods.GET:
-          if (options.params) {
+      switch (method) {
+        case method.GET:
+          if (params) {
             return {
-                data: developerData[+options.params.id],
+                data: developerData[+params.id],
                 ok: true,
             }
           } 
@@ -88,11 +88,11 @@ fetch = async (url, options) => {
           };
       }
     case url==(`${URL}listings`):
-      switch (options.method) {
+      switch (method) {
         case methods.GET:
-          if (options.params){
+          if (params){
             return {
-              data: listingData[+options.params.id],
+              data: listingData[+params.id],
               ok: true,
             }
           }
@@ -109,14 +109,14 @@ fetch = async (url, options) => {
             }
       }
     case url==(`${URL}listings/saved`):
-      switch (options.method){
+      switch (method){
           case methods.GET:
               console.log('get listing')
               return true
           case methods.POST:
-            if (options.params){
-              console.log(`adding to saved listing with id ${options.params.id}`)
-              const listingIndex = listingData.findIndex(listing => listing.id == +options.params.id);
+            if (params){
+              console.log(`adding to saved listing with id ${params.id}`)
+              const listingIndex = listingData.findIndex(listing => listing.id == +params.id);
               if (listingIndex !== -1) {
                 listingData[listingIndex].saved = !listingData[listingIndex].saved;
                 console.log({ saved: listingData[listingIndex].saved });
@@ -127,8 +127,8 @@ fetch = async (url, options) => {
               return id
             }
           case methods.DELETE:
-            if (options.params){
-              console.log(`Delete listing with id ${options.params.id}`)
+            if (params){
+              console.log(`Delete listing with id ${params.id}`)
               return {
                 data: true,
                 ok:true
@@ -141,7 +141,7 @@ fetch = async (url, options) => {
               }
             }
     case url==(`${URL}listings/search`):
-        switch (options.method){
+        switch (method){
             case methods.GET:
                 console.log('search listing')
                 return {
@@ -149,7 +149,7 @@ fetch = async (url, options) => {
                 }
       }
     case url==(`${URL}notifications`):
-      switch (options.method) {
+      switch (method) {
       case methods.GET:
               return {
               data: 'mocked notifications data',
@@ -168,11 +168,11 @@ fetch = async (url, options) => {
       }
       }
     case url==(`${URL}locations`):
-      switch (options.method) {
+      switch (method) {
         case methods.GET:
-          if (options.params) {
+          if (params) {
             return {
-                data: locationData[+options.params.id],
+                data: locationData[+params.id],
                 ok: true,
             }
           } 
