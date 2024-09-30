@@ -19,7 +19,7 @@ const initialState = developerAdapter.getInitialState()
 export const developersApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
       getDevelopers: builder.query({
-          query: () => '/developers',
+          query: () => 'developers',
         // providesTags: (result, error, arg) => [
         //       { type: 'Developer', id: "LIST" },
         //       ...result.ids.map(id => ({ type: 'Developer', id }))

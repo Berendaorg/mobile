@@ -70,12 +70,16 @@ const Explore = () => {
   // const isDeveloperLoading = useSelector(selectDeveloperLoading)
 
   const {
-    data: developers,
+    data,
     isLoading: isDeveloperLoading,
     isSuccess,
     isError,
     error
   } = useGetDevelopersQuery()
+  console.log({data, isDeveloperLoading,    
+    isSuccess,
+    isError,
+    error})
   
   const listings = useSelector(selectListings)
   const isListingLoading = useSelector(selectListingLoading)
@@ -105,7 +109,6 @@ const Explore = () => {
   useEffect(()=>{
     dispatch(getListings()) // should be the only in this page
     // getDevelopers()
-    // store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
     dispatch(getlocations())
   },[])
 
@@ -118,8 +121,6 @@ const Explore = () => {
     setRefreshing(true);
     console.log('refreshing')
     store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
-    // store.dispatch(getDevelopers())
-    // console.log(getDevelopers())
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -169,28 +170,29 @@ const Explore = () => {
       (isDeveloperLoading) ? 
       <>
       <Text> {JSON.stringify(typeof(isDeveloperLoading))}</Text>
-      <Text> {JSON.stringify(typeof(developers))}</Text>
+      {/* <Text> {JSON.stringify(typeof(developers))}</Text> */}
       <LoadingScreen />
       </>
       :
-        <FlatList
-          data={developers}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => `dev`+item.id}
-          renderItem={({ item }) => (
+      <></>
+        // <FlatList
+        //   data={developers}
+        //   horizontal={true}
+        //   showsHorizontalScrollIndicator={false}
+        //   keyExtractor={(item) => `dev`+item.id}
+        //   renderItem={({ item }) => (
             
-            <TouchableOpacity onPress={() => 
-              router.push({
-              pathname:"/developer_details",
-              params: {id:item.id} })}>
-              <Image
-              source={{ uri: item.profilePhoto }}
-              className="w-32 h-32 mr-4 mt-3 rounded-[10px]"/>
-            </TouchableOpacity>
+        //     <TouchableOpacity onPress={() => 
+        //       router.push({
+        //       pathname:"/developer_details",
+        //       params: {id:item.id} })}>
+        //       <Image
+        //       source={{ uri: item.profilePhoto }}
+        //       className="w-32 h-32 mr-4 mt-3 rounded-[10px]"/>
+        //     </TouchableOpacity>
 
-          )}
-        />
+        //   )}
+        // />
     }
     </View>
 

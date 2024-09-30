@@ -11,13 +11,11 @@ let fetch = require('node-fetch');
 const URL = 'https://fake-api.example.com/api/v1/';
 
 // Create an instance of Axios
-const axiosInstance = axios.create({
-  baseURL: URL,
-});
+const axiosInstance = axios.create();
 
 const mock = new MockAdapter(axiosInstance, { delayResponse: 500 }); // You can set a delay for the response
 
-mock.onGet('/developers').reply(200, {
+mock.onGet(URL + 'developers').reply(200, {
     data: developerData,
     ok: true,
 });
