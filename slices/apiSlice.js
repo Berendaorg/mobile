@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { fetch, axiosInstance } from '../mocks/fetch'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import { axiosInstance } from '../mocks/fetch'
 
 // Define the base query
 export const axiosBaseQuery =
@@ -28,10 +28,10 @@ export const axiosBaseQuery =
 const URL = 'https://fake-api.example.com/api/v1/';
 
 export const apiSlice = createApi({
-    reducerPath: 'api', // optional
+    reducerPath: 'api',
     baseQuery: axiosBaseQuery({
         baseUrl: URL,
-      }),
+    }),
     tagTypes: ['Listing', 'Developer'],
     endpoints: builder => ({})
 })

@@ -1,131 +1,142 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { apiSlice } from "./apiSlice";
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { asyncTimeout } from '../util/asyncTimeout';
-import { fetch,URL, wait } from '../mocks/fetch';
+export const listingsApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getListings: builder.query({
+      query: () => ({
+        url: "listings",
+        method: "GET",
+      }),
+      transformResponse: (responseData) => {
+        console.log("Raw response:", responseData);
+        return responseData.data;
+      },
+      transformErrorResponse: (response, meta, arg) => {
+        console.error("Error response:", response);
+        return response.data;
+      },
+      providesTags: (result, error, arg) => [
+        { type: "Listing", id: "LIST" },
+        ...(result?.map((listing) => ({ type: "Listing", id: listing.id })) ||
+          []),
+      ],
+    }),
+    getListingById: builder.query({
+      query: (id) => ({
+        url: `listings/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (responseData) => {
+        return responseData.data;
+      },
+      providesTags: (result, error, id) => [{ type: "Listing", id }],
+    }),
+    getSavedListings: builder.query({
+      query: () => ({
+        url: "listings/saved",
+        method: "GET",
+      }),
+      transformResponse: (responseData) => {
+        return responseData.data;
+      },
+      providesTags: ["SavedListing"],
+    }),
+    deleteSavedListing: builder.mutation({
+      query: (id) => ({
+        url: "listings/saved",
+        method: "DELETE",
+        params: { id },
+      }),
+      invalidatesTags: ["SavedListing"],
+    }),
+    addSavedListing: builder.mutation({
+      query: (id) => ({
+        url: "listings/saved",
+        method: "POST",
+        params: { id },
+      }),
+      invalidatesTags: ["SavedListing"],
+    }),
+  }),
+  overrideExisting: true,
+});
 
-
-export const getListings = createAsyncThunk(
-  '/listings/getListings',
-  async () => {
-    const response = await fetch(`${URL}listings`,{
-      method:'GET'
-    })
-    await asyncTimeout(wait);
-    return response.data
-  }
-)
-
-export const getListingsById = createAsyncThunk(
-  '/listings/getlistingById',
-  async (id) => {
-    const response = await fetch(`${URL}listings`,{
-      method:'GET',
-      params:{
-        id
-      }
-    })
-    await asyncTimeout(wait);
-    return response.data
-  }
-)
-
-export const getSavedListings = createAsyncThunk(
-  '/listings/getSavedListings',
-  async () => {
-    console.log('getSavedListings')
-    const response = await fetch(`${URL}listings/saved`,{
-      method:'GET'
-    })
-    await asyncTimeout(wait);
-    return response.data
-  }
-)
-
-export const deleteSavedListing = createAsyncThunk(
-  '/listings/deleteSavedListing',
-  async (id) => {
-    const response = await fetch(`${URL}listings/saved`,{
-      method:'DELETE',
-      params:{ 
-        id
-      }
-    })
-    console.log('delete')
-    // @deprecated: will be replace by actual response from the backend
-    return response.data
-  }
-)
-
-export const addSavedListing = createAsyncThunk(
-  '/listings/addSavedListings',
-  async (id) => {
-    const response = await fetch(`${URL}listings/saved`,{
-      method:'POST',
-      params:{
-        id
-      }
-    })
-    // @deprecated: will be replace by actual response from the backend
-    return id
-  }
-)
+export const {
+  useGetListingsQuery,
+  useGetListingByIdQuery,
+  useGetSavedListingsQuery,
+  useDeleteSavedListingMutation,
+  useAddSavedListingMutation,
+} = listingsApiSlice;
 
 const initialState = {
-  listings:[],
-  listing : {},
-  saved:[],
-  isLoading:true,
-}
+  listings: [],
+  listing: {},
+  saved: [],
+  isLoading: true,
+};
 
 export const listingSlice = createSlice({
-    name: 'listing',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      builder.addCase(getListings.pending, (state, action) => {
-        state.isLoading = true
-      }),
-      builder.addCase(getListings.fulfilled, (state, action) => {
-        state.isLoading=false
-        console.log("in rtk")
-        state.listings = action.payload
-      }),
-      builder.addCase(getListingsById.pending, (state, action) => {
-        state.isLoading = true
-      }),
-      builder.addCase(getListingsById.fulfilled, (state, action) => {
-        state.listing = action.payload
-        state.isLoading = false
-      }),
-      builder.addCase(getSavedListings.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.saved = action.payload
-      }),
-      builder.addCase(getSavedListings.pending, (state, action) => {
-        state.isLoading = true
-      }),
-      builder.addCase(addSavedListing.fulfilled, (state, action) => {
-        // copy state
-        let saved = state.saved
-        // make to set, to rmeove duplicates
-        // push 
-        const newSaved = new Set(saved.push(action.payload))
-        // add to state
-        state.saved = newSaved
-      }),
-      builder.addCase(deleteSavedListing.fulfilled, (state, action) => {
-        // return boolean
-        // return action.payload
-      })
-    }
-})
+  name: "listing",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(
+        listingsApiSlice.endpoints.getListings.matchPending,
+        (state, action) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.getListings.matchFulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.listings = action.payload;
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.getListingById.matchPending,
+        (state, action) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.getListingById.matchFulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.listing = action.payload;
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.getSavedListings.matchFulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.saved = action.payload;
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.addSavedListing.matchFulfilled,
+        (state, action) => {
+          state.saved.push(action.payload);
+        }
+      )
+      .addMatcher(
+        listingsApiSlice.endpoints.deleteSavedListing.matchFulfilled,
+        (state, action) => {
+          state.saved = state.saved.filter(
+            (listing) => listing.id !== action.payload
+          );
+        }
+      );
+  },
+});
 
-export const selectListings = (state) => state.listing.listings
-export const selectListingById = (state, id) => state.listing.listings.find(listing =>listing.id == id)
-export const selectSaved = (state) => state.listing.saved
-export const selectListingLoading = (state) => state.listing.isLoading
+export const selectListings = (state) => state.listing.listings;
+export const selectListingById = (state, id) =>
+  state.listing.listings.find((listing) => listing.id == id);
+export const selectSaved = (state) => state.listing.saved;
+export const selectListingLoading = (state) => state.listing.isLoading;
 
-
-
-
-export default listingSlice.reducer
+export default listingSlice.reducer;

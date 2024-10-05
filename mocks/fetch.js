@@ -1,25 +1,28 @@
-import {
-   developerData,
-   listingData,
-   locationData
- } from '../data';
- import axios from 'axios';
- import MockAdapter from 'axios-mock-adapter';
+import { developerData, listingData, locationData } from "../data";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
 
-let fetch = require('node-fetch');
+let fetch = require("node-fetch");
 
-const URL = 'https://fake-api.example.com/api/v1/';
+const URL = "https://fake-api.example.com/api/v1/";
 
 // Create an instance of Axios
 const axiosInstance = axios.create();
 
 const mock = new MockAdapter(axiosInstance, { delayResponse: 500 }); // You can set a delay for the response
 
-mock.onGet(URL + 'developers').reply(200, {
-    data: developerData,
-    ok: true,
+mock.onGet(URL + "developers").reply(200, {
+  data: developerData,
+  ok: true,
 });
-
+mock.onGet(URL + "listings").reply(200, {
+  data: listingData,
+  ok: true,
+});
+mock.onGet(URL + "locations").reply(200, {
+  data: locationData,
+  ok: true,
+});
 // const methods = {
 //     GET: 'GET' || 'get',
 //     POST: 'POST' || 'post',
@@ -27,8 +30,7 @@ mock.onGet(URL + 'developers').reply(200, {
 //     DELETE: 'DELETE' || 'delete',
 //   };
 
-export const wait = 0
-
+export const wait = 0;
 
 // fetch = async ({url, method, data, params, headers }) => {
 //   console.log({
@@ -87,7 +89,7 @@ export const wait = 0
 //                 data: developerData[+params.id],
 //                 ok: true,
 //             }
-//           } 
+//           }
 //           else {
 //             return {
 //               data: developerData,
@@ -189,7 +191,7 @@ export const wait = 0
 //                 data: locationData[+params.id],
 //                 ok: true,
 //             }
-//           } 
+//           }
 //           else {
 //             return {
 //               data: locationData,
@@ -204,4 +206,4 @@ export const wait = 0
 //       }
 //   }
 //  }
-export { fetch, axiosInstance }
+export { fetch, axiosInstance };

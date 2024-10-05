@@ -1,6 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { RefreshControl, ScrollView, TextInput } from "react-native-gesture-handler";
+import {
+  Button,
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  TextInput,
+} from "react-native-gesture-handler";
 import icon from "../../constants/icon";
 import SearchProperty from "../../components/SearchProperty";
 import MainHouseCard from "../../components/MainHouseCard";
@@ -9,13 +20,25 @@ import { Link, router } from "expo-router";
 import { axiosInstance, fetch } from "../../mocks/fetch";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useGetListingsQuery } from "../../slices/listingSlice";
+import { useGetLocationsQuery } from "../../slices/locationSlice";
 
-import { developersApiSlice, selectdevelopers, selectDeveloperLoading, useGetDevelopersQuery, selectAllDevelopers } from "../../slices/developerSlice";
-import { getListings, selectListingLoading, selectListings } from "../../slices/listingSlice";
+import {
+  developersApiSlice,
+  selectdevelopers,
+  selectDeveloperLoading,
+  useGetDevelopersQuery,
+  selectAllDevelopers,
+} from "../../slices/developerSlice";
+import {
+  getListings,
+  selectListingLoading,
+  selectListings,
+} from "../../slices/listingSlice";
 
 import LoadingScreen from "../../components/LoadingScreen";
 import * as Location from "expo-location";
-import { 
+import {
   setLocation,
   selectedBedrooms,
   selectPrice,
@@ -24,16 +47,20 @@ import {
   selectBathrooms,
   selectPropertyType,
   selectHouseAge,
-} from "./../../slices/searchSlice"
-import { useSharedValue } from 'react-native-reanimated';
-import { Slider } from 'react-native-awesome-slider';
-import  {
+} from "./../../slices/searchSlice";
+import { useSharedValue } from "react-native-reanimated";
+import { Slider } from "react-native-awesome-slider";
+import {
   BottomSheetScrollView,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 
-import { getlocations, selectLocationLoading, selectLocations } from "../../slices/locationSlice";
+import {
+  getlocations,
+  selectLocationLoading,
+  selectLocations,
+} from "../../slices/locationSlice";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import LabelInput from "../../components/LabelInput";
 import ScrollRoomNumber from "../../components/ScrollRoomNumber";
@@ -46,11 +73,14 @@ import { boardData } from "../../data";
 import { store } from "../../store";
 
 const Explore = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // This effect will run on mount and trigger the query
+    // No need to do anything here as the query is automatically triggered
+  }, []);
 
-  const dispatch = useDispatch()
-  
   const getLocation = async () => {
-    console.log("get location")
+    console.log("get location");
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       setErrorMsg("Permission to access location was denied");
@@ -58,8 +88,8 @@ const Explore = () => {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    console.log(location.coords)
-    setLocation(location.coords);// not workingwwww
+    console.log(location.coords);
+    setLocation(location.coords); // not workingwwww
   };
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -70,32 +100,48 @@ const Explore = () => {
   // const isDeveloperLoading = useSelector(selectDeveloperLoading)
 
   const {
-    data,
+    data: developers,
     isLoading: isDeveloperLoading,
-    isSuccess,
-    isError,
-    error
-  } = useGetDevelopersQuery()
-  console.log({data, isDeveloperLoading,    
-    isSuccess,
-    isError,
-    error})
-  
-  const listings = useSelector(selectListings)
-  const isListingLoading = useSelector(selectListingLoading)
+    isSuccess: isDeveloperSuccess,
+    isError: isDeveloperError,
+    error: developerError,
+  } = useGetDevelopersQuery();
+  console.log({
+    developers,
+    isDeveloperSuccess,
+    isDeveloperError,
+    developerError,
+  });
+  const {
+    data: listings,
+    isLoading: isListingLoading,
+    isSuccess: isListingSuccess,
+    isError: isListingError,
+    error: listingError,
+  } = useGetListingsQuery();
+  console.log({ listings, isListingSuccess, isListingError, listingError });
+  const {
+    data: locations,
+    isLoading: isLocationLoading,
+    isError: isLocationError,
+  } = useGetLocationsQuery();
+  console.log({ locations, isLocationLoading, isLocationError });
 
-  const locations = useSelector(selectLocations)
-  const isLocationLoading = useSelector(selectLocationLoading)
-  
+  // const listings = useSelector(selectListings);
+  // const isListingLoading = useSelector(selectListingLoading);
+
+  // const locations = useSelector(selectLocations);
+  // const isLocationLoading = useSelector(selectLocationLoading);
+
   const [SelectedFilter, setSelectedFilter] = useState("apartment");
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
 
-  const price = useSelector(selectPrice);
-  const priceMax = useSelector(selectPriceMax);
-  const priceMin = useSelector(selectPriceMin);
+  // const price = useSelector(selectPrice);
+  // const priceMax = useSelector(selectPriceMax);
+  // const priceMin = useSelector(selectPriceMin);
 
-  const searchBottomSheetRef = useRef(null)
-  const optionsBottomSheetRef = useRef(null)
+  const searchBottomSheetRef = useRef(null);
+  const optionsBottomSheetRef = useRef(null);
 
   function handlePresentModal() {
     searchBottomSheetRef.current?.present();
@@ -106,21 +152,21 @@ const Explore = () => {
     optionsBottomSheetRef.current?.present();
   }
 
-  useEffect(()=>{
-    dispatch(getListings()) // should be the only in this page
-    // getDevelopers()
-    dispatch(getlocations())
-  },[])
+  // useEffect(() => {
+  //   // dispatch(getListings()); // should be the only in this page
+  //   // getDevelopers()
+  //   dispatch(getlocations());
+  // }, []);
 
   const handleSelectingFilter = (filter) => {
     setSelectedFilter(filter);
   };
 
-  const [refreshing,setRefreshing] = useState(false)
+  const [refreshing, setRefreshing] = useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    console.log('refreshing')
-    store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate())
+    console.log("refreshing");
+    store.dispatch(developersApiSlice.endpoints.getDevelopers.initiate());
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -131,185 +177,179 @@ const Explore = () => {
 
   return (
     <>
-    <ScrollView
-      className="flex-1 gap-0 bg-[#FAFAFB]"
-      decelerationRate="fast"
-      vertical={true}
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-      >
-
-    {/*  */}
-    <Button title="Get Developers"
-    onPress={ async()=> { 
-        const response = await axiosInstance.get('https://fake-api.example.com/api/v1/developers');
-        console.log({respose:response.data.data})
-        console.log({respose:response.data.data[0]})
-    }}
-    />
-    <TouchableOpacity onPress={() => handlePresentModal()}>
-        <View>
-          <SearchProperty placeholder={"Search 162 properties"} />
-        </View>
-    {/*  */}
-    </TouchableOpacity>
-
-    <View className="">
-        
-        <View className=" px-4 pt-3 flex flex-row items-center justify-between">
-          <Text className="text-lg font-bold">Developers</Text>
-          <Link
-          href="/developers">
-              View all
-          </Link>
-        </View>
-    {/*  */}
-    {
-      (isDeveloperLoading) ? 
-      <>
-      <Text> {JSON.stringify(typeof(isDeveloperLoading))}</Text>
-      {/* <Text> {JSON.stringify(typeof(developers))}</Text> */}
-      <LoadingScreen />
-      </>
-      :
-      <></>
-        // <FlatList
-        //   data={developers}
-        //   horizontal={true}
-        //   showsHorizontalScrollIndicator={false}
-        //   keyExtractor={(item) => `dev`+item.id}
-        //   renderItem={({ item }) => (
-            
-        //     <TouchableOpacity onPress={() => 
-        //       router.push({
-        //       pathname:"/developer_details",
-        //       params: {id:item.id} })}>
-        //       <Image
-        //       source={{ uri: item.profilePhoto }}
-        //       className="w-32 h-32 mr-4 mt-3 rounded-[10px]"/>
-        //     </TouchableOpacity>
-
-        //   )}
-        // />
-    }
-    </View>
-
-    {/* Ad card */}
-      <AdCard />
-
-  <View className="px-4 pt-3">
-    <Text className="text-lg font-bold">Announcements</Text>
-  </View>
-  
-    {/* Announcements Boards  */}
-    <View className="px-4 pt-4"> 
-      <FlatList
-        data={boardData}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => `listing`+item.id}
-        // refreshing={isDeveloperLoading}
-        // onRefresh={dispatch(getListings())}
-        renderItem={({ item }) => (
-          <BoardCard board={item} width="100%" />
-        )}
-        className="w-full"
-      />
-    </View>
-
-
-{/*  */}
-      <View className="px-4 pt-4">
-        <Text className="text-lg font-bold">What are you looking for?</Text>
-        <View className="flex flex-row pt-4 items-center gap-2">
-          <Text
-            className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
-              SelectedFilter === "apartment"
-                ? "bg-highlight text-white"
-                : "bg-white"
-            }`}
-            onPress={() => handleSelectingFilter("apartment")}
-          >
-            Apartment
-          </Text>
-          <Text
-            className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
-              SelectedFilter === "residential"
-                ? "bg-highlight text-white"
-                : "bg-white"
-            }`}
-            onPress={() => handleSelectingFilter("residential")}
-          >
-            Residential
-          </Text>
-          <Text
-            className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
-              SelectedFilter === "hotel"
-                ? "bg-highlight text-white"
-                : "bg-white"
-            }`}
-            onPress={() => handleSelectingFilter("hotel")}
-          >
-            Hotel
-          </Text>
-        </View>
-      </View>
-{/*  */}
-        {
-        (isListingLoading) ? <LoadingScreen />:
-       
-        <FlatList
-        data={locations}
+      <ScrollView
+        className="flex-1 gap-0 bg-[#FAFAFB]"
+        decelerationRate="fast"
+        vertical={true}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => `locations`+item.id}
-        refreshing={false}
-        onRefresh={()=>{}}
-        renderItem={({ item }) => (
-        <View>
-          <View className="px-4 pt-4 flex flex-row items-center justify-between">
-            <View className="flex flex-col gap-1">
-              <Text className="font-bold text-[18px]">{item.name}</Text>
-              <Text className="">127 results</Text>
-            </View>
-            <View>
-              <Link
-              href={`/developer_details/${item.id}`}
-              >
-                View all
-                </Link>
-            </View>
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {/*  */}
+        {/* <Button
+          title="Get Developers"
+          onPress={async () => {
+            const response = await axiosInstance.get(
+              "https://fake-api.example.com/api/v1/developers"
+            );
+            console.log({ respose: response.data.data });
+            console.log({ respose: response.data.data[0] });
+          }}
+        /> */}
+        <TouchableOpacity onPress={() => handlePresentModal()}>
+          <View>
+            <SearchProperty placeholder={"Search 162 properties"} />
           </View>
+          {/*  */}
+        </TouchableOpacity>
 
-          <View className="pl-2 pb-4 w-full">
-             <FlatList
-              data={listings}
+        <View className="">
+          <View className=" px-4 pt-3 flex flex-row items-center justify-between">
+            <Text className="text-lg font-bold">Developers</Text>
+            <Link href="/developers">View all</Link>
+          </View>
+          {/*  */}
+          {isDeveloperLoading ? (
+            <>
+              <Text> {JSON.stringify(typeof isDeveloperLoading)}</Text>
+              {/* <Text> {JSON.stringify(typeof(developers))}</Text> */}
+              <LoadingScreen />
+            </>
+          ) : (
+            // <></>
+            <FlatList
+              data={developers}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => `list`+item.id}
-              // refreshing={isDeveloperLoading}
-              // onRefresh={dispatch(getListings())}
+              keyExtractor={(item) => `dev` + item.id}
               renderItem={({ item }) => (
-                <MainHouseCard listing={item} width="" />
+                <TouchableOpacity
+                  onPress={() =>
+                    router.push({
+                      pathname: "/developer_details",
+                      params: { id: item.id },
+                    })
+                  }
+                >
+                  <Image
+                    source={{ uri: item.profilePhoto }}
+                    className="w-32 h-32 mr-4 mt-3 rounded-[10px]"
+                  />
+                </TouchableOpacity>
               )}
-              className="w-full"
             />
+          )}
+        </View>
+
+        {/* Ad card */}
+        <AdCard />
+
+        <View className="px-4 pt-3">
+          <Text className="text-lg font-bold">Announcements</Text>
+        </View>
+
+        {/* Announcements Boards  */}
+        <View className="px-4 pt-4">
+          <FlatList
+            data={boardData}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => `listing` + item.id}
+            // refreshing={isDeveloperLoading}
+            // onRefresh={dispatch(getListings())}
+            renderItem={({ item }) => <BoardCard board={item} width="100%" />}
+            className="w-full"
+          />
+        </View>
+
+        {/*  */}
+        <View className="px-4 pt-4">
+          <Text className="text-lg font-bold">What are you looking for?</Text>
+          <View className="flex flex-row pt-4 items-center gap-2">
+            <Text
+              className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
+                SelectedFilter === "apartment"
+                  ? "bg-highlight text-white"
+                  : "bg-white"
+              }`}
+              onPress={() => handleSelectingFilter("apartment")}
+            >
+              Apartment
+            </Text>
+            <Text
+              className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
+                SelectedFilter === "residential"
+                  ? "bg-highlight text-white"
+                  : "bg-white"
+              }`}
+              onPress={() => handleSelectingFilter("residential")}
+            >
+              Residential
+            </Text>
+            <Text
+              className={`py-2 px-3 shadow-lg rounded-[50px] flex-1 text-center ${
+                SelectedFilter === "hotel"
+                  ? "bg-highlight text-white"
+                  : "bg-white"
+              }`}
+              onPress={() => handleSelectingFilter("hotel")}
+            >
+              Hotel
+            </Text>
           </View>
         </View>
-        )}/>
-      }
+        {/*  */}
+        {isListingLoading ? (
+          <LoadingScreen />
+        ) : (
+          // <></>
+          <FlatList
+            data={locations}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => `locations` + item.id}
+            refreshing={false}
+            onRefresh={() => {}}
+            renderItem={({ item }) => (
+              // <View>
+              //   <View className="px-4 pt-4 flex flex-row items-center justify-between">
+              //     <View className="flex flex-col gap-1">
+              //       <Text className="font-bold text-[18px]">{item.name}</Text>
+              //       <Text className="">127 results</Text>
+              //     </View>
+              //     <View>
+              //       <Text>View all</Text>
+              //     </View>
+              //   </View>
+              <View className="pl-2 pb-4 w-full">
+                <FlatList
+                  data={listings}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={(item) => `list` + item.id}
+                  // refreshing={isDeveloperLoading}
+                  // onRefresh={dispatch(getListings())}
+                  renderItem={({ item }) => (
+                    <MainHouseCard listing={item} width="" />
+                  )}
+                  className="w-full"
+                />
+              </View>
+              //{" "}
+              // </View>
+            )}
+          />
+        )}
+      </ScrollView>
 
-    </ScrollView>
-
-    <BottomSheetModalProvider className="h-full bg-primary">
+      <BottomSheetModalProvider className="h-full bg-primary">
         <BottomSheetModal
           className="h-full bg-primary"
           ref={searchBottomSheetRef}
           snapPoints={["30%", "50%", "70%", "100%"]}
           enablePanDownToClose={true}
-          animateOnMount={true}>
-
+          animateOnMount={true}
+        >
           <BottomSheetScrollView
             className="pt-5 h-full bg-primary"
             decelerationRate="fast"
@@ -334,71 +374,80 @@ const Explore = () => {
                 }}
               />
 
-      <ScrollView className="px-2 pb-10">
-        <View className="flex-col  mt-4">
-          <View className="flex flex-row items-center justify-center mt-4 relative">
-              
-              <View className="flex-[4]">
-                <LabelInput title="Location" 
-                customStyles="w-full"
-                setFor="location"
-                />
-              </View>
+              <ScrollView className="px-2 pb-10">
+                <View className="flex-col  mt-4">
+                  <View className="flex flex-row items-center justify-center mt-4 relative">
+                    <View className="flex-[4]">
+                      <LabelInput
+                        title="Location"
+                        customStyles="w-full"
+                        setFor="location"
+                      />
+                    </View>
 
-              <View className="flex flex-col items-center gap-4 justify-between">
-                <Text className="text-highlight">Your location</Text>
-                <TouchableOpacity
-                  className="pl-2"
-                  onPress={getLocation}
-                  title="">
-
-                  <Image source={icon.Locationicon} className="w-8 h-8 border border-black"/>
-
-                </TouchableOpacity>
-
-              </View>
-              
-            </View>
-          {/* sizes */}
-          <View className="">
-            <View className="flex-row gap-x-4 mt-8">
-
-              {/* Price Min */}
-              <View className="flex-1">
-                {/* <LabelInput
+                    <View className="flex flex-col items-center gap-4 justify-between">
+                      <Text className="text-highlight">Your location</Text>
+                      <TouchableOpacity
+                        className="pl-2"
+                        onPress={getLocation}
+                        title=""
+                      >
+                        <Image
+                          source={icon.Locationicon}
+                          className="w-8 h-8 border border-black"
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  {/* sizes */}
+                  <View className="">
+                    <View className="flex-row gap-x-4 mt-8">
+                      {/* Price Min */}
+                      <View className="flex-1">
+                        {/* <LabelInput
                 setFor="price"
                 type="numeric"
                 title="Price" 
                 customStyles="w-full" /> */}
-<Text className="text-lg opacity-80 mb-2 text-black">Price</Text>
-<Slider
-       theme={{
-    disableMinTrackTintColor: '#C33535',
-    maximumTrackTintColor: '#f4f4f4',
-    minimumTrackTintColor: '#C33535',
-    cacheTrackTintColor: '#333',
-    bubbleBackgroundColor: '#C33535',
-    heartbeatColor: '#C33535',
-  }}
-      progress={progress}
-      minimumValue={min}
-      maximumValue={max}
-      step={Math.round(Math.abs(max - min) / 100)}
-    />
-              </View>
+                        <Text className="text-lg opacity-80 mb-2 text-black">
+                          Price
+                        </Text>
+                        <Slider
+                          theme={{
+                            disableMinTrackTintColor: "#C33535",
+                            maximumTrackTintColor: "#f4f4f4",
+                            minimumTrackTintColor: "#C33535",
+                            cacheTrackTintColor: "#333",
+                            bubbleBackgroundColor: "#C33535",
+                            heartbeatColor: "#C33535",
+                          }}
+                          progress={progress}
+                          minimumValue={min}
+                          maximumValue={max}
+                          step={Math.round(Math.abs(max - min) / 100)}
+                        />
+                      </View>
+                    </View>
 
-            </View>
-          
+                    {/* bedroom */}
+                    <View className="mt-6">
+                      <ScrollRoomNumber
+                        setFor="bedrooms"
+                        title="Bedrooms"
+                        data={["Any", "1", "2", "3", "4", "5+"]}
+                        rounded={"rounded-full"}
+                      />
+                    </View>
 
-            {/* bedroom */}
-            <View className="mt-6">
-              <ScrollRoomNumber setFor="bedrooms" title="Bedrooms" data={["Any", "1", "2", "3", "4", "5+"]} rounded={"rounded-full"}/>
-            </View>
-
-            {/* bathroom */}
-            <View className="mt-6">
-              <ScrollRoomNumber setFor="bathrooms" title="Bathrooms" data={["Any", "1", "2", "3", "4", "5+"]} rounded={"rounded-full"} />
-            </View>
+                    {/* bathroom */}
+                    <View className="mt-6">
+                      <ScrollRoomNumber
+                        setFor="bathrooms"
+                        title="Bathrooms"
+                        data={["Any", "1", "2", "3", "4", "5+"]}
+                        rounded={"rounded-full"}
+                      />
+                    </View>
 
                     {/* PropertyType */}
                     {/* <View className="mt-6">
@@ -412,35 +461,43 @@ const Explore = () => {
                         <Text className="text-sm opacity-60">Any</Text>
                       </TouchableOpacity>
                     </View> */}
- <View className="mt-6">
-              <ScrollRoomNumber setFor="propertytype" title="Property type" data={PropertyType} rounded={"rounded-[10px]"} />
-            </View>
-            {/* Features */}
-            {/* <View className="mt-6">
+                    <View className="mt-6">
+                      <ScrollRoomNumber
+                        setFor="propertytype"
+                        title="Property type"
+                        data={PropertyType}
+                        rounded={"rounded-[10px]"}
+                      />
+                    </View>
+                    {/* Features */}
+                    {/* <View className="mt-6">
               <TouchableOpacity onPress={handleOptionsPresentModal}>
                 <Text className="text-lg opacity-80">Features</Text>
                 <Text className="text-sm opacity-60">Any</Text>
               </TouchableOpacity>
             </View> */}
-             <View className="mt-6">
-              <ScrollRoomNumber setFor="features" title="Features" data={["Any","Garage", "Security", "Pool"]} rounded={"rounded-[10px]"}/>
-            </View>
-            <TouchableOpacity
-                  className=" bg-highlight p-[17px] rounded-full mt-4 w-full items-center"
-                  onPress={() => 
-                    router.push("/results")}
-                  title="" >
+                    <View className="mt-6">
+                      <ScrollRoomNumber
+                        setFor="features"
+                        title="Features"
+                        data={["Any", "Garage", "Security", "Pool"]}
+                        rounded={"rounded-[10px]"}
+                      />
+                    </View>
+                    <TouchableOpacity
+                      className=" bg-highlight p-[17px] rounded-full mt-4 w-full items-center"
+                      onPress={() => router.push("/results")}
+                      title=""
+                    >
+                      <Text className="text-white font-bold">Search</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </ScrollView>
+              {/* end */}
 
-                  <Text className="text-white font-bold">Search</Text>
-            </TouchableOpacity>
-
-          </View>
-        </View>
-      </ScrollView>
-        {/* end */}
-        
-        {/* options bottom sheet */}
-      {/* <BottomSheetModalProvider>
+              {/* options bottom sheet */}
+              {/* <BottomSheetModalProvider>
         <BottomSheetModal
           className="h-full"
           ref={optionsBottomSheetRef}
@@ -482,13 +539,9 @@ const Explore = () => {
           </BottomSheetScrollView>
         </BottomSheetModal>
       </BottomSheetModalProvider> */}
-
-    </View>
-  
-            
+            </View>
           </BottomSheetScrollView>
-
-          </BottomSheetModal>
+        </BottomSheetModal>
       </BottomSheetModalProvider>
     </>
   );
