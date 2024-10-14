@@ -1,7 +1,7 @@
 import { developerData } from "data";
 
 
-export enum listingType {
+export enum ListingType {
     BUY = "buy",
     LEASE = "lease",
 }
@@ -21,33 +21,27 @@ export enum NotificaitonType {
 
 
 export interface Listing  {
-    id: number;
-    name: string;
-    thumbnail: string;
-    image:string;
-    listedBy:Developer.name;
-    address: string;
-    price: number;
-    propertyType: PropertyType[];
-    bedrooms: number;
-    bathrooms: number;
-    houseSize: number;
-    openHouseSchedule: null | string[];
-    offMarket: boolean;
-    created: string;
-    verified: boolean;
-    saved: boolean;
-    listedFor: listingType[];
-    location: {
-        coords: {
-            lat: number;
-            lng: number;
-        };
-        address: string;
-    };
-    description: string;
-    features: string[];
-    pictures: string[];
+    listing_id: number;
+    listing_createdAt: string;
+    listing_updatedAt: string | null,
+    listing_deletedAt: string | null,
+    listing_thumbnail: string;
+    listing_price: number;
+    listing_propertyType: PropertyType | string;
+    listing_bedrooms: number;
+    listing_bathrooms: number;
+    listing_houseSize: number;
+    listing_openHouseSchedule: null | string;
+    listing_offMarket: boolean | 0 | 1;
+    // listing_created: string;
+    listing_verified: boolean | 0 | 1;
+    // listing_saved: boolean | 0 | 1;
+    listing_listedFor: ListingType | string;
+    listing_placeId: string | number;
+    listing_developerId: string | number;
+    listing_description: string;
+    listing_features: string;
+    listing_pictures: string;
 }
 
 export interface User {
@@ -60,21 +54,24 @@ export interface User {
 // }
 
 export interface Notificaton {
-    userId: number,
-    created: string;
-    message: string;
+    notification_id: number,
+    notification_createdAt: string,
+    notification_deletedAt: null | string,
 
-    icon: null | string;
-    image: null |string;
-    type: null | NotificaitonType;
+    notification_userId: number,
+    notification_title: string;
+    notification_type: null | string | NotificaitonType;
+    notification_message: string;
 }
 
 export interface Developer {
-    id: number;
-    createdAt: string;
-    name: string;
-    email: string;
-    profilePhoto: string;
+    developer_id: number;
+    developer_createdAt: string;
+    developer_updatedAt: string | null;
+    developer_deletedAt: string | null,
+    developer_name: string;
+    developer_email: string;
+    developer_profilePhoto: string;
 }
 
 export interface Place {
@@ -97,12 +94,15 @@ export interface Ad {
 }
 
 export interface Board {
-    id: number;
-    title: string;
-    tags: null | string[];
-    image: string;
-    date: string;
-    views: null | number;
-    developer: null | Developer;
-    body: null | string;
+    board_id: number;
+    board_createdAt: string | null,
+    board_updatedAt: string | null,
+    board_deletedAt: string | null,
+    board_title: string;
+    board_tags: null | string;
+    board_image: string;
+    // board_date: string;
+    board_views: null | number;
+    board_developerId: null | number;
+    board_body: null | string;
 }

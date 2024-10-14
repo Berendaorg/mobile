@@ -1,530 +1,490 @@
 import image from "../constants/image";
 import icon from "../constants/icon";
 
-import { NotificaitonType, PropertyType, listingType } from "../types/index.d.ts";
+// import { NotificaitonType, PropertyType, ListingType } from "../types/index.d.ts";
 
 // import { Listing } from '../types/index.d.ts';
 
 /** @type {import('../types/index.d.ts').Listing[]} */
 const listingData = [
   {
-    id: 1,
-    name: "listing 1",
-    thumbnail: image.dubaiprop,
-    address: "123 Main St, City, Country",
-    // needs to be linked
-    image: image.dubaiprop,
-    listedBy: 7,
-    // 
-    price: 250000,
-    propertyType: [PropertyType.APARTMENT],
-    bedrooms: 3,
-    bathrooms: 2,
-    houseSize: 1800,
-    location: {
-      coords: {
-        lat: 40.7128,
-        lng: -74.0060
-      },
-      address: "123 Main St, City, Country"
-    },
-    description: "Beautiful townhouse with modern amenities",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    openHouseSchedule: ["2024-05-01", "2024-05-08", "2024-05-15"],
-    offMarket: false,
-    created: "2024-04-18",
-    verified: true,
-    listedFor: [listingType.BUY],
-    saved: false
+      "listing_id": 1,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 6995481,
+      "listing_deletedAt": null,
+      "listing_description": "Vaco deprimo tergum usque pecco tremo cervus vulgivagus.",
+      "listing_features": "[\"admoveo\",\"absum\"]",
+      "listing_pictures": "[\"https://loremflickr.com/640/480?lock=1616616271904768\",\"https://picsum.photos/seed/Wswn4Xk/640/480\"]",
+      "listing_openHouseSchedule": "2025-04-03T23:24:42.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/E6V5xjv/640/480",
+      "listing_bedrooms": 3,
+      "listing_bathrooms": 2,
+      "listing_houseSize": 154,
+      "listing_propertyType": "townhouse",
+      "listing_offMarket": 1,
+      "listing_verified": 0,
+      "listing_listedFor": "lease",
+      "listing_placeId": "1",
+      "listing_developerId": 5
   },
   {
-    id: 2,
-    "name": "listing 2",
-    image: image.dunabeprop,
-    "address": "456 Elm St, City, Country",
-    "price": 190000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "houseSize": 1200,
-    "location": {
-      "coords": {
-        "lat": 34.0522,
-        "lng": -118.2437
-      },
-      "address": "456 Elm St, City, Country"
-    },
-    "description": "Cozy apartment in a convenient location",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-04-30", "2024-05-07", "2024-05-14"],
-    "offMarket": false,
-    "created": "2024-04-17",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 2,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 2851470,
+      "listing_deletedAt": null,
+      "listing_description": "Chirographum utroque aetas defluo vestigium.",
+      "listing_features": "[\"cupressus\"]",
+      "listing_pictures": "[\"https://loremflickr.com/640/480?lock=8356981697937408\",\"https://loremflickr.com/640/480?lock=5203570701893632\",\"https://loremflickr.com/640/480?lock=6985042249121792\",\"https://loremflickr.com/640/480?lock=4051849411821568\"]",
+      "listing_openHouseSchedule": "2025-10-10T13:43:53.000Z",
+      "listing_thumbnail": "https://loremflickr.com/640/480?lock=8583919955869696",
+      "listing_bedrooms": 3,
+      "listing_bathrooms": 1,
+      "listing_houseSize": 297,
+      "listing_propertyType": "condo",
+      "listing_offMarket": 0,
+      "listing_verified": 1,
+      "listing_listedFor": "buy",
+      "listing_placeId": "2",
+      "listing_developerId": 2
   },
   {
-    id: 3,
-    "name": "listing 3",
-    image: image.aldarprop,
-    "address": "789 Oak St, City, Country",
-    "price": 300000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 2,
-    "bathrooms": 2.5,
-    "houseSize": 1600,
-    "location": {
-      "coords": {
-        "lat": 41.8781,
-        "lng": -87.6298
-      },
-      "address": "789 Oak St, City, Country"
-    },
-    "description": "Modern condominium with stunning views",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-03", "2024-05-10", "2024-05-17"],
-    "offMarket": false,
-    "created": "2024-04-19",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 3,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 7329588,
+      "listing_deletedAt": null,
+      "listing_description": "Aestus sumo amoveo voluptates.",
+      "listing_features": "[\"facere\",\"vix\",\"ciminatio\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/aTSHJG/640/480\",\"https://loremflickr.com/640/480?lock=6657828020289536\",\"https://picsum.photos/seed/PWRbjbLxgk/640/480\",\"https://loremflickr.com/640/480?lock=2362418925666304\"]",
+      "listing_openHouseSchedule": "2025-03-29T08:21:25.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/VJukJaUceA/640/480",
+      "listing_bedrooms": 1,
+      "listing_bathrooms": 2,
+      "listing_houseSize": 926,
+      "listing_propertyType": "townhouse",
+      "listing_offMarket": 0,
+      "listing_verified": 0,
+      "listing_listedFor": "lease",
+      "listing_placeId": "3",
+      "listing_developerId": 8
   },
   {
-    id: 4,
-    "name": "listing 4",
-    image: image.aldarprop,
-    "address": "321 Pine St, City, Country",
-    "price": 500000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "houseSize": 2400,
-    "location": {
-      "coords": {
-        "lat": 34.0522,
-        "lng": -118.2437
-      },
-      "address": "321 Pine St, City, Country"
-    },
-    "description": "Spacious family home in a quiet neighborhood",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-05", "2024-05-12", "2024-05-19"],
-    "offMarket": false,
-    "created": "2024-04-20",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 4,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 2740033,
+      "listing_deletedAt": null,
+      "listing_description": "Constans abscido textilis ullam colligo spiritus acsi solutio aggredior deficio.",
+      "listing_features": "[\"ara\",\"aiunt\",\"sperno\",\"eaque\",\"viridis\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/xXDNvsK/640/480\",\"https://loremflickr.com/640/480?lock=2535312974675968\",\"https://loremflickr.com/640/480?lock=1447100571189248\",\"https://loremflickr.com/640/480?lock=8417955681402880\",\"https://loremflickr.com/640/480?lock=700",
+      "listing_openHouseSchedule": "2024-11-10T09:03:22.000Z",
+      "listing_thumbnail": "https://loremflickr.com/640/480?lock=3213278805229568",
+      "listing_bedrooms": 1,
+      "listing_bathrooms": 5,
+      "listing_houseSize": 289,
+      "listing_propertyType": "townhouse",
+      "listing_offMarket": 1,
+      "listing_verified": 1,
+      "listing_listedFor": "lease",
+      "listing_placeId": "4",
+      "listing_developerId": 6
   },
   {
-    id: 5,
-    "name": "listing 5",
-    image: image.dubaiprop,
-    "address": "246 Maple St, City, Country",
-    "price": 180000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "houseSize": 900,
-    "location": {
-      "coords": {
-        "lat": 40.7128,
-        "lng": -74.0060
-      },
-      "address": "246 Maple St, City, Country"
-    },
-    "description": "Cozy apartment with great amenities",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-02", "2024-05-09", "2024-05-16"],
-    "offMarket": false,
-    "created": "2024-04-21",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 5,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 1915805,
+      "listing_deletedAt": null,
+      "listing_description": "Blandior deduco strues voluptate tres tubineus culpo cum.",
+      "listing_features": "[\"arcus\"]",
+      "listing_pictures": "[\"https://loremflickr.com/640/480?lock=1633909483765760\",\"https://loremflickr.com/640/480?lock=6426191756001280\",\"https://picsum.photos/seed/ROrmH/640/480\",\"https://picsum.photos/seed/PIZNz1/640/480\",\"https://picsum.photos/seed/aUPBlq3B/640/480\"]",
+      "listing_openHouseSchedule": "2025-02-16T15:53:23.000Z",
+      "listing_thumbnail": "https://loremflickr.com/640/480?lock=7028099600351232",
+      "listing_bedrooms": 5,
+      "listing_bathrooms": 4,
+      "listing_houseSize": 905,
+      "listing_propertyType": "apartment",
+      "listing_offMarket": 0,
+      "listing_verified": 1,
+      "listing_listedFor": "buy",
+      "listing_placeId": "5",
+      "listing_developerId": 8
   },
   {
-    id: 6,
-    "name": "listing 6",
-    image: image.dubaiprop,
-    "address": "789 Cedar St, City, Country",
-    "price": 400000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 3,
-    "bathrooms": 2.5,
-    "houseSize": 2000,
-    "location": {
-      "coords": {
-        "lat": 34.0522,
-        "lng": -118.2437
-      },
-      "address": "789 Cedar St, City, Country"
-    },
-    "description": "Spacious townhouse with great views",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-04", "2024-05-11", "2024-05-18"],
-    "offMarket": false,
-    "created": "2024-04-22",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 6,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 7569074,
+      "listing_deletedAt": null,
+      "listing_description": "Contigo amoveo virgo cinis tondeo harum acies tandem vociferor asperiores.",
+      "listing_features": "[\"solium\",\"usque\",\"versus\",\"tenus\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/QlNN0f/640/480\",\"https://loremflickr.com/640/480?lock=7926592869236736\"]",
+      "listing_openHouseSchedule": "2025-04-13T09:34:20.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/twYZV/640/480",
+      "listing_bedrooms": 2,
+      "listing_bathrooms": 4,
+      "listing_houseSize": 866,
+      "listing_propertyType": "condo",
+      "listing_offMarket": 0,
+      "listing_verified": 0,
+      "listing_listedFor": "buy",
+      "listing_placeId": "6",
+      "listing_developerId": 8
   },
   {
-    id: 7,
-    "name": "listing 7",
-    image: image.dubaiprop,
-    "address": "1010 Walnut St, City, Country",
-    "price": 600000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 5,
-    "bathrooms": 3.5,
-    "houseSize": 3000,
-    "location": {
-      "coords": {
-        "lat": 41.8781,
-        "lng": -87.6298
-      },
-      "address": "1010 Walnut St, City, Country"
-    },
-    "description": "Luxurious family home with spacious backyard",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-06", "2024-05-13", "2024-05-20"],
-    "offMarket": false,
-    "created": "2024-04-23",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 7,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 6337146,
+      "listing_deletedAt": null,
+      "listing_description": "Decumbo vinum adipisci cohors vilitas calamitas voluptatibus comes voluptas temeritas.",
+      "listing_features": "[\"cruciamentum\",\"quia\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/s12iGRMgMJ/640/480\"]",
+      "listing_openHouseSchedule": "2025-03-14T07:39:58.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/1eMdC/640/480",
+      "listing_bedrooms": 1,
+      "listing_bathrooms": 2,
+      "listing_houseSize": 590,
+      "listing_propertyType": "apartment",
+      "listing_offMarket": 0,
+      "listing_verified": 1,
+      "listing_listedFor": "lease",
+      "listing_placeId": "7",
+      "listing_developerId": 3
   },
   {
-    id: 8,
-    "name": "listing 8",
-    image: image.dubaiprop,
-    "address": "1313 Oak St, City, Country",
-    "price": 350000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "houseSize": 1400,
-    "location": {
-      "coords": {
-        "lat": 40.7128,
-        "lng": -74.0060
-      },
-      "address": "1313 Oak St, City, Country"
-    },
-    "description": "Charming condominium in a desirable location",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-08", "2024-05-15", "2024-05-22"],
-    "offMarket": false,
-    "created": "2024-04-24",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 8,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 3415990,
+      "listing_deletedAt": null,
+      "listing_description": "Vero conspergo pectus.",
+      "listing_features": "[\"basium\",\"viscus\",\"cubo\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/8KccGbJJ/640/480\"]",
+      "listing_openHouseSchedule": "2025-09-20T06:03:22.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/8NHBQG/640/480",
+      "listing_bedrooms": 3,
+      "listing_bathrooms": 3,
+      "listing_houseSize": 895,
+      "listing_propertyType": "condo",
+      "listing_offMarket": 1,
+      "listing_verified": 0,
+      "listing_listedFor": "buy",
+      "listing_placeId": "8",
+      "listing_developerId": 4
   },
   {
-    id: 9,
-    "name": "listing 9",
-    image: image.dubaiprop,
-    "address": "1717 Maple St, City, Country",
-    "price": 200000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "houseSize": 800,
-    "location": {
-      "coords": {
-        "lat": 34.0522,
-        "lng": -118.2437
-      },
-      "address": "1717 Maple St, City, Country"
-    },
-    "description": "Modern apartment with balcony",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-09", "2024-05-16", "2024-05-23"],
-    "offMarket": false,
-    "created": "2024-04-25",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
+      "listing_id": 9,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 2388663,
+      "listing_deletedAt": null,
+      "listing_description": "Sol accommodo velut spero voluptatum argentum.",
+      "listing_features": "[\"fugit\",\"adimpleo\",\"aut\",\"crebro\",\"utrum\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/3hUvLaF0R/640/480\",\"https://picsum.photos/seed/giv245/640/480\"]",
+      "listing_openHouseSchedule": "2025-01-03T07:18:45.000Z",
+      "listing_thumbnail": "https://loremflickr.com/640/480?lock=603777878982656",
+      "listing_bedrooms": 5,
+      "listing_bathrooms": 1,
+      "listing_houseSize": 300,
+      "listing_propertyType": "apartment",
+      "listing_offMarket": 0,
+      "listing_verified": 1,
+      "listing_listedFor": "buy",
+      "listing_placeId": "9",
+      "listing_developerId": 7
   },
   {
-    id: 0,
-    "name": "listing 0",
-    image: image.dubaiprop,
-    "address": "2121 Cedar St, City, Country",
-    "price": 450000,
-    propertyType: [PropertyType.APARTMENT],
-    "bedrooms": 4,
-    "bathrooms": 2.5,
-    "houseSize": 2200,
-    "location": {
-      "coords": {
-        "lat": 41.8781,
-        "lng": -87.6298
-      },
-      "address": "2121 Cedar St, City, Country"
-    },
-    "description": "Classic family home with large backyard",
-    features: [
-      "parking",
-      "pool",
-      "gym"
-    ],
-    pictures: [
-      image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg,
-      image.detailimg, image.detailimg
-    ],
-    "openHouseSchedule": ["2024-05-10", "2024-05-17", "2024-05-24"],
-    "offMarket": false,
-    "created": "2024-04-26",
-    listedBy:2,
-    saved: true,
-    listedFor: [listingType.BUY],
-    thumbnail: "",
-    verified: false
-  }]
+      "listing_id": 10,
+      "listing_createdAt": "2024-10-14T12:23:24.000Z",
+      "listing_updatedAt": null,
+      "listing_price": 1487115,
+      "listing_deletedAt": null,
+      "listing_description": "Caritas valde tenetur benevolentia stultus timor.",
+      "listing_features": "[\"conspergo\",\"carus\",\"substantia\",\"bonus\"]",
+      "listing_pictures": "[\"https://picsum.photos/seed/SCwbt/640/480\",\"https://picsum.photos/seed/QWFF9gLSXT/640/480\",\"https://picsum.photos/seed/fgC3Vbgpx/640/480\",\"https://picsum.photos/seed/S4x5KX/640/480\",\"https://loremflickr.com/640/480?lock=8722776712019968\"]",
+      "listing_openHouseSchedule": "2025-05-25T09:40:58.000Z",
+      "listing_thumbnail": "https://picsum.photos/seed/bBbLe4E42b/640/480",
+      "listing_bedrooms": 3,
+      "listing_bathrooms": 4,
+      "listing_houseSize": 134,
+      "listing_propertyType": "realEstate",
+      "listing_offMarket": 1,
+      "listing_verified": 0,
+      "listing_listedFor": "buy",
+      "listing_placeId": "10",
+      "listing_developerId": 5
+  }
+]
 
 /** @type {import('../types/index.d.ts').Board[]} */
 const boardData = [
   {
-    image: image.detailimg,
-    id: 1,
-    title: "Board Title",
-    date: "",
-    views: null,
-    developer: null,
-    body: null,
-    tags: ["-30% Discount","limited time"]
+      "board_id": 1,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "color",
+      "board_tags": "[\"canis\",\"tergeo\"]",
+      "board_views": 2147483647,
+      "board_body": "Corrupti cubo aetas usque. Supellex torrens atrocitas decipio. Fugit toties solitudo advenio sulum acceptus porro assentator summopere ultra.\nVere tametsi angustus suggero stella. Iure demonstro quam complectus dedico. Exercitationem advenio cursus adamo alias numquam deserunt speculum adficio utroque.\nContra auditor comburo verto pecco considero constans audio consequatur confugo. Ipsam acerbitas celebrer cubo caute condico absum clibanus contigo tero. Civitas argumentum voluptatem abundans cunctatio vere truculenter deficio.",
+      "board_image": "https://avatars.githubusercontent.com/u/44720109",
+      "board_developerId": 1
   },
   {
-    image: image.detailimg,
-    id:2,
-    title: "Board Title",
-    tags: ["-30% Discount"],
-    date: "",
-    views: null,
-    developer: null,
-    body: null
+      "board_id": 2,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "defero",
+      "board_tags": "[\"arbitro\",\"colo\",\"victus\",\"ipsam\",\"desino\"]",
+      "board_views": 2147483647,
+      "board_body": "Cuppedia tabula aequus dedecor acies colo textilis cimentarius. Vae confugo tabella tertius vicissitudo vilitas porro. Versus adiuvo audeo una delectus ager.\nSurgo cognomen deleniti tertius thermae. Nisi saepe charisma absorbeo defluo. Abeo causa soleo depereo debilito demens veritas triduana.\nTenetur carpo adipiscor deduco combibo video studio. Animus aperio adipiscor viriliter administratio assentator crepusculum. Assentator stillicidium sufficio deleniti.",
+      "board_image": "https://avatars.githubusercontent.com/u/75698033",
+      "board_developerId": 8
   },
   {
-    image: image.detailimg,
-    title: "Board Title",
-    id: 3,
-    tags: ["-30% Discount"],
-    date: "",
-    views: null,
-    developer: null,
-    body: null
+      "board_id": 3,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "beatus",
+      "board_tags": "[\"suasoria\"]",
+      "board_views": 2147483647,
+      "board_body": "Aestivus consectetur adeo aspicio unde. Sono nulla consequuntur spero cetera itaque. Deporto curvo libero advoco cimentarius.\nCariosus comburo colo voluntarius armarium voluntarius. Corona pel pel decumbo circumvenio vicinus ustulo amoveo convoco. Condico curiositas esse aiunt tenus tredecim commemoro alveus debilito.\nAltus torqueo demitto ad terminatio maxime tandem advoco iure. Earum damno corona tertius cursus tergo vicinus. Accommodo absens aperte.",
+      "board_image": "https://avatars.githubusercontent.com/u/18383934",
+      "board_developerId": 3
   },
   {
-    image: image.detailimg,
-    title: "Board Title",
-    id: 4,
-    tags: ["-30% Discount"],
-    date: "",
-    views: null,
-    developer: null,
-    body: null
+      "board_id": 4,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "consectetur",
+      "board_tags": "[\"vehemens\"]",
+      "board_views": 2147483647,
+      "board_body": "Ascisco ulciscor damno adnuo approbo tracto ancilla. Undique nihil spectaculum ver summa ascit caries utrimque sortitus. Aeger accusator considero.\nSapiente conatus audentia velociter verus. Torqueo explicabo ab dolorum labore adsum tergiversatio tum creber deficio. Verumtamen nisi quibusdam maiores tot conor.\nTotidem veniam sortitus deleniti terror degenero carcer creptio. Aestas anser color possimus pecco utpote usitas strenuus vicinus. Officiis conculco rerum sono teres conventus calco calco urbs.",
+      "board_image": "https://avatars.githubusercontent.com/u/14924333",
+      "board_developerId": 6
   },
   {
-    image: image.detailimg,
-    title: "Board Title",
-    id: 5,
-    tags: ["-30% Discount"],
-    date: "",
-    views: null,
-    developer: null,
-    body: null
+      "board_id": 5,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "deserunt",
+      "board_tags": "[\"ulterius\",\"studio\",\"universe\",\"suspendo\"]",
+      "board_views": 2147483647,
+      "board_body": "Molestias ait thorax coniecto saepe contabesco tabula curiositas celer vomer. Voluptas turbo solus. Tamdiu spiculum expedita adnuo blanditiis.\nDebeo triduana carpo quaerat recusandae. Apostolus audentia correptius animus. Amplitudo quia coniuratio at.\nLibero sonitus defleo. Ubi conqueror spectaculum uterque absum volutabrum contra. Tabgo subiungo magni dedico utrimque depulso aduro depereo sint.",
+      "board_image": "https://avatars.githubusercontent.com/u/42975868",
+      "board_developerId": 3
   },
-];
+  {
+      "board_id": 6,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "apud",
+      "board_tags": "[\"aliquid\",\"cena\",\"coepi\",\"ab\",\"tyrannus\"]",
+      "board_views": 2147483647,
+      "board_body": "Similique sequi strues commemoro vulariter celebrer. Supplanto supellex spargo taceo. Velociter atrocitas cruentus.\nUllam totidem credo calcar canonicus tepesco. Vinum stipes curo. Stips arca taedium speciosus cunctatio.\nPauper brevis antiquus atrocitas. Alioqui placeat celer volutabrum stillicidium recusandae ara admiratio umerus suggero. Delicate eveniet explicabo depereo.",
+      "board_image": "https://avatars.githubusercontent.com/u/68828057",
+      "board_developerId": 1
+  },
+  {
+      "board_id": 7,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "adficio",
+      "board_tags": "[\"tametsi\"]",
+      "board_views": 2147483647,
+      "board_body": "Paulatim aptus vilicus quia vehemens demonstro valeo tam. Tyrannus decimus adicio ipsa utroque vulgivagus tantum corpus. Verus alioqui defessus vesper.\nCicuta carmen repellendus absorbeo alo vorax bos ater carmen. Demoror tui textilis delectatio appono eaque confido architecto claro anser. Conatus minus caries suggero voluptatum aggredior suspendo vesco somnus.\nChirographum suppellex atavus facilis tempus deduco sursum. Totam audacia aranea vero confugo triduana tripudio conatus. Vos repudiandae arx bellum reprehenderit armarium ustulo.",
+      "board_image": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/184.jpg",
+      "board_developerId": 9
+  },
+  {
+      "board_id": 8,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "tepidus",
+      "board_tags": "[\"amor\",\"cras\",\"corrigo\"]",
+      "board_views": 2147483647,
+      "board_body": "Cribro debitis volaticus attollo coerceo sollicito thymbra itaque volo. Vir quam tum. Tertius sumptus versus quidem defendo dolore audacia ocer.\nVulgus arx defluo centum cultura ascisco qui vado voluptatem. Valetudo spero capio vitae atrocitas vado illo ancilla terra virga. Vita defetiscor inventore omnis tremo trepide civis demulceo sunt.\nTertius aranea appello. Talis angelus appono qui tardus sordeo admitto crapula teres. Vitium ipsum cupiditate comis rem theca.",
+      "board_image": "https://avatars.githubusercontent.com/u/48588145",
+      "board_developerId": 10
+  },
+  {
+      "board_id": 9,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "cervus",
+      "board_tags": "[\"benigne\",\"abduco\",\"vinitor\",\"veritatis\"]",
+      "board_views": 2147483647,
+      "board_body": "Bellicus aperte ago conspergo color cribro summopere taedium cauda. Timor umerus delicate ulciscor corporis uter perferendis pel. Speculum carcer velum asper arx.\nUtroque comes strenuus appositus video undique studio speciosus nisi. Conduco vilitas victoria vel coruscus cito sui cognomen arbor. Nobis expedita uter utpote cauda amissio.\nAngelus degenero porro cursus amicitia eaque crapula vinculum. Aestus alter abeo aptus paulatim bellum amet sursum concido brevis. Bonus caelum aggero sollers sum deficio odit vester audax accendo.",
+      "board_image": "https://avatars.githubusercontent.com/u/35097761",
+      "board_developerId": 7
+  },
+  {
+      "board_id": 10,
+      "board_createdAt": "2024-10-14T12:47:03.000Z",
+      "board_updatedAt": null,
+      "board_deletedAt": null,
+      "board_title": "absens",
+      "board_tags": "[\"dedico\",\"spiritus\",\"articulus\",\"temptatio\",\"caritas\"]",
+      "board_views": 2147483647,
+      "board_body": "Autus accendo triduana talus cultura fugit atavus canonicus conitor. Carcer blandior cohibeo vorax vulgivagus fugiat bellicus conicio consequuntur. Caelestis turpis atrox eligendi defaeco curtus aestas.\nTracto tempora basium canis. Porro textor vulnus adeptio earum quas taedium. Vallum aranea tremo concedo tergiversatio advenio.\nTibi corrupti abscido celebrer vulariter clam utpote thermae vado arbor. Auctor aspernatur bellicus communis commodi corrupti defero appello. Porro cattus bibo.",
+      "board_image": "https://avatars.githubusercontent.com/u/57725208",
+      "board_developerId": 10
+  }
+]
 
 /** @type {import('../types/index.d.ts').Notificaton[]} */
 const notificationData = [
-    {
-    userId:1,
-    created:'1:57',
-    message:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
-    icon: icon.Transfericon,
-    image:icon.Transfericon,
-    type: NotificaitonType.AD,
-    },
-    {
-      userId: 1,
-      created: '1:57',
-      message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
-      icon: icon.Transfericon,
-      type: NotificaitonType.AD,
-      image: null
-    },
-    {
-      userId: 1,
-      created: '1:57',
-      message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
-      icon: icon.Transfericon,
-      type: NotificaitonType.AD,
-      image: null
-    },
-    {
-      userId: 1,
-      created: '1:57',
-      message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
-      icon: icon.Transfericon,
-      type: NotificaitonType.AD,
-      image: null
-    },
-    {
-      userId: 1,
-      created: '1:57',
-      message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore`,
-      icon: icon.Transfericon,
-      type: NotificaitonType.AD,
-      image: null
-    },
+  {
+      "notification_id": 1,
+      "notification_createdAt": "2024-10-14T02:48:49.000Z",
+      "notification_deletedAt": null,
+
+      "notification_userId": 9,
+      "notification_type": "listing",
+      "notification_title": "thorax voluptatum correptius temperantia depereo",
+      "notification_message": "Vivo crebro abstergo angustus ultio conturbo super. Tam turpis curiositas voluptatibus vulnus voco surculus tandem. Voluptate caterva stella cur triduana suppellex confugo coniecto conventus crux.",
+  },
+  {
+      "notification_id": 2,
+      "notification_type": "listing",
+      "notification_createdAt": "2024-10-14T07:16:48.000Z",
+      "notification_deletedAt": null,
+      "notification_title": "illo vilitas pauci cur atque",
+      "notification_message": "Mollitia accendo peccatus constans fuga victus perspiciatis crudelis accusator pecto. Certus antea contego natus. Strenuus trucido virgo utrum subvenio.",
+      "notification_userId": 4
+  },
+  {
+      "notification_id": 3,
+      "notification_type": "announcement",
+      "notification_createdAt": "2024-10-14T06:54:29.000Z",
+      "notification_deletedAt": null,
+      "notification_title": "copia claro demulceo earum solitudo",
+      "notification_message": "Amita testimonium tredecim tristis quas brevis cerno arguo apud depopulo. Ater acidus usus curriculum creptio tamen pel. Qui sonitus aliquam aliqua voluntarius verto.",
+      "notification_userId": 4
+  },
+  {
+      "notification_id": 4,
+      "notification_type": "listing",
+      "notification_createdAt": "2024-10-14T02:23:33.000Z",
+      "notification_deletedAt": null,
+      "notification_title": "venia constans ambulo dolores confido",
+      "notification_message": "Alii valeo carcer quaerat clam appono. Coadunatio vigilo debeo. Degero consequatur defetiscor vos suppono tenetur appono decet possimus candidus.",
+      "notification_userId": 2
+  },
+  {
+      "notification_id": 5,
+      "notification_type": "ad",
+      "notification_createdAt": "2024-10-13T17:30:46.000Z",
+      "notification_deletedAt": null,
+      "notification_title": "bos delinquo cena averto vivo",
+      "notification_message": "Provident sperno curtus velit valetudo itaque viscus. Cimentarius atque succedo cilicium textilis color thema asporto. Cum deinde textor crebro dolor crapula.",
+      "notification_userId": 5
+  }
 ]
 
 /** @type {import('../types/index.d.ts').Developer[]} */
 const developerData = [
   {
-    id: 1,
-    name: "developer 1",
-    email: "developer1@email.com",
-    profilePhoto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9RL7jZBdy-GACBLVMZSCDp44yr93lDryEQQ&s",
-    createdAt: ""
+      "developer_id": 2,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Chadd_Fritsch44@yahoo.com",
+      "developer_name": "Harvey - Purdy",
+      "developer_profilePhoto": "https://avatars.githubusercontent.com/u/38861678"
   },
   {
-    id: 2,
-    name: "developer 2",
-    email: "developer2@email.com",
-    profilePhoto: "https://iconape.com/wp-content/png_logo_vector/aldar-properties-logo.png",
-    createdAt: ""
+      "developer_id": 3,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Sammy85@hotmail.com",
+      "developer_name": "Carter and Sons",
+      "developer_profilePhoto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1239.jpg"
   },
   {
-    id: 3,
-    name: "developer 3",
-    email: "developer3@email.com",
-    profilePhoto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQbFW_-3yGH3koFlg80RcrRl7H8QfhkH5xQ&s",
-    createdAt: ""
+      "developer_id": 4,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Eleanore22@hotmail.com",
+      "developer_name": "Kautzer - Stiedemann",
+      "developer_profilePhoto": "https://avatars.githubusercontent.com/u/16380145"
   },
   {
-    id: 4,
-    name: "developer 4",
-    email: "developer4@email.com",
-    profilePhoto: "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",
-    createdAt: ""
+      "developer_id": 5,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Alessandro.Russel93@hotmail.com",
+      "developer_name": "Marvin, Hartmann and Schuppe",
+      "developer_profilePhoto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/365.jpg"
   },
   {
-    id: 5,
-    name: "developer 5",
-    email: "developer4@email.com",
-    profilePhoto: "https://logolook.net/wp-content/uploads/2024/04/Emaar-Properties-Logo-2014.png",
-    createdAt: ""
+      "developer_id": 6,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Carlee81@hotmail.com",
+      "developer_name": "Hegmann Group",
+      "developer_profilePhoto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/161.jpg"
   },
+  {
+      "developer_id": 7,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Dylan_Marquardt65@yahoo.com",
+      "developer_name": "Balistreri LLC",
+      "developer_profilePhoto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/754.jpg"
+  },
+  {
+      "developer_id": 8,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Talon_Dietrich81@gmail.com",
+      "developer_name": "Fisher Group",
+      "developer_profilePhoto": "https://avatars.githubusercontent.com/u/8115915"
+  },
+  {
+      "developer_id": 9,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Paris_Hegmann@yahoo.com",
+      "developer_name": "Ritchie LLC",
+      "developer_profilePhoto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/438.jpg"
+  },
+  {
+      "developer_id": 10,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Curtis.Olson@yahoo.com",
+      "developer_name": "Reichert - McKenzie",
+      "developer_profilePhoto": "https://avatars.githubusercontent.com/u/24038695"
+  },
+  {
+      "developer_id": 11,
+      "developer_createdAt": "2024-10-07T17:31:18.000Z",
+      "developer_updatedAt": null,
+      "developer_deletedAt": null,
+      "developer_email": "Raquel45@gmail.com",
+      "developer_name": "Kuvalis Group",
+      "developer_profilePhoto": "https://avatars.githubusercontent.com/u/93820465"
+  }
 ]
 
 /** @type {import('../types/index.d.ts').Place[]} */
