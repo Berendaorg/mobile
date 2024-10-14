@@ -1,5 +1,4 @@
 import image from "../constants/image";
-import icon from "../constants/icon";
 
 // import { NotificaitonType, PropertyType, ListingType } from "../types/index.d.ts";
 
@@ -587,4 +586,3 @@ const adData = [{
  
 
 export {adData, listingData, boardData, notificationData, developerData, locationData}
-  
